@@ -11,4 +11,26 @@ RSpec.feature "RegisterUser", type: :feature do
       end
     end
   end
+  
+  context "Registering a User" do
+    Steps "Going to a registration page and filling out a form" do
+      Given "I am on the landing (root) page" do
+        visit "/"
+      end
+      And "I click the 'Sign Up' button" do
+        click_link "Sign Up"
+      end
+      Then "I see a registration form that I can fill out" do
+        expect(page).to have_content("Sign up")
+        fill_in 'user[username]', with: "ssmith"
+        fill_in 'user[email]', with: "ssmith@test.com"
+        fill_in 'user[password]', with: "password"
+        fill_in 'user[password_confirmation]', with: "password"
+      end
+      And "I can submit the registration form succesfully having filled out the required fields" do
+        click_button 'Sign up'
+        expect(page).to have_content("Welcome! You have signed up successfully.")
+      end
+    end
+  end
 end
