@@ -42,3 +42,15 @@
   <%= link_to 'Edit', edit_venue_path(@venue) %>
 <% end%> |
 <%= link_to 'Back', venues_path %>
+
+
+<% if user_signed_in? %>
+  <form action="/venue_reviews" method="post">
+    <textarea name="venue_review[review]" style="margin-top: 0px; margin-bottom: 0px; height: 200px; width: 200px;"></textarea> <br>
+     <input type="hidden" name="venue_review[user_id]" value="<%= current_user.id%>">
+    <input type="hidden" name="venue_review[venue_id]" value="<%= params[:id]%> "> <br>
+    <input type="submit" value="Review!">
+
+  </form>
+
+  <% end %>
