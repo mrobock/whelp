@@ -9,6 +9,8 @@ RSpec.feature "LoggingIn", type: :feature do
         fill_in 'user[email]', with: "ssmith@test.com"
         fill_in 'user[password]', with: "password"
         fill_in 'user[password_confirmation]', with: "password"
+        fill_in "First name", with: "firstname"
+        fill_in "Last name", with: "lastname"
         click_button 'Sign up'
       end
       And "I log out" do

@@ -11,7 +11,7 @@ RSpec.feature "RegisterUser", type: :feature do
       end
     end
   end
-  
+
   context "Registering a User" do
     Steps "Going to a registration page and filling out a form" do
       Given "I am on the landing (root) page" do
@@ -26,6 +26,8 @@ RSpec.feature "RegisterUser", type: :feature do
         fill_in 'user[email]', with: "ssmith@test.com"
         fill_in 'user[password]', with: "password"
         fill_in 'user[password_confirmation]', with: "password"
+        fill_in "First name", with: "firstname"
+        fill_in "Last name", with: "lastname"
       end
       And "I can submit the registration form succesfully having filled out the required fields" do
         click_button 'Sign up'

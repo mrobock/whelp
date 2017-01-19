@@ -1,8 +1,12 @@
 class User < ApplicationRecord
+  has_many :venues
+  has_many :events
+  has_many :venue_reviews
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # Only allow letter, number, underscore and punctuation.
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
+  validates :first_name, :last_name, presence: true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]

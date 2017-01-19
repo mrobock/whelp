@@ -11,24 +11,27 @@ RSpec.feature "Events", type: :feature do
         fill_in "Email", with: "mrin@mrin.m"
         fill_in "Password", with: "mrinsin"
         fill_in "Password confirmation", with: "mrinsin"
+        fill_in "First name", with: "firstname"
+        fill_in "Last name", with: "lastname"
         click_on "Sign up"
       end
 
       Then "I can create a new venue" do
-        user1 = User.new(email: "mrin@mrin.m", password: "mrinsin", password_confirmation: "mrinsin")
+        user1 = User.new(email: "mrin@mrin.m", password: "mrinsin", password_confirmation: "mrinsin", first_name: "firstname", last_name: "lastname")
         user1.save
-        user2 = User.find_by_email("mrin@mrin.m")
-        
+        user2 = User.find_by_first_name("firstname")
+
         visit "/venues"
         click_on "New Venue"
-        fill_in "Name", with: "Mars"
-        fill_in "Description", with: "Mars"
+        fill_in "Name", with: "Mars Attacks"
+        fill_in "Description", with: "Mars Attacks again"
         fill_in "Street 1", with: "Mars"
         fill_in "City", with: "Mars"
         fill_in "State", with: "Mars"
         fill_in "Zip", with: "Mars"
         fill_in "User", with: user2.id
         click_on "Create Venue"
+        expect(page).to have_content("Venue was successfully created")
       end
 
       Then "I can add a new event" do
