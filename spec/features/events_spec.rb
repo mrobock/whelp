@@ -29,7 +29,6 @@ RSpec.feature "Events", type: :feature do
         fill_in "City", with: "Mars"
         fill_in "State", with: "Mars"
         fill_in "Zip", with: "Mars"
-        fill_in "User", with: user2.id
         click_on "Create Venue"
         expect(page).to have_content("Venue was successfully created")
       end
