@@ -33,6 +33,12 @@ RSpec.feature "HideControlsByUsers", type: :feature do
         expect(page).to have_content("Venue was successfully created")
       end
 
+      Then "I can edit/delete my venue as the logged in user" do
+        click_on "Back"
+        expect(page).to have_content "Edit"
+        expect(page).to have_content "Destroy"
+      end
+
       Then "I can add a new event" do
         visit "/events"
         click_on "New Event"
@@ -54,12 +60,17 @@ RSpec.feature "HideControlsByUsers", type: :feature do
 
       And "I can not edit or delete the event as a guest" do
         click_on "Sign Out"
+        expect(page).not_to have_content("New Venue")
         expect(page).not_to have_content("Edit")
         expect(page).not_to have_content("Destroy")
       end
 
-
-
+      And "I can not edit or delete a venue as a guest" do
+        click_on "Venues"
+        expect(page).not_to have_content("New Venue")
+        expect(page).not_to have_content("Edit")
+        expect(page).not_to have_content("Destroy")
+      end
     end
   end
 end
