@@ -35,6 +35,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use Paperclip for uploading photos
+gem 'paperclip'
+
 gem 'devise'
 
 group :development, :test do

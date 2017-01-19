@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Date</th>
       <th>Venue</th>
@@ -16,6 +17,10 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
+        <td>
+          <% if event.image.file? %>
+            <%= link_to image_tag(event.image.url(:small)), event.image.url %></td>
+          <% end %>
         <td><%= event.name %></td>
         <td><%= event.date %></td>
         <td><%= event.venue.name %></td>
