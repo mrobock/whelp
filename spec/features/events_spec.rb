@@ -46,6 +46,16 @@ RSpec.feature "Events", type: :feature do
         expect(page).to have_content "Mating Season"
       end
 
+      When 'I click "Edit"' do
+        click_on 'Edit'
+      end
+      And 'I attach an image file and click "Update Event"' do
+        attach_file('event[image]', 'spec/images/foo.jpg')
+        click_on "Update Event"
+      end
+      Then 'I can see the picture' do
+        expect(page).to have_css('img')
+      end
     end
-  end # enf of context
+  end # end of context
 end #end of rspec
