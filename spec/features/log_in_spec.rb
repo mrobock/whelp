@@ -45,4 +45,39 @@ RSpec.feature "LoggingIn", type: :feature do
       end
     end
   end
+
+  context 'Using the navbar to find venues or events' do
+    Steps 'I can use the navbar to find a list of venues' do
+      Given 'I am on the home page' do
+        visit '/'
+      end
+      And 'I click on "Venues"' do
+        click_link 'Venues'
+      end
+      Then 'I can see a header and a table of venues containing information about said venues' do
+        expect(page).to have_content("Venues")
+        expect(page).to have_content("Description")
+        expect(page).to have_content("Street Address")
+        expect(page).to have_content("City")
+        expect(page).to have_content("State")
+        expect(page).to have_content("Zip")
+      end
+    end
+
+    Steps 'I can use the navbar to find a list of events' do
+      Given 'I am on the home page' do
+        visit '/'
+      end
+      And 'I click on "Events"' do
+        click_link 'Events'
+      end
+      Then 'I can see a header and a table of venues containing information about said events' do
+        expect(page).to have_content("Name")
+        expect(page).to have_content("Date")
+        expect(page).to have_content("Venue")
+        expect(page).to have_content("Description")
+        expect(page).to have_content("Host")
+      end
+    end
+  end
 end
