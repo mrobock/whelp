@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 RSpec.feature "VenuePages", type: :feature do
+  context "Landing page" do
+    Steps "Going to Landing page" do
+      Given "I visit localhost 3000" do
+        visit "/"
+      end
+      Then "I see the site's welcome message!" do
+        expect(page).to have_content("Whelcome to Whelp!")
+      end
+    end
+  end
+
   context 'Going to the venues page' do
     Steps 'Seeing the venues page' do
       Given 'I am on the venues page' do
@@ -14,13 +25,32 @@ RSpec.feature "VenuePages", type: :feature do
 
   context 'Creating a new venue' do
     Steps 'Going to the create new venue page' do
-      Given 'I am on the venues page' do
+      Given "I am on the landing (root) page" do
+        visit "/"
+      end
+      And "I click the 'Sign Up' button" do
+        click_link "Sign Up"
+      end
+      Then "I see a registration form that I can fill out" do
+        expect(page).to have_content("Sign up")
+        fill_in 'user[username]', with: "ssmith"
+        fill_in 'user[email]', with: "ssmith@test.com"
+        fill_in 'user[password]', with: "password"
+        fill_in 'user[password_confirmation]', with: "password"
+        fill_in "First name", with: "firstname"
+        fill_in "Last name", with: "lastname"
+      end
+      And "I can submit the registration form succesfully having filled out the required fields" do
+        click_button 'Sign up'
+        expect(page).to have_content("Welcome! You have signed up successfully.")
+      end
+      Then 'I can navigate to the on the venues page' do
         visit '/venues'
       end
-      Then 'I can click the New Venue link' do
+      And 'I can click the New Venue link' do
         click_link 'New Venue'
       end
-      And 'I can enter new venue info and create new venue' do
+      Then 'I can enter new venue info and create new venue' do
         user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password", first_name: "firstname", last_name: "lastname")
         user1.save
         user2 = User.find_by_username("Joe1")
@@ -32,7 +62,6 @@ RSpec.feature "VenuePages", type: :feature do
         fill_in 'venue[city]', with: "San Diego"
         fill_in 'venue[state]', with: "CA"
         fill_in 'venue[zip]', with: "92109"
-        fill_in 'venue[user_id]', with: user2.id
         click_button 'Create Venue'
         expect(page).to have_content("Name: Joe's Venue")
         expect(page).to have_content("Description: Joe's Awesome Venue")
