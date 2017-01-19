@@ -38,5 +38,7 @@
   <%= @venue.user.username %>
 </p>
 
-<%= link_to 'Edit', edit_venue_path(@venue) %> |
+<% if !current_user.nil? && @venue.user == current_user %>
+  <%= link_to 'Edit', edit_venue_path(@venue) %>
+<% end%> |
 <%= link_to 'Back', venues_path %>

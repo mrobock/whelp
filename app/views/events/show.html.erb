@@ -24,5 +24,7 @@
   <%= user.first_name %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<% if !current_user.nil? && @event.user == current_user %>
+  <%= link_to 'Edit', edit_event_path(@event) %>
+<% end %> |
 <%= link_to 'Back', events_path %>
