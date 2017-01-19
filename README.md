@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To Get Started:
 
-Things you may want to cover:
+* Create duplicate of "database_example.yml" file in "config/locales/"
 
-* Ruby version
+* Rename duplicate file to "database.yml", keeping "database_example.yml" in tact
 
-* System dependencies
+* Replace username in "database.yml" with you local root username and password with your local PostgreSQL password (if password is not required, delete "password" placeholder).
 
-* Configuration
+* Run "postgres -D /usr/local/var/postgres"
 
-* Database creation
+* Run "rake db:create db:migrate"
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+* Run "rails s" in terminal/command line
 
 * ...
