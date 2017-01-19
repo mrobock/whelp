@@ -5,12 +5,10 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th>Street 1</th>
-      <th>Street 2</th>
+      <th>Street Address</th>
       <th>City</th>
       <th>State</th>
       <th>Zip</th>
-      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,12 +18,14 @@
       <tr>
         <td><%= venue.name %></td>
         <td><%= venue.description %></td>
-        <td><%= venue.street_1 %></td>
-        <td><%= venue.street_2 %></td>
+        <% segment = ", " %>
+        <% if venue.street_1.to_s.strip == "" || venue.street_2.to_s.strip == "" %>
+          <% segment = "" %>
+        <% end %>
+        <td><%= venue.street_1 + segment + venue.street_2 %></td>
         <td><%= venue.city %></td>
         <td><%= venue.state %></td>
         <td><%= venue.zip %></td>
-        <td><%= venue.user.username %></td>
         <td><%= link_to 'Show', venue %></td>
         <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
         <td><%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
