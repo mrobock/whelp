@@ -22,10 +22,18 @@
   </div>
 
   <div class="field">
-  <%= f.label :venue_id %>
-  <%= select(:event, :venue_id, @venues_for_select) %>
-</div>
+    <%= f.label :venue_id %>
+    <%= select(:event, :venue_id, @venues_for_select) %>
+  </div>
 
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <input type="hidden" value="<%= current_user.id%>" name="event[user_id]">
+  </div>
 
   <div class="actions">
     <%= f.submit %>

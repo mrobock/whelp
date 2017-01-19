@@ -21,7 +21,7 @@ RSpec.feature "VenuePages", type: :feature do
         click_link 'New Venue'
       end
       And 'I can enter new venue info and create new venue' do
-        user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password")
+        user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password", first_name: "firstname", last_name: "lastname")
         user1.save
         user2 = User.find_by_username("Joe1")
 

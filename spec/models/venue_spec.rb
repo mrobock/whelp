@@ -16,7 +16,7 @@ RSpec.describe Venue, type: :model do
       venue.city = "san diego"
       venue.state = "CA"
       venue.zip = "92108"
-      user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password")
+      user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password", first_name: "firstname", last_name: "lastname")
       user1.save
       venue.user = user1
       expect{venue.save}.to_not raise_error
@@ -32,7 +32,7 @@ RSpec.describe Venue, type: :model do
       venue.city = "san diego"
       venue.state = "CA"
       venue.zip = "92108"
-      user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password")
+      user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password", first_name: "firstname", last_name: "lastname")
       user1.save
       venue.user = user1
       expect{venue.save}.to_not raise_error
@@ -58,7 +58,7 @@ RSpec.describe Venue, type: :model do
       venue.city = "san diego"
       venue.state = "CA"
       venue.zip = "92108"
-      user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password")
+      user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password", first_name: "firstname", last_name: "lastname")
       user1.save
       venue.user = user1
       expect{venue.save}.to_not raise_error
@@ -81,7 +81,7 @@ RSpec.describe Venue, type: :model do
       venue.city = "san diego"
       venue.state = "CA"
       venue.zip = "92108"
-      user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password")
+      user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password", first_name: "firstname", last_name: "lastname")
       user1.save
       venue.user = user1
       expect{venue.save}.to_not raise_error

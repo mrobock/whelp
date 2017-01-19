@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
     expect(user.encrypted_password).to eq("")
   end
   it "must be initialized with a username, email, password, and password confirmation, and be saveable" do
-    user = User.new(username: "dummy1", email: "dummy@home.com", password: "password1", password_confirmation: "password1")
+    user = User.new(username: "dummy1", email: "dummy@home.com", password: "password1", password_confirmation: "password1", first_name: "firstname", last_name: "lastname")
     expect(user.save).to eq true
   end
   it "must have the conditions of the previous test, but also be able to initialize with first name, last name, full street address, city, state, and zip code, and be saveable" do
