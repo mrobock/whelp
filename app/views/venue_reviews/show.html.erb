@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Review:</strong>
+  <%= @venue_review.review %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @venue_review.user.username %>
+</p>
+
+
+<%= link_to 'Edit', edit_venue_review_path(@venue_review) %> |
+<%= link_to 'Back', venue_reviews_path %>
