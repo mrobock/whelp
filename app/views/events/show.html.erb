@@ -28,3 +28,17 @@
   <%= link_to 'Edit', edit_event_path(@event) %>
 <% end %> |
 <%= link_to 'Back', events_path %>
+
+<% if user_signed_in? %>
+  <form action="/event_reviews" method="post">
+    <textarea name="event_review[review]" style="margin-top: 0px; margin-bottom: 0px; height: 200px; width: 200px;"></textarea> <br>
+     <input type="hidden" name="event_review[user_id]" value="<%= current_user.id%>">
+    <input type="hidden" name="event_review[event_id]" value="<%= params[:id]%> "> <br>
+    <input type="submit" value="Review!">
+
+  </form>
+
+  <% else %>
+  | <%= link_to 'Sign in to Review', new_user_session_path %>
+
+  <% end %>
