@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :event_reviews
   resources :venue_reviews
   resources :comments
   resources :events
