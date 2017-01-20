@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :events
   has_many :venue_reviews
   has_many :event_reviews
+  has_many :comments
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # Only allow letter, number, underscore and punctuation.

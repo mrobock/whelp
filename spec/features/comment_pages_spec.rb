@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "Events", type: :feature do
-  context 'Adding a new event' do
+RSpec.feature "Comment Pages", type: :feature do
+  context 'Only being able to control events and venues I created' do
     Steps "creating a user, venue and event" do
       Given "I am on the landing page" do
         visit "/"
@@ -29,9 +29,19 @@ RSpec.feature "Events", type: :feature do
         fill_in "City", with: "Mars"
         fill_in "State", with: "Mars"
         fill_in "Zip", with: "Mars"
-        attach_file('venue[image]', 'spec/images/foo.jpg')
         click_on "Create Venue"
         expect(page).to have_content("Venue was successfully created")
+      end
+
+      And "I can add a comment to the venue" do
+        click_on "Back"
+        click_on "Show"
+        expect(page).to have_content("New Comment")
+        fill_in "Title", with: "Comment Title"
+        fill_in "Text", with: "Mars ATTACKED!"
+        click_on "Create Comment"
+        expect(page).to have_content("Comment was successfully created")
+        expect(page).to have_content("Mars ATTACKED!")
       end
 
       Then "I can add a new event" do
@@ -40,23 +50,19 @@ RSpec.feature "Events", type: :feature do
         fill_in "Name", with: "Mating Season"
         select "Mars", from: "Venue"
         click_on "Create Event"
+        expect(page).to have_content("Event was successfully created")
       end
 
-      And "I can see the event I just created" do
-        expect(page).to have_content "Event was successfully created"
-        expect(page).to have_content "Mating Season"
-      end
-
-      When 'I click "Edit"' do
-        click_on 'Edit'
-      end
-      And 'I attach an image file and click "Update Event"' do
-        attach_file('event[image]', 'spec/images/foo.jpg')
-        click_on "Update Event"
-      end
-      Then 'I can see the picture' do
-        expect(page).to have_css('img')
+      And "I can add a comment to the venue" do
+        click_on "Back"
+        click_on "Show"
+        expect(page).to have_content("New Comment")
+        fill_in "Title", with: "Comment Title"
+        fill_in "Text", with: "Mating Season ATTACKED!"
+        click_on "Create Comment"
+        expect(page).to have_content("Comment was successfully created")
+        expect(page).to have_content("Mating Season ATTACKED!")
       end
     end
-  end # end of context
-end #end of rspec
+  end
+end

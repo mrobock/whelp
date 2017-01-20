@@ -3,6 +3,12 @@
   <%= @venue.name %>
 </p>
 
+<% if @venue.image.file? %>
+<p>
+ <%= link_to image_tag(@venue.image.url(:large)), @venue.image.url %>
+</p>
+<% end %>
+
 <p>
   <strong>Description:</strong>
   <%= @venue.description %>
@@ -38,12 +44,6 @@
   <%= @venue.user.username %>
 </p>
 
-<% if !current_user.nil? && @venue.user == current_user %>
-  <%= link_to 'Edit', edit_venue_path(@venue) %>
-<% end%> |
-<%= link_to 'Back', venues_path %>
-
-
 <% if user_signed_in? %>
   <form action="/venue_reviews" method="post">
     <textarea name="venue_review[review]" style="margin-top: 0px; margin-bottom: 0px; height: 200px; width: 200px;"></textarea> <br>
@@ -56,3 +56,28 @@
   | <%= link_to 'Sign in to Review', new_user_session_path %>
 
   <% end %>
+
+<h3>New Comment</h3>
+<%= render 'comments/form', comment: @comment %>
+
+<% if @comments %>
+  <h3>Comments</h3>
+  <% @comments.each do |comment| %>
+    <h5> Posted By: <%= comment.user.username %> </h5>
+    <div class="comment_area">
+    <%= comment.text %>
+    </div>
+    <%= link_to 'edit', edit_comment_path(comment) %>
+    <%= link_to 'destroy', comment_path(comment), method: "delete" %>
+  <% end %>
+<% end %>
+
+<div class="five_space">
+</div>
+
+<div class="show_edit_back_section">
+  <% if !current_user.nil? && @venue.user == current_user %>
+    <%= link_to 'Edit', edit_venue_path(@venue) %>
+  <% end%> |
+  <%= link_to 'Back', venues_path %>
+</div>

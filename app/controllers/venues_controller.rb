@@ -10,6 +10,8 @@ class VenuesController < ApplicationController
   # GET /venues/1
   # GET /venues/1.json
   def show
+    @comment = Comment.new
+    @comments = Comment.where(venue_id: @venue.id)
   end
 
   # GET /venues/new
@@ -69,6 +71,6 @@ class VenuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def venue_params
-      params.require(:venue).permit(:name, :description, :street_1, :street_2, :city, :state, :zip, :user_id)
+      params.require(:venue).permit(:name, :description, :street_1, :street_2, :city, :state, :zip, :user_id, :image)
     end
 end
