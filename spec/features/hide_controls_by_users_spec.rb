@@ -72,6 +72,16 @@ RSpec.feature "HideControlsByUsers", type: :feature do
         expect(page).not_to have_content("Edit")
         expect(page).not_to have_content("Destroy")
       end
+      And "I can not manually edit/delete a venue as a guest" do
+        id = Venue.find_by(name: "Mars Attacks").id
+        visit "/venues/#{id}/edit"
+        expect(page).not_to have_content("Editing Venue")
+      end
+      And "I can not manually edit/delete an event as a guest" do
+        id = Event.find_by(name: "Mating Season").id
+        visit "/events/#{id}/edit"
+        expect(page).not_to have_content("Editing Event")
+      end
     end
   end
 end
