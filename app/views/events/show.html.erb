@@ -8,6 +8,12 @@
   <%= @event.date %>
 </p>
 
+<% if @event.image.file? %>
+  <p>
+    <%= link_to image_tag(@event.image.url(:large)), @event.image.url %>
+  </p>
+<% end %>
+
 <p>
   <strong>Venue:</strong>
   <%= @event.venue.name %>
