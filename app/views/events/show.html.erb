@@ -51,6 +51,7 @@
 <% if @comments %>
   <h3>Comments</h3>
   <% @comments.each do |comment| %>
+    <h4> <%= comment.title %> </h4>
     <h5> Posted By: <%= comment.user.username %> </h5>
     <div class="comment_area">
     <%= comment.text %>
