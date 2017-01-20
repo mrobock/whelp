@@ -24,9 +24,13 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
-    @venues_for_select = Venue.all.map do |venue|
-      [venue.name, venue.id]
+    if current_user == @event.user
+      @event = Event.find(params[:id])
+      @venues_for_select = Venue.all.map do |venue|
+        [venue.name, venue.id]
+      end
+    else
+      redirect_to 'events'
     end
   end
 
@@ -67,6 +71,9 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+    if current_user != @event.user
+      redirect_to 'events'
+    end
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
