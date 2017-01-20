@@ -33,10 +33,23 @@
 
 <% if user_signed_in? %>
   <form action="/event_reviews" method="post">
-    <textarea name="event_review[review]" style="margin-top: 0px; margin-bottom: 0px; height: 200px; width: 200px;"></textarea> <br>
+    <label for="event_review_review">Review</label>
+    <textarea name="event_review[review]" id="event_review"></textarea> <br>
     <input type="hidden" name="event_review[user_id]" value="<%= current_user.id%>">
     <input type="hidden" name="event_review[event_id]" value="<%= params[:id]%> "> <br>
     <input type="submit" value="Review!">
+
+    <% if @event_reviews %>
+      <h3>Reviews</h3>
+      <% @event_reviews.each do |event_review| %>
+        <h5> Posted By: <%= event_review.user.username %> </h5>
+        <div class="event_reviews_area">
+        <%= event_review.review %>
+        </div>
+        <%= link_to 'edit', edit_event_review_path(event_review) %>
+        <%= link_to 'destroy', event_review_path(event_review), method: "delete" %>
+      <% end %>
+    <% end %>
 
   </form>
 
