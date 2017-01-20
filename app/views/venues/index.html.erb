@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Description</th>
       <th>Street Address</th>
@@ -16,6 +17,11 @@
   <tbody>
     <% @venues.each do |venue| %>
       <tr>
+        <td>
+        <% if venue.image.file? %>
+          <%= link_to image_tag(venue.image.url(:small)), venue.image.url %>
+        <% end %>
+        </td>
         <td><%= venue.name %></td>
         <td><%= venue.description %></td>
         <% segment = ", " %>

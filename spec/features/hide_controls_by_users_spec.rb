@@ -29,6 +29,7 @@ RSpec.feature "HideControlsByUsers", type: :feature do
         fill_in "City", with: "Mars"
         fill_in "State", with: "Mars"
         fill_in "Zip", with: "Mars"
+        attach_file('venue[image]', 'spec/images/foo.jpg')
         click_on "Create Venue"
         expect(page).to have_content("Venue was successfully created")
       end

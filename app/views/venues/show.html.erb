@@ -3,9 +3,11 @@
   <%= @venue.name %>
 </p>
 
+<% if @venue.image.file? %>
 <p>
  <%= link_to image_tag(@venue.image.url(:large)), @venue.image.url %>
 </p>
+<% end %>
 
 <p>
   <strong>Description:</strong>
