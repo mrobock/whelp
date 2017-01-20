@@ -10,6 +10,9 @@ class VenuesController < ApplicationController
   # GET /venues/1
   # GET /venues/1.json
   def show
+    @venue_review = VenueReview.new
+    @venue_reviews = VenueReview.where(venue_id: @venue.id)
+
     @comment = Comment.new
     @comments = Comment.where(venue_id: @venue.id)
   end

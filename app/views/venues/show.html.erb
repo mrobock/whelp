@@ -46,10 +46,23 @@
 
 <% if user_signed_in? %>
   <form action="/venue_reviews" method="post">
-    <textarea name="venue_review[review]" style="margin-top: 0px; margin-bottom: 0px; height: 200px; width: 200px;"></textarea> <br>
+    <label for="venue_review_review">Review</label>
+    <textarea name="venue_review[review]" id="venue_review"></textarea> <br>
      <input type="hidden" name="venue_review[user_id]" value="<%= current_user.id%>">
     <input type="hidden" name="venue_review[venue_id]" value="<%= params[:id]%> "> <br>
     <input type="submit" value="Review!">
+
+    <% if @venue_reviews %>
+      <h3>Reviews</h3>
+      <% @venue_reviews.each do |venue_review| %>
+        <h5> Posted By: <%= venue_review.user.username %> </h5>
+        <div class="venue_reviews_area">
+        <%= venue_review.review %>
+        </div>
+        <%= link_to 'edit', edit_venue_review_path(venue_review) %>
+        <%= link_to 'destroy', venue_review_path(venue_review), method: "delete" %>
+      <% end %>
+    <% end %>
 
   </form>
   <% else %>

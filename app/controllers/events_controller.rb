@@ -10,6 +10,9 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @event_review = EventReview.new
+    @event_reviews = EventReview.where(event_id: @event.id)
+    
     @comment = Comment.new
     @comments = Comment.where(event_id: @event.id)
   end
