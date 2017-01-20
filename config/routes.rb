@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :venue_reviews
+  resources :comments
   resources :events
   resources :venues
   devise_for :users
