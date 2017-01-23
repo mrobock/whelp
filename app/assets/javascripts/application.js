@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require moment
 //= require fullcalendar
+//= require jquery.raty
+//= require ratyrate
 //= require_tree .

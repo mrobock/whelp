@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-  before_action :set_venue, only: [:show, :edit, :update, :destroy]
+  before_action :set_venue, only: [:show, :edit, :update, :destroy, :rate]
 
   # GET /venues
   # GET /venues.json
@@ -69,6 +69,18 @@ class VenuesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to venues_url, notice: 'Venue was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def rate
+    respond_to do |format|
+      if @venue.update(rating: params[:rating])
+        format.html { redirect_to @venue, notice: 'Rating was successfully submitted.' }
+        format.json { render :show, status: :ok, location: @venue }
+      else
+        format.html { render :edit }
+        format.json { render json: @venue.errors, status: :unprocessable_entity }
+      end
     end
   end
 

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get :get_events, on: :collection
   end
 
+  post '/rate' => 'rater#create', :as => 'rate'
+  resources :rsvps
   resources :event_reviews
   resources :venue_reviews
   resources :comments
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
   root to: "welcome#index"
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

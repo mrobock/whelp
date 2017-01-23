@@ -1,4 +1,9 @@
 <p>
+  <strong>Average Rating:</strong>
+  <%= rating_for @venue, 'name', disable_after_rate: true %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @venue.name %>
 </p>
@@ -6,6 +11,8 @@
 <% if @venue.image.file? %>
 <p>
  <%= link_to image_tag(@venue.image.url(:large)), @venue.image.url %>
+ <% else %>
+ <% link_to image_tag('default.png') %>
 </p>
 <% end %>
 
@@ -46,7 +53,7 @@
 
 <% if user_signed_in? %>
   <form action="/venue_reviews" method="post">
-    <label for="venue_review_review">Review</label>
+  <label for="venue_review_review">Review</label>
     <textarea name="venue_review[review]" id="venue_review"></textarea> <br>
      <input type="hidden" name="venue_review[user_id]" value="<%= current_user.id%>">
     <input type="hidden" name="venue_review[venue_id]" value="<%= params[:id]%> "> <br>
@@ -58,9 +65,8 @@
         <h5> Posted By: <%= venue_review.user.username %> </h5>
         <div class="venue_reviews_area">
         <%= venue_review.review %>
-        </div>
         <%= link_to 'edit', edit_venue_review_path(venue_review) %>
-        <%= link_to 'destroy', venue_review_path(venue_review), method: "delete" %>
+        <%= link_to 'destroy', venue_review_path(venue_review), method: "delete" %><br><br>
       <% end %>
     <% end %>
 
@@ -70,13 +76,17 @@
 
   <% end %>
   <br>
-<% if !current_user.nil? %>
-<h3>New Comment</h3>
-<%= render 'comments/form', comment: @comment %>
 
+  <!-- New comment form renders if user is logged in -->
+  <!-- Also displays current user's rating of venue -->
+<% if !current_user.nil? %>
+  <p>
+    My Rating : <%= rating_for_user @venue, current_user, 'name', cancel: false %>
+  </p>
+  <h3>New Comment</h3>
+  <%= render 'comments/form', comment: @comment %>
 <% else %>
  <%= link_to 'Sign in to Comment', new_user_session_path %>
-
 <% end %>
 
 <% if @comments %>
@@ -86,12 +96,12 @@
     <h5> Posted By: <%= comment.user.username %> </h5>
     <div class="comment_area">
     <%= comment.text %>
-    </div>
     <%= link_to 'edit', edit_comment_path(comment) %>
-    <%= link_to 'destroy', comment_path(comment), method: "delete" %>
+    <%= link_to 'destroy', comment_path(comment), method: "delete" %><br><br>
   <% end %>
-
+    </div>
 <% end %>
+
 
 <div class="five_space">
 </div>

@@ -1,10 +1,12 @@
 class User < ApplicationRecord
   has_many :venues
-  has_many :events
   has_many :venue_reviews
   has_many :event_reviews
   has_many :comments
+  #Make a ratyrate rater
+  ratyrate_rater
 
+  has_many :events, through: :rsvp
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # Only allow letter, number, underscore and punctuation.

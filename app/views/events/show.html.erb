@@ -1,4 +1,9 @@
 <p>
+  <strong>Average Rating:</strong>
+  <%= rating_for @event, 'name' %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @event.name %>
 </p>
@@ -7,6 +12,40 @@
   <strong>Date:</strong>
   <%= @event.date %>
 </p>
+
+<!-- form for user to rsvp to an event -->
+
+<% if user_signed_in? && Rsvp.find_by_user_id(current_user.id).nil? %>
+  <!-- <form action="/rsvps" method="post">
+    <p><strong>RSVP:</strong>
+      <input type="hidden" name="rsvp[user_id]" value="<%= current_user.id%>">
+      <input type="hidden" name="rsvp[event_id]" value="<%= params[:id]%>">
+      <input type="submit" value="Yes">
+    </p>
+  </form> -->
+  <%= form_for Rsvp.new, url: rsvps_path, method: :post do |f| %>
+    <p><strong>RSVP:</strong>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :event_id, value: params[:id] %>
+      <%= f.submit "Yes" %>
+    </p>
+  <% end %>
+
+<!-- form to delete user rsvp -->
+<% elsif user_signed_in? && !Rsvp.find_by_user_id(current_user.id).nil? %>
+  <%= form_for Rsvp.find_by(user_id: current_user.id, event_id: params[:id]), url: rsvp_path, method: :delete do |f| %>
+    <p><strong>RSVP:</strong>
+      <%= f.submit "Cancel RSVP" %>
+    </p>
+  <% end %>
+
+<% else %>
+
+  <p><%= link_to "Sign in to RSVP!", new_user_session_path %></p>
+
+<% end %>
+
+<!-- end of form that deletes user's rsvp -->
 
 <% if @event.image.file? %>
   <p>
@@ -31,6 +70,7 @@
 </p>
 
 
+
 <% if user_signed_in? %>
   <form action="/event_reviews" method="post">
     <label for="event_review_review">Review</label>
@@ -50,22 +90,24 @@
         <%= link_to 'destroy', event_review_path(event_review), method: "delete" %>
       <% end %>
     <% end %>
-
   </form>
-
-  <% else %>
-   <%= link_to 'Sign in to Review', new_user_session_path %>
-
-  <% end %>
+<% else %>
+  <%= link_to 'Sign in to Review', new_user_session_path %>
+<% end %>
   <br>
 
+<!-- New comment form renders if user is logged in -->
+<!-- Also displays current user's rating of event -->
 <% if !current_user.nil? %>
-<h3>New Comment</h3>
-<%= render 'comments/form', comment: @comment %>
+  <p>
+    My Rating : <%= rating_for_user @event, current_user, 'name' %>
+  </p>
+
+  <h3>New Comment</h3>
+  <%= render 'comments/form', comment: @comment %>
 
 <% else %>
  <%= link_to 'Sign in to Comment', new_user_session_path %>
-
 <% end %>
 
 <% if @comments %>
@@ -78,7 +120,6 @@
     </div>
     <%= link_to 'edit', edit_comment_path(comment) %>
     <%= link_to 'destroy', comment_path(comment), method: "delete" %>
-
   <% end %>
 <% end %>
 
@@ -87,7 +128,7 @@
 
 <div class="show_edit_back_section">
   <% if !current_user.nil? && @event.user == current_user %>
-    <%= link_to 'Edit', edit_event_path(@event) %> | 
+    <%= link_to 'Edit', edit_event_path(@event) %> |
   <% end %>
   <%= link_to 'Back', events_path %>
 </div>
