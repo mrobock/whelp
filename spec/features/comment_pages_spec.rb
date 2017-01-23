@@ -53,7 +53,7 @@ RSpec.feature "Comment Pages", type: :feature do
         expect(page).to have_content("Event was successfully created")
       end
 
-      And "I can add a comment to the venue" do
+      And "I can add a comment to the event" do
         click_on "Back"
         click_on "Show"
         expect(page).to have_content("New Comment")

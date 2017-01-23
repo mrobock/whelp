@@ -67,24 +67,45 @@
 
 <% if user_signed_in? %>
   <form action="/event_reviews" method="post">
-    <textarea name="event_review[review]" style="margin-top: 0px; margin-bottom: 0px; height: 200px; width: 200px;"></textarea> <br>
-     <input type="hidden" name="event_review[user_id]" value="<%= current_user.id%>">
+    <label for="event_review_review">Review</label>
+    <textarea name="event_review[review]" id="event_review"></textarea> <br>
+    <input type="hidden" name="event_review[user_id]" value="<%= current_user.id%>">
     <input type="hidden" name="event_review[event_id]" value="<%= params[:id]%> "> <br>
     <input type="submit" value="Review!">
+
+    <% if @event_reviews %>
+      <h3>Reviews</h3>
+      <% @event_reviews.each do |event_review| %>
+        <h5> Posted By: <%= event_review.user.username %> </h5>
+        <div class="event_reviews_area">
+        <%= event_review.review %>
+        </div>
+        <%= link_to 'edit', edit_event_review_path(event_review) %>
+        <%= link_to 'destroy', event_review_path(event_review), method: "delete" %>
+      <% end %>
+    <% end %>
 
   </form>
 
   <% else %>
-  | <%= link_to 'Sign in to Review', new_user_session_path %>
+   <%= link_to 'Sign in to Review', new_user_session_path %>
 
   <% end %>
+  <br>
 
+<% if !current_user.nil? %>
 <h3>New Comment</h3>
 <%= render 'comments/form', comment: @comment %>
+
+<% else %>
+ <%= link_to 'Sign in to Comment', new_user_session_path %>
+
+<% end %>
 
 <% if @comments %>
   <h3>Comments</h3>
   <% @comments.each do |comment| %>
+    <h4> <%= comment.title %> </h4>
     <h5> Posted By: <%= comment.user.username %> </h5>
     <div class="comment_area">
     <%= comment.text %>
@@ -100,7 +121,7 @@
 
 <div class="show_edit_back_section">
   <% if !current_user.nil? && @event.user == current_user %>
-    <%= link_to 'Edit', edit_event_path(@event) %>
-  <% end %> |
+    <%= link_to 'Edit', edit_event_path(@event) %> | 
+  <% end %>
   <%= link_to 'Back', events_path %>
 </div>

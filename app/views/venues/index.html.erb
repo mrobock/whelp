@@ -1,9 +1,9 @@
 <h1>Venues</h1>
 
-<table>
+<table class="table-striped">
   <thead>
     <tr>
-      <th></th>
+      <th>Image</th>
       <th>Name</th>
       <th>Description</th>
       <th>Street Address</th>
@@ -18,9 +18,7 @@
     <% @venues.each do |venue| %>
       <tr>
         <td>
-        <% if venue.image.file? %>
           <%= link_to image_tag(venue.image.url(:small)), venue.image.url %>
-        <% end %>
         </td>
         <td><%= venue.name %></td>
         <td><%= venue.description %></td>

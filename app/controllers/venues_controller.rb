@@ -10,6 +10,9 @@ class VenuesController < ApplicationController
   # GET /venues/1
   # GET /venues/1.json
   def show
+    @venue_review = VenueReview.new
+    @venue_reviews = VenueReview.where(venue_id: @venue.id)
+
     @comment = Comment.new
     @comments = Comment.where(venue_id: @venue.id)
   end
@@ -21,6 +24,9 @@ class VenuesController < ApplicationController
 
   # GET /venues/1/edit
   def edit
+    if current_user != @venue.user
+      redirect_to 'venues'
+    end
   end
 
   # POST /venues
@@ -56,6 +62,9 @@ class VenuesController < ApplicationController
   # DELETE /venues/1
   # DELETE /venues/1.json
   def destroy
+    if current_user != @venue.user
+      redirect_to 'venues'
+    end
     @venue.destroy
     respond_to do |format|
       format.html { redirect_to venues_url, notice: 'Venue was successfully destroyed.' }
