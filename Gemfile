@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Paperclip for uploading photos
 gem 'paperclip'
-
+gem 'ratyrate'
 gem 'devise'
 
 group :development, :test do

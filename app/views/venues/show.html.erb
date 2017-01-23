@@ -1,4 +1,9 @@
 <p>
+  <strong>Average Rating:</strong>
+  <%= rating_for @venue, 'name', disable_after_rate: true %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @venue.name %>
 </p>
@@ -71,13 +76,17 @@
 
   <% end %>
   <br>
-<% if !current_user.nil? %>
-<h3>New Comment</h3>
-<%= render 'comments/form', comment: @comment %>
 
+  <!-- New comment form renders if user is logged in -->
+  <!-- Also displays current user's rating of venue -->
+<% if !current_user.nil? %>
+  <p>
+    My Rating : <%= rating_for_user @venue, current_user, 'name', cancel: false %>
+  </p>
+  <h3>New Comment</h3>
+  <%= render 'comments/form', comment: @comment %>
 <% else %>
  <%= link_to 'Sign in to Comment', new_user_session_path %>
-
 <% end %>
 
 <% if @comments %>
