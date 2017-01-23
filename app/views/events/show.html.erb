@@ -54,12 +54,19 @@
   </form>
 
   <% else %>
-  | <%= link_to 'Sign in to Review', new_user_session_path %>
+   <%= link_to 'Sign in to Review', new_user_session_path %>
 
   <% end %>
+  <br>
 
+<% if !current_user.nil? %>
 <h3>New Comment</h3>
 <%= render 'comments/form', comment: @comment %>
+
+<% else %>
+ <%= link_to 'Sign in to Comment', new_user_session_path %>
+
+<% end %>
 
 <% if @comments %>
   <h3>Comments</h3>
@@ -80,7 +87,7 @@
 
 <div class="show_edit_back_section">
   <% if !current_user.nil? && @event.user == current_user %>
-    <%= link_to 'Edit', edit_event_path(@event) %>
-  <% end %> |
+    <%= link_to 'Edit', edit_event_path(@event) %> | 
+  <% end %>
   <%= link_to 'Back', events_path %>
 </div>
