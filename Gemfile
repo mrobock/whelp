@@ -39,6 +39,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'paperclip'
 gem 'ratyrate'
 gem 'devise'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
