@@ -10,6 +10,14 @@ To Get Started:
 
 * rails g rspec:install (add '--format documentation' to .rspec file if desired)
 
+* Terminal should read:
+      create  .rspec
+       exist  spec
+    identical  spec/spec_helper.rb
+    conflict  spec/rails_helper.rb
+    Overwrite /Users/fariya/Desktop/whelp/spec/rails_helper.rb? (enter "h" for help) [Ynaqdh] n
+    ** IMPORTANT: Enter 'N' to skip Overwrite of 'rails_helper.rb'**
+
 * Run "postgres -D /usr/local/var/postgres"
 
 * Run "rake db:create db:migrate"
