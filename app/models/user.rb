@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :venue_reviews
   has_many :event_reviews
   has_many :comments
+  #Make a ratyrate rater
+  ratyrate_rater
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

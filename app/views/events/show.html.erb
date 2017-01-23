@@ -1,4 +1,9 @@
 <p>
+  <strong>Average Rating:</strong>
+  <%= rating_for @event, 'name' %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @event.name %>
 </p>
@@ -31,6 +36,7 @@
 </p>
 
 
+
 <% if user_signed_in? %>
   <form action="/event_reviews" method="post">
     <label for="event_review_review">Review</label>
@@ -50,22 +56,24 @@
         <%= link_to 'destroy', event_review_path(event_review), method: "delete" %>
       <% end %>
     <% end %>
-
   </form>
-
-  <% else %>
-   <%= link_to 'Sign in to Review', new_user_session_path %>
-
-  <% end %>
+<% else %>
+  <%= link_to 'Sign in to Review', new_user_session_path %>
+<% end %>
   <br>
 
+<!-- New comment form renders if user is logged in -->
+<!-- Also displays current user's rating of event -->
 <% if !current_user.nil? %>
-<h3>New Comment</h3>
-<%= render 'comments/form', comment: @comment %>
+  <p>
+    My Rating : <%= rating_for_user @event, current_user, 'name' %>
+  </p>
+
+  <h3>New Comment</h3>
+  <%= render 'comments/form', comment: @comment %>
 
 <% else %>
  <%= link_to 'Sign in to Comment', new_user_session_path %>
-
 <% end %>
 
 <% if @comments %>
@@ -78,7 +86,6 @@
     </div>
     <%= link_to 'edit', edit_comment_path(comment) %>
     <%= link_to 'destroy', comment_path(comment), method: "delete" %>
-
   <% end %>
 <% end %>
 
@@ -87,7 +94,7 @@
 
 <div class="show_edit_back_section">
   <% if !current_user.nil? && @event.user == current_user %>
-    <%= link_to 'Edit', edit_event_path(@event) %> | 
+    <%= link_to 'Edit', edit_event_path(@event) %> |
   <% end %>
   <%= link_to 'Back', events_path %>
 </div>
