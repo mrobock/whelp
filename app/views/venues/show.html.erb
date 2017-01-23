@@ -67,12 +67,18 @@
 
   </form>
   <% else %>
-  | <%= link_to 'Sign in to Review', new_user_session_path %>
+   <%= link_to 'Sign in to Review', new_user_session_path %>
 
   <% end %>
-
+  <br>
+<% if !current_user.nil? %>
 <h3>New Comment</h3>
 <%= render 'comments/form', comment: @comment %>
+
+<% else %>
+ <%= link_to 'Sign in to Comment', new_user_session_path %>
+
+<% end %>
 
 <% if @comments %>
   <h3>Comments</h3>
@@ -84,14 +90,17 @@
     <%= link_to 'edit', edit_comment_path(comment) %>
     <%= link_to 'destroy', comment_path(comment), method: "delete" %><br><br>
   <% end %>
-<% end %></div>
+<% end %>
+    </div>
+<% end %>
+
 
 <div class="five_space">
 </div>
 
 <div class="show_edit_back_section">
   <% if !current_user.nil? && @venue.user == current_user %>
-    <%= link_to 'Edit', edit_venue_path(@venue) %>
-  <% end%> |
+    <%= link_to 'Edit', edit_venue_path(@venue) %> |
+  <% end%>
   <%= link_to 'Back', venues_path %>
 </div>
