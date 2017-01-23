@@ -12,6 +12,9 @@ class EventsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = Comment.where(event_id: @event.id)
+    if user_signed_in?
+      @remove_rsvp = Rsvp.find_by(event_id: params[:id], user_id: current_user.id)
+    end
   end
 
   # GET /events/new
