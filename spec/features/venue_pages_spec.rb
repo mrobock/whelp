@@ -71,13 +71,20 @@ RSpec.feature "VenuePages", type: :feature do
       When 'I click "Edit"' do
         click_on 'Edit'
       end
+
       And 'I attach an image file and click "Update Venue"' do
         attach_file('venue[image]', 'spec/images/foo.jpg')
         click_on "Update Venue"
       end
+
       Then 'I can see the picture' do
         expect(page).to have_css('img')
       end
+
+      And 'If I do not upload a photo, I can see a placeholder' do
+        expect(page).to have_css('img')
+        end
+
+      end
     end
   end
-end
