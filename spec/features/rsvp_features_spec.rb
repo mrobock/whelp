@@ -40,8 +40,11 @@ RSpec.feature "RsvpFeatures", type: :feature do
         click_on "Yes"
       end
 
+      #Updated to test for list of attendees on Event page
       Then "I have RSVPd to the event" do
         expect(page).to have_content "RSVP was successfully created."
+        expect(page).to have_content "1 attendee"
+        expect(page).to have_content "firstname lastname"
       end
 
       When "I cancel my RSVP" do
@@ -50,7 +53,15 @@ RSpec.feature "RsvpFeatures", type: :feature do
 
       Then "I am no longer RSVPd to the event" do
         expect(page).to have_content "RSVP was successfully destroyed."
+        expect(page).to have_content "0 attendees"
+        expect(page).not_to have_content "firstname lastname"
       end
+
+
+
+
+
+
 
     end #end of steps
   end # end of context

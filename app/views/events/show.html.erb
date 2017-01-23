@@ -69,6 +69,22 @@
   <%= user.first_name %>
 </p>
 
+<p>
+  <strong>RSVPs</strong>
+  <% rsvp_length = Rsvp.where(event_id: @event.id).length %>
+    <% if rsvp_length == 1 %>
+    - (<%= rsvp_length %> attendee)
+    <% else %>
+       - (<%= rsvp_length %> attendees)
+    <% end %>
+
+  <ol>
+  <% Rsvp.where(event_id: @event.id).each do |attendee| %>
+    <li><%= attendee.user.first_name + " " + attendee.user.last_name %></li>
+  <% end %>
+  </ol>
+</p>
+
 
 
 <% if user_signed_in? %>
