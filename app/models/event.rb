@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :event_reviews
   has_many :comments
+  has_many :users, through: :rsvp
   validates :name, presence: true
 
 #Adding paperclip
