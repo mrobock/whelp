@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   def show
     @event_review = EventReview.new
     @event_reviews = EventReview.where(event_id: @event.id)
-    
+
     @comment = Comment.new
     @comments = Comment.where(event_id: @event.id)
   end
@@ -82,6 +82,15 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def get_events
+    @events = Event.all
+    events_array = []
+    @events.each do |event|
+      events_array << { id: event.id, title: event.name, start: event.date, url: Rails.application.routes.url_helpers.event_path(event.id) }
+    end
+    render :json => events_array.to_json
   end
 
   private
