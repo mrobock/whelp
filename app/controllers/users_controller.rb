@@ -7,5 +7,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user_events = Event.where(user_id: params[:id])
     @user_venues = Venue.where(user_id: params[:id])
+    @user_rsvps = Rsvp.where(user_id: params[:id])
   end
 end
