@@ -66,5 +66,19 @@
 <% end %>
 <br>
 
+<% if !@user_venues.nil? %>
+  <% @user_venues.each do |venue| %>
+      <table>
+        <h4>My Venues:</h4>
+          <tbody>
+          <tr>
+            <td><a href="/venues/<%= venue.id %>"><%= venue.name %></a></td>
+          </tr>
+        </tbody>
+      </table>
+  <% end %>
+<% end %>
+<br>
+
 
   <%= link_to "Edit", edit_user_registration_path %>
