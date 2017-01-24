@@ -47,6 +47,7 @@ RSpec.feature "UserProfiles", type: :feature do
         fill_in "user[first_name]", with: "Phil"
         fill_in "user[last_name]", with: "Test"
         fill_in "user[current_password]", with: "password"
+        attach_file('user[image]', 'spec/images/profile.jpeg')
         click_on "Update"
       end
       And "I can see the changes reflected on my profile page" do

@@ -1,4 +1,4 @@
-class VenueReviewsController < ApplicationController
+ class VenueReviewsController < ApplicationController
   before_action :set_venue_review, only: [:show, :edit, :update, :destroy]
 
   # GET /venue_reviews
