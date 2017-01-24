@@ -1,150 +1,210 @@
-<p>
-  <strong>Average Rating:</strong>
-  <%= rating_for @event, 'name' %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @event.date %>
-</p>
-
-<!-- form for user to rsvp to an event -->
-
-<% if user_signed_in? && Rsvp.find_by_user_id(current_user.id).nil? %>
-  <!-- <form action="/rsvps" method="post">
-    <p><strong>RSVP:</strong>
-      <input type="hidden" name="rsvp[user_id]" value="<%= current_user.id%>">
-      <input type="hidden" name="rsvp[event_id]" value="<%= params[:id]%>">
-      <input type="submit" value="Yes">
-    </p>
-  </form> -->
-  <%= form_for Rsvp.new, url: rsvps_path, method: :post do |f| %>
-    <p><strong>RSVP:</strong>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.hidden_field :event_id, value: params[:id] %>
-      <%= f.submit "Yes" %>
-    </p>
-  <% end %>
-
-<!-- form to delete user rsvp -->
-<% elsif user_signed_in? && !Rsvp.find_by_user_id(current_user.id).nil? %>
-  <%= form_for Rsvp.find_by(user_id: current_user.id, event_id: params[:id]), url: rsvp_path, method: :delete do |f| %>
-    <p><strong>RSVP:</strong>
-      <%= f.submit "Cancel RSVP" %>
-    </p>
-  <% end %>
-
-<% else %>
-
-  <p><%= link_to "Sign in to RSVP!", new_user_session_path %></p>
-
-<% end %>
-
-<!-- end of form that deletes user's rsvp -->
-
-<% if @event.image.file? %>
-  <p>
-    <%= link_to image_tag(@event.image.url(:large)), @event.image.url %>
-  </p>
-<% end %>
-
-<p>
-  <strong>Venue:</strong>
-  <%= @event.venue.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>Hosted by:</strong>
-  <% user = User.find(@event.venue.user_id) %>
-  <%= user.first_name %>
-</p>
-
-<p>
-  <strong>RSVPs</strong>
-  <% rsvp_length = Rsvp.where(event_id: @event.id).length %>
-    <% if rsvp_length == 1 %>
-    - (<%= rsvp_length %> attendee)
-    <% else %>
-       - (<%= rsvp_length %> attendees)
-    <% end %>
-
-  <ol>
-  <% Rsvp.where(event_id: @event.id).each do |attendee| %>
-    <li><%= attendee.user.first_name + " " + attendee.user.last_name %></li>
-  <% end %>
-  </ol>
-</p>
-
-
-
-<% if user_signed_in? %>
-  <form action="/event_reviews" method="post">
-    <label for="event_review_review">Review</label>
-    <textarea name="event_review[review]" id="event_review"></textarea> <br>
-    <input type="hidden" name="event_review[user_id]" value="<%= current_user.id%>">
-    <input type="hidden" name="event_review[event_id]" value="<%= params[:id]%> "> <br>
-    <input type="submit" value="Review!">
-
-    <% if @event_reviews %>
-      <h3>Reviews</h3>
-      <% @event_reviews.each do |event_review| %>
-        <h5> Posted By: <%= event_review.user.username %> </h5>
-        <div class="event_reviews_area">
-        <%= event_review.review %>
-        </div>
-        <%= link_to 'edit', edit_event_review_path(event_review) %>
-        <%= link_to 'destroy', event_review_path(event_review), method: "delete" %>
-      <% end %>
-    <% end %>
-  </form>
-<% else %>
-  <%= link_to 'Sign in to Review', new_user_session_path %>
-<% end %>
-  <br>
-
-<!-- New comment form renders if user is logged in -->
-<!-- Also displays current user's rating of event -->
-<% if !current_user.nil? %>
-  <p>
-    My Rating : <%= rating_for_user @event, current_user, 'name' %>
-  </p>
-
-  <h3>New Comment</h3>
-  <%= render 'comments/form', comment: @comment %>
-
-<% else %>
- <%= link_to 'Sign in to Comment', new_user_session_path %>
-<% end %>
-
-<% if @comments %>
-  <h3>Comments</h3>
-  <% @comments.each do |comment| %>
-    <h4> <%= comment.title %> </h4>
-    <h5> Posted By: <%= comment.user.username %> </h5>
-    <div class="comment_area">
-    <%= comment.text %>
+<!-- Bootstrap Template -->
+<div class="col-md-3">
+    <p class="lead">Shop Name</p>
+    <div class="list-group">
+        <a href="#" class="list-group-item active">Category 1</a>
+        <a href="#" class="list-group-item">Category 2</a>
+        <a href="#" class="list-group-item">Category 3</a>
     </div>
-    <%= link_to 'edit', edit_comment_path(comment) %>
-    <%= link_to 'destroy', comment_path(comment), method: "delete" %>
-  <% end %>
-<% end %>
-
-<div class="five_space">
 </div>
 
-<div class="show_edit_back_section">
-  <% if !current_user.nil? && @event.user == current_user %>
-    <%= link_to 'Edit', edit_event_path(@event) %> |
-  <% end %>
-  <%= link_to 'Back', events_path %>
+<div class="col-md-9">
+
+    <div class="thumbnail">
+        <img class="img-responsive" src="<%= link_to image_tag(@event.image.url(:large)), @event.image.url %>" alt="">
+        <div class="caption-full">
+            <h4 class="pull-right"><%= @event.date %></h4>
+            <h4><a href="#"><%= @event.name %></a>
+            </h4>
+
+            <p>
+              <strong>Description:</strong>
+              <%= @event.description %>
+            </p>
+
+            <p>
+              <strong>Venue:</strong>
+              <%= @event.venue.name %>
+            </p>
+
+            <p>
+              <strong>Hosted by:</strong>
+              <% user = User.find(@event.venue.user_id) %>
+              <%= user.first_name %>
+            </p>
+
+            <!-- form for user to rsvp to an event -->
+
+            <% if user_signed_in? && Rsvp.find_by_user_id(current_user.id).nil? %>
+              <!-- <form action="/rsvps" method="post">
+                <p><strong>RSVP:</strong>
+                  <input type="hidden" name="rsvp[user_id]" value="<%= current_user.id%>">
+                  <input type="hidden" name="rsvp[event_id]" value="<%= params[:id]%>">
+                  <input type="submit" value="Yes">
+                </p>
+              </form> -->
+              <%= form_for Rsvp.new, url: rsvps_path, method: :post do |f| %>
+                <p><strong>RSVP:</strong>
+                  <%= f.hidden_field :user_id, value: current_user.id %>
+                  <%= f.hidden_field :event_id, value: params[:id] %>
+                  <%= f.submit "Yes" %>
+                </p>
+              <% end %>
+
+            <!-- form to delete user rsvp -->
+            <% elsif user_signed_in? && !Rsvp.find_by_user_id(current_user.id).nil? %>
+              <%= form_for Rsvp.find_by(user_id: current_user.id, event_id: params[:id]), url: rsvp_path, method: :delete do |f| %>
+                <p><strong>RSVP:</strong>
+                  <%= f.submit "Cancel RSVP" %>
+                </p>
+              <% end %>
+
+            <% else %>
+
+              <p><%= link_to "Sign in to RSVP!", new_user_session_path %></p>
+
+            <% end %>
+
+            <!-- end of form that deletes user's rsvp -->
+
+            <p>
+              <strong>RSVPs</strong>
+              <% rsvp_length = Rsvp.where(event_id: @event.id).length %>
+                <% if rsvp_length == 1 %>
+                - (<%= rsvp_length %> attendee)
+                <% else %>
+                   - (<%= rsvp_length %> attendees)
+                <% end %>
+
+              <ol>
+              <% Rsvp.where(event_id: @event.id).each do |attendee| %>
+                <li><%= attendee.user.first_name + " " + attendee.user.last_name %></li>
+              <% end %>
+              </ol>
+            </p>
+        </div>
+        <div class="ratings">
+            <p class="pull-right">3 reviews</p>
+            <p>
+              <strong>Average Rating:</strong>
+              <%= rating_for @event, 'name' %>
+            </p>
+        </div>
+    </div>
+
+    <div class="show_edit_back_section">
+      <% if !current_user.nil? && @event.user == current_user %>
+        <%= link_to 'Edit', edit_event_path(@event) %> |
+      <% end %>
+      <%= link_to 'Back', events_path %>
+    </div>
+
+    <% if user_signed_in? %>
+      <form action="/event_reviews" method="post">
+        <label for="event_review_review">Review</label>
+        <textarea name="event_review[review]" id="event_review"></textarea> <br>
+        <input type="hidden" name="event_review[user_id]" value="<%= current_user.id%>">
+        <input type="hidden" name="event_review[event_id]" value="<%= params[:id]%> "> <br>
+        <input type="submit" value="Review!">
+
+        <% if @event_reviews %>
+          <h3>Reviews</h3>
+          <% @event_reviews.each do |event_review| %>
+            <h5> Posted By: <%= event_review.user.username %> </h5>
+            <div class="event_reviews_area">
+            <%= event_review.review %>
+            </div>
+            <%= link_to 'edit', edit_event_review_path(event_review) %>
+            <%= link_to 'destroy', event_review_path(event_review), method: "delete" %>
+          <% end %>
+        <% end %>
+      </form>
+    <% else %>
+      <%= link_to 'Sign in to Review', new_user_session_path %>
+    <% end %>
+      <br>
+
+    <!-- New comment form renders if user is logged in -->
+    <!-- Also displays current user's rating of event -->
+    <% if !current_user.nil? %>
+      <p>
+        My Rating : <%= rating_for_user @event, current_user, 'name' %>
+      </p>
+
+      <h3>New Comment</h3>
+      <%= render 'comments/form', comment: @comment %>
+
+    <% else %>
+     <%= link_to 'Sign in to Comment', new_user_session_path %>
+    <% end %>
+
+    <% if @comments %>
+      <h3>Comments</h3>
+      <% @comments.each do |comment| %>
+        <h4> <%= comment.title %> </h4>
+        <h5> Posted By: <%= comment.user.username %> </h5>
+        <div class="comment_area">
+        <%= comment.text %>
+        </div>
+        <%= link_to 'edit', edit_comment_path(comment) %>
+        <%= link_to 'destroy', comment_path(comment), method: "delete" %>
+      <% end %>
+    <% end %>
+
+    <div class="five_space">
+    </div>
+
+    <div class="well">
+
+        <div class="text-right">
+            <a class="btn btn-success">Leave a Review</a>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+                Anonymous
+                <span class="pull-right">10 days ago</span>
+                <p>This product was great in terms of quality. I would definitely buy another!</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+                Anonymous
+                <span class="pull-right">12 days ago</span>
+                <p>I've alredy ordered another one!</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+                Anonymous
+                <span class="pull-right">15 days ago</span>
+                <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+            </div>
+        </div>
+
+    </div>
+
 </div>
