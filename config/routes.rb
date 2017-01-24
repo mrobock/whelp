@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  #generates /events/get_events route for calendar
+  resources :events do
+    get :get_events, on: :collection
+  end
+
+  post '/rate' => 'rater#create', :as => 'rate'
   resources :rsvps
   resources :event_reviews
   resources :venue_reviews

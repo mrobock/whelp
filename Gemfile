@@ -41,7 +41,11 @@ gem 'paperclip'
 # Use Textacular for search functionality
 gem 'textacular'
 
+gem 'ratyrate'
+
 gem 'devise'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
