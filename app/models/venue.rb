@@ -8,6 +8,9 @@ class Venue < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { in: 5..20 }
   validates :description, presence: true, length: { in: 10..500 }
 
+  #Adding Gmaps via geocoder
+  geocoded_by :full_address
+  after_validation :geocode
 
 #Adding paperclip
   has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }, :default_url => "default.png"
@@ -17,4 +20,9 @@ class Venue < ApplicationRecord
 
 #Adding ratyrate
 ratyrate_rateable "name"
+
+private
+  def full_address
+    street_1.to_s + ' ' + street_2.to_s + ', ' + city.to_s + ', ' + state.to_s + ', ' + ', ' + zip.to_s
+  end
 end
