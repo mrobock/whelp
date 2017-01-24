@@ -28,6 +28,7 @@ RSpec.feature "RegisterUser", type: :feature do
         fill_in 'user[password_confirmation]', with: "password"
         fill_in "First name", with: "firstname"
         fill_in "Last name", with: "lastname"
+        attach_file('user[image]', 'spec/images/profile.jpeg')
       end
       And "I can submit the registration form succesfully having filled out the required fields" do
         click_button 'Sign up'

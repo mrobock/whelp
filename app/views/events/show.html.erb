@@ -1,3 +1,11 @@
+<% content_for :head do %>
+  <meta property="og:url"           content="http://whelpsd.com<%= event_path(@event) %>" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="<%= @event.name %>" />
+  <meta property="og:description"   content="<%= @event.description %>" />
+  <meta property="og:image"         content="<%= @event.image %>" />
+<% end %>
+
 <!-- Bootstrap Template -->
 <div class="col-md-3">
     <p class="lead">Shop Name</p>
@@ -16,6 +24,10 @@
             <h4 class="pull-right"><%= @event.date %></h4>
             <h4><a href="#"><%= @event.name %></a>
             </h4>
+
+            <!-- Share/Tweet buttons for Facebook and Twitter -->
+            <div class="fb-share-button" data-href="http://whelpsd.com<%= event_path(@event) %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
+            <a href="https://twitter.com/share/tweet?text=Bring%20your%20dogs%20to%20<%= @event.name.gsub!(/\s/,'%20') %>%20as%20found%20on%20WhelpSD.com%21" class="twitter-share-button" data-show-count="false">Tweet</a>
 
             <p>
               <strong>Description:</strong>
@@ -119,10 +131,7 @@
           <% end %>
         <% end %>
       </form>
-    <% else %>
-      <%= link_to 'Sign in to Review', new_user_session_path %>
-    <% end %>
-      <br>
+
 
     <!-- New comment form renders if user is logged in -->
     <!-- Also displays current user's rating of event -->

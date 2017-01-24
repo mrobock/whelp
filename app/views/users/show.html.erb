@@ -6,6 +6,14 @@
   <%= @user.username %>
 </p>
 
+<% if @user.image.file? %>
+<p>
+ <%= link_to image_tag(@user.image.url(:medium)), @user.image.url %>
+ <% else %>
+ <%= link_to image_tag('profile.jpeg') %>
+</p>
+<% end %>
+
 <p>
   <strong>First Name:</strong>
   <%= @user.first_name %>
