@@ -65,8 +65,16 @@
               ><%= link_to 'Sign In', new_user_session_path %>
             </li>
             <% else %>
+
+            <li role="presentation"
+              <% if request.original_url.ends_with?("/users/#{current_user.id}") %>
+              class="active"
+            <% end %>
+            ><%= link_to "Profile", "/users/#{current_user.id}" %></li>
+
             <li role="presentation"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
             </li>
+            <li><%= "Hi, #{current_user.username}" %></li>
             <% end %>
           </ul>
         </nav>
