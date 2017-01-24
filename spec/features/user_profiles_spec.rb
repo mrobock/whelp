@@ -79,6 +79,7 @@ RSpec.feature "UserProfiles", type: :feature do
         expect(page).to have_content("My Venues")
         expect(page).to have_content("Mars Attacks")
       end
+
       Then "I can add a new event" do
         click_on "Events"
         click_on "New Event"
@@ -93,6 +94,17 @@ RSpec.feature "UserProfiles", type: :feature do
         expect(page).to have_content("Mating Season")
       end
 
+      Then "I can RSVP to that event" do
+        click_on "Events"
+        click_on "Show"
+        click_on "Yes"
+      end
+
+      And "I can see the event I just RSVPd to" do
+        click_on "Profile"
+        expect(page).to have_content("RSVPs:")
+        expect(page).to have_content("Mating Season")
+      end
 
     end
   end
