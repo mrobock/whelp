@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'users/index'
+
+  get 'users/show'
+
   #generates /events/get_events route for calendar
   resources :events do
     get :get_events, on: :collection
@@ -13,6 +17,7 @@ Rails.application.routes.draw do
   resources :events
   resources :venues
   devise_for :users
+  resources :users
   get 'welcome/index'
   root 'welcome#index'
   root to: "welcome#index"
