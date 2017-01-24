@@ -80,9 +80,6 @@
               </li>
             <% else %>
 
-              <li role="presentation"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-              </li>
-
             <li role="presentation"
               <% if request.original_url.ends_with?("/users/#{current_user.id}") %>
               class="active"
