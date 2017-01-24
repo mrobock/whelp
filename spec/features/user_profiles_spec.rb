@@ -57,6 +57,27 @@ RSpec.feature "UserProfiles", type: :feature do
         expect(page).to have_content("First Name: Phil")
         expect(page).to have_content("Last Name: Test")
       end
+
+      Then "I can create a new venue" do
+          click_on "Venues"
+          click_on "New Venue"
+          fill_in "Name", with: "Mars Attacks"
+          fill_in "Description", with: "Mars Attacks again"
+          fill_in "Street 1", with: "Mars"
+          fill_in "City", with: "Mars"
+          fill_in "State", with: "Mars"
+          fill_in "Zip", with: "Mars"
+          attach_file('venue[image]', 'spec/images/foo.jpg')
+          click_on "Create Venue"
+          expect(page).to have_content("Venue was successfully created")
+      end
+
+      And "I can see the newly created venue on my profile page" do
+        click_on "Profile"
+        expect(page).to have_content("My Venues")
+        expect(page).to have_content("Mars Attacks")
+      end
+      
     end
   end
 end
