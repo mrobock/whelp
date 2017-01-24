@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "RegisterUser", type: :feature do
-  context "Landing page" do
+RSpec.feature "UserProfiles", type: :feature do
+  context "Landing" do
     Steps "Going to Landing page" do
       Given "I visit localhost 3000" do
         visit "/"
@@ -28,11 +28,34 @@ RSpec.feature "RegisterUser", type: :feature do
         fill_in 'user[password_confirmation]', with: "password"
         fill_in "First name", with: "firstname"
         fill_in "Last name", with: "lastname"
-        attach_file('user[image]', 'spec/images/profile.jpeg')
       end
       And "I can submit the registration form succesfully having filled out the required fields" do
         click_button 'Sign up'
         expect(page).to have_content("Welcome! You have signed up successfully.")
+      end
+      Then "I can view my profile" do
+        click_on "Profile"
+        expect(page).to have_content("Hi, ssmith!")
+        expect(page).to have_content("ssmith@test.com")
+      end
+      Then "I can edit my profile" do
+        click_on "Edit"
+        fill_in 'user[username]', with: "philTest"
+        fill_in 'user[email]', with: "phil@test.com"
+        fill_in 'user[password]', with: "tester"
+        fill_in 'user[password_confirmation]', with: "tester"
+        fill_in "user[first_name]", with: "Phil"
+        fill_in "user[last_name]", with: "Test"
+        fill_in "user[current_password]", with: "password"
+        attach_file('user[image]', 'spec/images/profile.jpeg')
+        click_on "Update"
+      end
+      And "I can see the changes reflected on my profile page" do
+        click_on "Profile"
+        expect(page).to have_content("Hi, philTest!")
+        expect(page).to have_content("Email: phil@test.com")
+        expect(page).to have_content("First Name: Phil")
+        expect(page).to have_content("Last Name: Test")
       end
     end
   end

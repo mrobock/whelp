@@ -16,6 +16,31 @@
 
 <p>Dog lovers site for dog events and venues.</p>
 
+<br>
+
+<div> <!-- Search bar begins -->
+  <label>Search for dog-friendly events or venues here!</label>
+  <%= form_tag({controller: "welcome", action: "index"}, method: "get") do %>
+    <%= text_field_tag :search_params %>
+    <%= submit_tag 'Search' %>
+  <% end %>
+</div> <!-- Search bar ends -->
+
+<% if !@search_results.nil? %>
+  <div> <!-- Search results area begins -->
+    <% if @search_results.empty? %>
+      <h4>No results match your search!</h4>
+    <% elsif @search_results.length > 0 %>
+      <h4>Here are your results:</h4>
+      <ul>
+        <% @search_results.each do |result| %>
+          <li><%= result.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div> <!-- Search results area ends -->
+<% end %>
+
 <hr>
 <h2>Events and Meet(p)ups</h2>
 <div id="eventsCalendar"></div>

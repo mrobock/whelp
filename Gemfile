@@ -37,7 +37,12 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Paperclip for uploading photos
 gem 'paperclip'
+
+# Use Textacular for search functionality
+gem 'textacular'
+
 gem 'ratyrate'
+
 gem 'devise'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
