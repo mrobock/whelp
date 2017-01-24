@@ -18,17 +18,25 @@
     <title>Whelp</title>
     <%= csrf_meta_tags %>
 
-    <meta property="og:url"           content="http://www.your-domain.com/your-page.html" />
-    	<meta property="og:type"          content="website" />
-    	<meta property="og:title"         content="Whelp" />
-    	<meta property="og:description"   content="The Dog Lovers Site for Dogs!" />
-    	<!-- <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" /> -->
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= yield :head %>
+
   </head>
 
   <body>
+    <!-- Facebook script -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- Twitter script -->
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
     <div class="container">
       <div class="col-sm-1"></div>
@@ -57,19 +65,19 @@
             </li>
 
             <% if !user_signed_in? %>
-            <li role="presentation"
-              <% if request.original_url.ends_with?('/sign_up') %>
-                class="active"
-              <% end %>
-              ><%= link_to 'Sign Up', new_user_registration_path %>
-            </li>
+              <li role="presentation"
+                <% if request.original_url.ends_with?('/sign_up') %>
+                  class="active"
+                <% end %>
+                ><%= link_to 'Sign Up', new_user_registration_path %>
+              </li>
 
-            <li role="presentation"
-              <% if request.original_url.ends_with?('/sign_in') %>
-                class="active"
-              <% end %>
-              ><%= link_to 'Sign In', new_user_session_path %>
-            </li>
+              <li role="presentation"
+                <% if request.original_url.ends_with?('/sign_in') %>
+                  class="active"
+                <% end %>
+                ><%= link_to 'Sign In', new_user_session_path %>
+              </li>
             <% else %>
 
             <li role="presentation"
@@ -82,6 +90,7 @@
             </li>
             <li><%= "Hi, #{current_user.username}" %></li>
             <% end %>
+
           </ul>
         </nav>
 
@@ -93,9 +102,13 @@
         <% end %>
 
         <%= yield %>
+
       </div>
-      <div class="col-sm-1"></div>
-  </div>
+    <div class="col-sm-1"></div>
+    </div>
+
+
+
 
   </body>
 </html>
