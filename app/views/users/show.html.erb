@@ -53,6 +53,17 @@
   <%= @user.zip %>
 </p>
 
+<% if !@user_events.nil? %>
+  <% @user_events.each do |event| %>
+    <table>
+      <h4>My Events</h4>
+        <tbody>
+          <tr>
+            <td><a href="/events/<%= event.id %>"><%= event.name %></a></td>
+        </tbody>
+    </table>
+  <% end %>
+<% end %>
 <br>
 
 <% if !@user_venues.nil? %>
