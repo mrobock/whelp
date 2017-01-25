@@ -7,6 +7,17 @@ class VenuesController < ApplicationController
     @venues = Venue.all
   end
 
+  def map_location
+    @venue = Venue.find(params[:venue_id])
+    @hash = Gmaps4rails.build_markers(@venue) do |venue, marker|
+      marker.lat(venue.latitude)
+      marker.lng(venue.longitude)
+      marker.infowindow("<em>" + venue.name + "</em>")
+    end
+    render json: @hash.to_json
+  end
+
+
   # GET /venues/1
   # GET /venues/1.json
   def show
