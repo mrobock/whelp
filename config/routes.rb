@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/map_locations' => 'welcome#map_locations'
+
   get 'users/index'
 
   get 'users/show'
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
   root to: "welcome#index"
+
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

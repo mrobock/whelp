@@ -1,4 +1,5 @@
 class Venue < ApplicationRecord
+
   belongs_to :user
   has_many :events
   has_many :venue_reviews
@@ -15,6 +16,13 @@ class Venue < ApplicationRecord
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
     size: { in: 0..10.megabytes }
 
-#Adding ratyrate
-ratyrate_rateable "name"
+  #Adding ratyrate
+  ratyrate_rateable "name"
+
+  after_validation :geocode
+  geocoded_by :full_address
+
+  def full_address
+    street_1 + ", " + street_2 + ", " + city + ", " + state + ", " + zip
+  end
 end
