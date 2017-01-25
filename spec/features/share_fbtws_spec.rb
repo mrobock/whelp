@@ -45,8 +45,6 @@ RSpec.feature "ShareFbtws", type: :feature do
       end
 
       And "I can see a share button for facebook and twitter on the venue's page." do
-        click_on "Back"
-        click_on "Show"
         expect(page).to have_css('.twitter-share-button')
         expect(page).to have_css('.fb-share-button')
       end
@@ -61,8 +59,6 @@ RSpec.feature "ShareFbtws", type: :feature do
       end
 
       And "I can see a share button for facebook and twitter on the event's page." do
-        click_on "Back"
-        click_on "Show"
         expect(page).to have_css('.twitter-share-button')
         expect(page).to have_css('.fb-share-button')
       end

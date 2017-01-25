@@ -95,7 +95,14 @@
 
       <div class="row">
 
-          <%= yield %>
+        <% unless notice.nil? %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% unless alert.nil? %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+        <%= yield %>
 
       </div>
 
