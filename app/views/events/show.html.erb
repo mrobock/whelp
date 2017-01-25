@@ -64,7 +64,7 @@
 
       <!-- form for user to rsvp to an event -->
 
-      <% if user_signed_in? && Rsvp.find_by_user_id(current_user.id).nil? %>
+      <% if user_signed_in? && Rsvp.find_by(user_id: current_user.id, event_id: params[:id]).nil? %>
         <!-- <form action="/rsvps" method="post">
           <p><strong>RSVP:</strong>
             <input type="hidden" name="rsvp[user_id]" value="<%= current_user.id%>">
@@ -81,14 +81,14 @@
         <% end %>
 
       <!-- form to delete user rsvp -->
-      <% elsif user_signed_in? && !Rsvp.find_by_user_id(current_user.id).nil? %>
+      <% elsif user_signed_in? && !Rsvp.find_by(user_id: current_user.id, event_id: params[:id]).nil? %>
         <%= form_for Rsvp.find_by(user_id: current_user.id, event_id: params[:id]), url: rsvp_path, method: :delete do |f| %>
           <p><strong>My RSVP:</strong>
             <%= f.submit "Cancel RSVP", :class => 'btn btn-danger' %>
           </p>
         <% end %>
 
-      <% else %>
+      <% elsif !current_user %>
 
         <p><%= link_to "Sign in to RSVP!", new_user_session_path %></p>
 
