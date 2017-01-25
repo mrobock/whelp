@@ -14,5 +14,7 @@
  *= require_tree .
  *= require_self
  *= require fullcalendar
-
+ *= require bootstrap
+ *= stub 'index'
+ *= stub 'show'
  */

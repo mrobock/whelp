@@ -18,9 +18,8 @@
     <% @events.each do |event| %>
       <tr>
         <td>
-          <% if event.image.file? %>
-            <%= link_to image_tag(event.image.url(:small)), event.image.url %></td>
-          <% end %>
+          <%= link_to image_tag(event.image.url(:small)), event.image.url %>
+        </td>
         <td><%= event.name %></td>
         <td><%= event.date %></td>
         <td><%= event.venue.name %></td>

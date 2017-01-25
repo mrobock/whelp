@@ -36,7 +36,8 @@ RSpec.feature "UserProfiles", type: :feature do
         expect(page).to have_content("Welcome! You have signed up successfully.")
       end
       Then "I can view my profile" do
-        click_on "Profile"
+        user = User.find_by_username('ssmith')
+        visit "/users/#{user.id}"
         expect(page).to have_content("Hi, ssmith!")
         expect(page).to have_content("ssmith@test.com")
       end
@@ -53,7 +54,8 @@ RSpec.feature "UserProfiles", type: :feature do
         click_on "Update"
       end
       And "I can see the changes reflected on my profile page" do
-        click_on "Profile"
+        user = User.find_by_username('philTest')
+        visit "/users/#{user.id}"
         expect(page).to have_content("Hi, philTest!")
         expect(page).to have_content("Email: phil@test.com")
         expect(page).to have_content("First Name: Phil")
@@ -75,10 +77,12 @@ RSpec.feature "UserProfiles", type: :feature do
       end
 
       And "I can see the newly created venue on my profile page" do
-        click_on "Profile"
+        user = User.find_by_username('philTest')
+        visit "/users/#{user.id}"
         expect(page).to have_content("My Venues")
         expect(page).to have_content("Mars Attacks")
       end
+
       Then "I can add a new event" do
         click_on "Events"
         click_on "New Event"
@@ -88,11 +92,24 @@ RSpec.feature "UserProfiles", type: :feature do
       end
 
       And "I can see the event I just created" do
-        click_on "Profile"
+        user = User.find_by_username('philTest')
+        visit "/users/#{user.id}"
         expect(page).to have_content("My Events")
         expect(page).to have_content("Mating Season")
       end
 
+      Then "I can RSVP to that event" do
+        click_on "Events"
+        click_on "Show"
+        click_on "Count Me In"
+      end
+
+      And "I can see the event I just RSVPd to" do
+        user = User.find_by_username('philTest')
+        visit "/users/#{user.id}"
+        expect(page).to have_content("RSVPs:")
+        expect(page).to have_content("Mating Season")
+      end
 
     end
   end

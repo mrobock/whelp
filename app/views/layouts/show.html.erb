@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Whelp Event</title>
+
+    <%= stylesheet_link_tag "bootstrap" %>
+    <%= stylesheet_link_tag "show" %>
+    <%= stylesheet_link_tag "glyphicons" %>
+    <%= javascript_include_tag "application" %>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+  <!-- Facebook script -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <!-- Twitter script -->
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Whelp!</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-left">
+            <li
+            <% if request.original_url.ends_with?('/') %>
+              class="active"
+            <% end %>
+            ><%= link_to 'Home', root_path %>
+            </li>
+
+            <li
+            <% if request.original_url.ends_with?('/venues') %>
+              class="active"
+            <% end %>
+            ><%= link_to 'Venues', venues_path %>
+            </li>
+
+            <li
+            <% if request.original_url.ends_with?('/events') %>
+              class="active"
+            <% end %>
+            ><%= link_to 'Events', events_path %>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if !user_signed_in? %>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to 'Sign In', new_user_session_path %></li>
+            <% else %>
+              <li><%= link_to "Hi, #{current_user.username}", "/users/#{current_user.id}" %></li>
+              <li class="pull-right"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+            <% end %>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+      <div class="row">
+
+        <% unless notice.nil? %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% unless alert.nil? %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+        <%= yield %>
+
+      </div>
+
+  </div>
+  <!-- /.container -->
+
+  <div class="container">
+
+      <hr>
+
+      <!-- Footer -->
+      <footer>
+          <div class="row">
+              <div class="col-lg-12">
+                  <p>Copyright &copy; Whelp 2017</p>
+              </div>
+          </div>
+      </footer>
+
+  </div>
+  <!-- /.container -->
+
+</body>
+
+</html>

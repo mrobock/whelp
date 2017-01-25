@@ -35,7 +35,7 @@ RSpec.feature "HideControlsByUsers", type: :feature do
       end
 
       Then "I can edit/delete my venue as the logged in user" do
-        click_on "Back"
+        visit "/venues"
         expect(page).to have_content "Edit"
         expect(page).to have_content "Destroy"
       end
@@ -54,7 +54,7 @@ RSpec.feature "HideControlsByUsers", type: :feature do
       end
 
       Then "I can edit and delete the event that I created" do
-        click_on "Back"
+        visit "/events"
         expect(page).to have_content "Edit"
         expect(page).to have_content "Destroy"
       end

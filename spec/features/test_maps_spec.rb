@@ -1,18 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "ShareFbtws", type: :feature do
-  context 'Share Buttons were added to the home page.' do
-    Steps "I created a user, venue and event" do
-      Given "and I am on the landing page" do
-        visit "/"
-      end
-      Then "I can see a twitter AND a facebook share button" do
-        expect(page).to have_css('.twitter-share-button')
-        expect(page).to have_css('.fb-share-button')
-      end
-    end
-  end
-  context 'Share Buttons were added to the show and index page.' do
+RSpec.feature "TestMaps", type: :feature do
+  context 'A Map was added to the show and index page.' do
     Steps "I created a user, venue and event" do
       Given "and I am on the landing page" do
         visit "/"
@@ -26,7 +15,6 @@ RSpec.feature "ShareFbtws", type: :feature do
         fill_in "Last name", with: "lastname"
         click_on "Sign up"
       end
-
       Then "I can create a new venue" do
         user1 = User.new(email: "mrin@mrin.m", password: "mrinsin", password_confirmation: "mrinsin", first_name: "firstname", last_name: "lastname")
         user1.save
@@ -44,9 +32,12 @@ RSpec.feature "ShareFbtws", type: :feature do
         expect(page).to have_content("Venue was successfully created")
       end
 
-      And "I can see a share button for facebook and twitter on the venue's page." do
-        expect(page).to have_css('.twitter-share-button')
-        expect(page).to have_css('.fb-share-button')
+      And 'I can go to the map locations JSON page' do
+        visit "/venues/#{Venue.first.id}/map_location.json"
+      end
+
+      And 'I will see the JSON object includes a lat and long' do
+        expect(page).to have_content "#{Venue.first.latitude}"
       end
 
       Then "I can add a new event" do
@@ -58,9 +49,12 @@ RSpec.feature "ShareFbtws", type: :feature do
         expect(page).to have_content("Event was successfully created")
       end
 
-      And "I can see a share button for facebook and twitter on the event's page." do
-        expect(page).to have_css('.twitter-share-button')
-        expect(page).to have_css('.fb-share-button')
+      Then 'I can go to the map locations JSON page' do
+       visit "/venues/#{Event.first.venue.id}/map_location.json"
+      end
+
+      And 'I will see the JSON object includes a lat and long' do
+       expect(page).to have_content "#{Event.first.venue.latitude}"
       end
     end
   end
