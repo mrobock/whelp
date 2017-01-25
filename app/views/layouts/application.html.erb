@@ -29,9 +29,6 @@
 
     <%= yield :head %>
 
-  </head>
-
-  <body>
     <!-- Facebook script -->
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -43,6 +40,11 @@
     }(document, 'script', 'facebook-jssdk'));</script>
     <!-- Twitter script -->
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  </head>
+
+  <body>
+
 
     <div class="container">
       <div class="col-sm-1"></div>
@@ -110,11 +112,8 @@
         <%= yield %>
 
       </div>
-    <div class="col-sm-1"></div>
+      <div class="col-sm-1"></div>
     </div>
-
-
-
 
   </body>
 </html>

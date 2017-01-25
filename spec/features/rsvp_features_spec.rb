@@ -37,7 +37,7 @@ RSpec.feature "RsvpFeatures", type: :feature do
       end
 
       When "I click yes to RSVP" do
-        click_on "Yes"
+        click_on "Count Me In"
       end
 
       #Updated to test for list of attendees on Event page

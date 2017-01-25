@@ -47,10 +47,8 @@ RSpec.feature "AddRatings", type: :feature do
         click_on "Create Event"
         expect(page).to have_content("Event was successfully created")
       end
-      
+
       And "I can see a rating on the venue's page." do
-        click_on "Back"
-        click_on "Show"
         expect(page).to have_css('.star')
       end
     end
