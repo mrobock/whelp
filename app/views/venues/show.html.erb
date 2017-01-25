@@ -6,6 +6,9 @@
   <meta property="og:image"         content="<%= @venue.image %>" />
 <% end %>
 
+
+<div id="venue_map" data-venue-id="<%=@venue.id%>">Google Map will appear here...</div>
+
 <p>
   <strong>Average Rating:</strong>
   <%= rating_for @venue, 'name', disable_after_rate: true %>

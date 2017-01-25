@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "RsvpFeatures", type: :feature do
   context 'RSVPing' do
     Steps 'to add or cancel an rsvp to an event' do
-      Given "I have created an event and am on the show" do
+      Given "I have created an event and am on the show page" do
         visit "/"
 
         click_on "Sign Up"

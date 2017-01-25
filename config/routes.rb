@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   resources :venue_reviews
   resources :comments
   resources :events
-  resources :venues
+  resources :venues do
+    get 'map_location'
+  end
   devise_for :users
   resources :users
   get 'welcome/index'
