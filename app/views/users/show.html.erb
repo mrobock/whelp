@@ -55,44 +55,42 @@
 <br>
 
 <% if !@user_events.nil? %>
-  <% @user_events.each do |event| %>
-    <table>
-      <h4>My Events</h4>
-        <tbody>
-          <tr>
-            <td><a href="/events/<%= event.id %>"><%= event.name %></a></td>
-        </tbody>
-    </table>
-  <% end %>
+  <h4>My Events</h4>
+  <table>
+    <% @user_events.each do |event| %>
+      <tr>
+        <td><a href="/events/<%= event.id %>"><%= event.name %></a></td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
 <br>
 
 <% if !@user_venues.nil? %>
-  <% @user_venues.each do |venue| %>
-      <table>
-        <h4>My Venues:</h4>
-          <tbody>
-          <tr>
-            <td><a href="/venues/<%= venue.id %>"><%= venue.name %></a></td>
-          </tr>
-        </tbody>
-      </table>
-  <% end %>
+  <h4>My Venues:</h4>
+  <table>
+    <% @user_venues.each do |venue| %>
+      <tr>
+        <td><a href="/venues/<%= venue.id %>"><%= venue.name %></a></td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
 <br>
 
+
 <% if !@user_rsvps.nil? %>
-  <% @user_rsvps.each do |rsvp| %>
-      <table>
-        <h4>RSVPs:</h4>
-          <tbody>
-          <tr>
-            <td><a href="/events/<%= rsvp.event_id %>"><%= rsvp.event.name %></a></td>
-          </tr>
-        </tbody>
-      </table>
-  <% end %>
+  <h4>My RSVPs:</h4>
+  <table>
+    <% @user_rsvps.each do |rsvp| %>
+      <tr>
+        <td><a href="/venues/<%= rsvp.event_id %>"><%= rsvp.event.name %></a></td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
 <br>
+
+
 
   <%= link_to "Edit", edit_user_registration_path %>
