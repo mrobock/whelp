@@ -8,13 +8,53 @@ body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
-.thumbnail img {
+/*div ids*/
+#comment-row-1 {
+  height: 48px;
+}
+
+#comment-row-2 {
+
+}
+
+#comment-title {
+  width: 80%;
+  display: inline-block;
+}
+
+#comment-submit {
+  width: 20%;
+  display: inline-block;
+  text-align: right;
+}
+
+#comment-text {
+  width: 100%;
+}
+
+/*form inputs*/
+#comment_title {
+  width: 100%;
+  height: 34px;
+}
+
+#comment_submit {
+  width: 100%;
+  height: 144px;
+}
+
+
+
+#main-img img {
     width: 100%;
 }
 
+.thumbnail > .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    max-width: 50%;
+    max-height: 50%;
+}
+
 .ratings {
-    padding-right: 10px;
-    padding-left: 10px;
     color: #d17581;
 }
 
@@ -25,6 +65,17 @@ body {
 .thumbnail .caption-full {
     padding: 9px;
     color: #333;
+}
+
+h3 {
+  margin-top: 0;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.twitter-share-button[style] {
+    vertical-align: top !important;
+    margin-top: 1px;
 }
 
 footer {
