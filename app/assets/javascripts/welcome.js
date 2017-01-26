@@ -19,7 +19,7 @@ function loadAndCreateGmap() {
 
     $.ajax({
       dataType: 'json',
-      url: '/map_locations/', //new route goes here that lists all 
+      url: '/map_locations/', //new route goes here that lists all
       method: 'GET',
       success: function(dataFromServer) {
         createGmap(dataFromServer);

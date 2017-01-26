@@ -17,13 +17,16 @@ Rails.application.routes.draw do
   resources :venue_reviews
   resources :comments
   resources :events
+
   resources :venues do
+    # map locations for ...
     member do
       get 'map_location'
     end
-    collection do
-      get 'map_locations'
-    end
+    # Retrieve all map location for all venues
+    # collection do
+    #   get 'map_locations'
+    # end
   end
   devise_for :users
   resources :users

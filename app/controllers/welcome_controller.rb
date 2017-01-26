@@ -9,15 +9,18 @@ class WelcomeController < ApplicationController
       @search_results = nil
     end
   end
+
   def map_locations
      draw_map(Venue.all)
-    end
+  end
+
   def draw_map(venues)
     @hash = Gmaps4rails.build_markers(venues) do |venue, marker|
       marker.lat(venue.latitude)
       marker.lng(venue.longitude)
-      marker.infowindow("<em>" + venue.name + "</em>")
+      marker.infowindow('<a href="venues/' + venue.id.to_s + '
+      ">' + venue.name + '</a>')
     end
     render json: @hash.to_json
   end
-  end
+end
