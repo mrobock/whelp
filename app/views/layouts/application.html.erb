@@ -26,6 +26,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "bootstrap" %>
+    <%= stylesheet_link_tag "glyphicons" %>
 
     <%= yield :head %>
 
@@ -44,63 +46,11 @@
   </head>
 
   <body>
+    <%= render :partial => '/layouts/navbar' %>
 
-
-    <div class="container">
-      <div class="col-sm-1"></div>
-      <div class="col-sm-10">
-        <nav>
-          <ul class="nav nav-tabs">
-            <li role="presentation"
-              <% if request.original_url.ends_with?('/') %>
-                class="active"
-              <% end %>
-              ><%= link_to 'Home', root_path %>
-            </li>
-
-            <li role="presentation"
-              <% if request.original_url.ends_with?('/venues') %>
-                class="active"
-              <% end %>
-              ><%= link_to 'Venues', venues_path %>
-            </li>
-
-            <li role="presentation"
-              <% if request.original_url.ends_with?('/events') %>
-                class="active"
-              <% end %>
-              ><%= link_to 'Events', events_path %>
-            </li>
-
-            <% if !user_signed_in? %>
-              <li role="presentation"
-                <% if request.original_url.ends_with?('/sign_up') %>
-                  class="active"
-                <% end %>
-                ><%= link_to 'Sign Up', new_user_registration_path %>
-              </li>
-
-              <li role="presentation"
-                <% if request.original_url.ends_with?('/sign_in') %>
-                  class="active"
-                <% end %>
-                ><%= link_to 'Sign In', new_user_session_path %>
-              </li>
-            <% else %>
-
-            <li role="presentation"
-              <% if request.original_url.ends_with?("/users/#{current_user.id}") %>
-              class="active"
-            <% end %>
-            ><%= link_to "Profile", "/users/#{current_user.id}" %></li>
-
-            <li role="presentation"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-            </li>
-            <li><%= "Hi, #{current_user.username}" %></li>
-            <% end %>
-
-          </ul>
-        </nav>
+    <div class="container-fluid">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
 
         <% unless notice.nil? %>
           <p class="notice"><%= notice %></p>
@@ -112,8 +62,10 @@
         <%= yield %>
 
       </div>
-      <div class="col-sm-1"></div>
+      <div class="col-sm-2"></div>
     </div>
+
+    <%= render :partial => '/layouts/footer' %>
 
   </body>
 </html>

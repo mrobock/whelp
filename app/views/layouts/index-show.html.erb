@@ -50,21 +50,28 @@
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
     <%= render :partial => '/layouts/navbar' %>
+    <div class="col-md-2"></div>
 
-    <!-- Page Content -->
-    <div class="container-fluid">
+    <div class="col-md-8">
       <div class="row">
-        <% unless notice.nil? %>
-          <p class="notice"><%= notice %></p>
-        <% end %>
-        <% unless alert.nil? %>
-          <p class="alert"><%= alert %></p>
-        <% end %>
+        <!-- Page Content -->
+        <div class="container-fluid">
+          <div class="row">
+            <% unless notice.nil? %>
+              <p class="notice"><%= notice %></p>
+            <% end %>
+            <% unless alert.nil? %>
+              <p class="alert"><%= alert %></p>
+            <% end %>
 
-        <%= yield %>
+            <%= yield %>
 
-      </div>
-    </div> <!-- /.container -->
+          </div>
+        </div> <!-- /.container -->
+      </div> <!-- /.row -->
+    </div> <!-- /.col-md-8 -->
+
+    <div class="col-md-2"></div>
 
     <%= render :partial => '/layouts/footer' %>
 

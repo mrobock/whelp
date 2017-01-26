@@ -93,6 +93,14 @@ footer {
   width: 100%;
 }
 
+.notice {
+  color: #318e40;
+}
+
+.alert {
+  color: red;
+}
+
 .caption-full {
   display: flex;
   flex-flow: row wrap;

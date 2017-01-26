@@ -1,45 +1,40 @@
-<div class="col-md-2"></div>
-
-<div class="col-md-8">
-  <div class="row">
-    <div class="col-md-12" id="banner">
-      <h1>Venues</h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <% @venues.each do |venue| %>
-      <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-          <%= image_tag venue.image.url %>
-          <div class="caption">
-            <h4 class="pull-right"><%= "#{venue.city}, #{venue.state}" %></h4>
-            <h4><%= link_to "#{venue.name}", venue %></h4>
-            <p><strong>Address:</strong><br>
-            <%= "#{venue.street_1} #{venue.street_2} #{venue.city} #{venue.state} #{venue.zip}" %></p>
-            <p><strong>Description:</strong><br><%= venue.description %></p>
-          </div>
-          <div id="ratings">
-            <p class="pull-right"><%= venue.rates("name").count %> Rating(s)</p>
-            <p><%= rating_for venue, 'name' %></p>
-          </div>
-          <p>
-            <% if !current_user.nil? && venue.user == current_user %>
-              <%= link_to 'Edit', edit_venue_path(venue) %> |
-              <%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-          </p>
-        </div>
-      </div>
-      <% end %>
-
-    <% if user_signed_in? %>
-      <div class="col-sm-4 col-lg-4 col-md-4">
-          <h4><%= link_to 'New Venue', new_venue_path %></h4>
-          <p>Do you know of a new or hidden dog paradise not listed here? Click the button below to spread the word!</p>
-          <a class="btn btn-primary" href="/venues/new">Create New Venue</a>
-      </div>
-    <% end %>
+<div class="row">
+  <div class="col-md-12" id="banner">
+    <h1>Venues</h1>
   </div>
 </div>
-<div class="col-md-2"></div>
+
+<div class="row">
+  <% @venues.each do |venue| %>
+    <div class="col-sm-4 col-lg-4 col-md-4">
+      <div class="thumbnail">
+        <%= image_tag venue.image.url %>
+        <div class="caption">
+          <h4 class="pull-right"><%= "#{venue.city}, #{venue.state}" %></h4>
+          <h4><%= link_to "#{venue.name}", venue %></h4>
+          <p><strong>Address:</strong><br>
+          <%= "#{venue.street_1} #{venue.street_2} #{venue.city} #{venue.state} #{venue.zip}" %></p>
+          <p><strong>Description:</strong><br><%= venue.description %></p>
+        </div>
+        <div id="ratings">
+          <p class="pull-right"><%= venue.rates("name").count %> Rating(s)</p>
+          <p><%= rating_for venue, 'name' %></p>
+        </div>
+        <p>
+          <% if !current_user.nil? && venue.user == current_user %>
+            <%= link_to 'Edit', edit_venue_path(venue) %> |
+            <%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <% end %>
+
+  <% if user_signed_in? %>
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <h4><%= link_to 'New Venue', new_venue_path %></h4>
+        <p>Do you know of a new or hidden dog paradise not listed here? Click the button below to spread the word!</p>
+        <a class="btn btn-primary" href="/venues/new">Create New Venue</a>
+    </div>
+  <% end %>
+</div>
