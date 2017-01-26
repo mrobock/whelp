@@ -1,4 +1,5 @@
 class VenuesController < ApplicationController
+  layout "index-show", only: [:show, :index]
   before_action :set_venue, only: [:show, :edit, :update, :destroy, :rate]
 
   # GET /venues

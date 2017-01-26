@@ -11,106 +11,111 @@
 <div class="col-md-8">
 
   <div class="thumbnail">
-    <div id="main-img">
-      <%= link_to image_tag(@event.image.url(:large)), @event.image.url %>
+    <div id="event_map" data-venue-id="<%=@event.venue.id%>">
+      Google Map will appear here...
     </div>
-    <hr>
+
     <div class="caption-full">
-      <div class="pull-right">
-        <!-- Share/Tweet buttons for Facebook and Twitter -->
-        <div class="fb-share-button" data-href="http://whelpsd.com<%= event_path(@event) %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
-        <a href="https://twitter.com/share/tweet?text=Bring%20your%20dogs%20to%20<%= @event.name.gsub!(/\s/,'%20') %>%20as%20found%20on%20WhelpSD.com%21" class="twitter-share-button" data-show-count="false">Tweet</a>
+      <div id="info-left">
+        <div id="info-text">
+          <p>
+            <h3><%= @event.name %></h3>
+            <% if !current_user.nil? && @event.user == current_user %>
+              <%= link_to 'Edit', edit_event_path(@event) %> |
+              <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </p>
+
+          <p>
+          <!-- Share/Tweet buttons for Facebook and Twitter -->
+            <div class="fb-share-button" data-href="http://whelpsd.com<%= event_path(@event) %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
+            <a href="https://twitter.com/share/tweet?text=Bring%20your%20dogs%20to%20<%= @event.name.gsub!(/\s/,'%20') %>%20as%20found%20on%20WhelpSD.com%21" class="twitter-share-button" data-show-count="false">Tweet</a>
+          </p>
+
+          <p>
+            <strong>Date:</strong>
+            <%= @event.date %>
+          </p>
+
+          <p>
+            <strong>Venue:</strong>
+            <%= @event.venue.name %>
+          </p>
+
+          <p>
+            <strong>Hosted By:</strong>
+            <%= link_to "#{@event.user.username}", "/users/#{@event.user_id}"  %>
+          </p>
+
+          <p>
+            <strong>Description:</strong>
+            <%= @event.description %>
+          </p>
+        </div>
+
+        <div id="ratings">
+            <% if !current_user.nil? %>
+              <p class="pull-left">
+                <strong>My Rating:</strong>
+                <%= rating_for_user @event, current_user, 'name' %>
+              </p>
+            <% end %>
+            <p class="pull-right"><%= @event.rates("name").count %> Rating(s)</p>
+            <p class="pull-left">
+              <strong>Average Rating:</strong>
+              <%= rating_for @event, 'name' %>
+            </p>
+        </div>
+      </div> <!-- info-left -->
+
+      <div id="info-right">
+        <%= image_tag @event.image.url %>
       </div>
 
-      <h3><%= @event.name.gsub!('%20', ' ') %></h3>
-      <% if !current_user.nil? && @event.user == current_user %>
-        <%= link_to 'Edit', edit_event_path(@event) %>
-      <% end %>
-
-      <p>
-        <strong>Date:</strong>
-        <%= @event.date %>
-      </p>
-
-      <p>
-        <strong>Venue:</strong>
-        <%= @event.venue.name %>
-      </p>
-
-      <p>
-        <strong>Hosted By:</strong>
-        <%= link_to "#{@event.user.username}", "/users/#{@event.user_id}"  %>
-      </p>
-
-      <p>
-        <strong>Description:</strong>
-        <%= @event.description %>
-      </p>
-
-      <div class="ratings">
-          <% if !current_user.nil? %>
-            <p class="pull-left">
-              <strong>My Rating:</strong>
-              <%= rating_for_user @event, current_user, 'name' %>
+      <div id="rsvp">
+        <hr>
+        <!-- form for user to rsvp to an event -->
+        <% if user_signed_in? && Rsvp.find_by_user_id(current_user.id).nil? %>
+          <%= form_for Rsvp.new, url: rsvps_path, method: :post do |f| %>
+            <p><strong>My RSVP:</strong>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :event_id, value: params[:id] %>
+              <%= f.submit 'Count Me In', :class => 'btn btn-success' %>
             </p>
           <% end %>
-          <p class="pull-right"><%= @event.rates("name").count %> Rating(s)</p>
-          <p class="pull-left">
-            <strong>Average Rating:</strong>
-            <%= rating_for @event, 'name' %>
-          </p>
-      </div>
-      <hr>
 
-      <!-- form for user to rsvp to an event -->
-
-      <% if user_signed_in? && Rsvp.find_by_user_id(current_user.id).nil? %>
-        <!-- <form action="/rsvps" method="post">
-          <p><strong>RSVP:</strong>
-            <input type="hidden" name="rsvp[user_id]" value="<%= current_user.id%>">
-            <input type="hidden" name="rsvp[event_id]" value="<%= params[:id]%>">
-            <input type="submit" value="Yes">
-          </p>
-        </form> -->
-        <%= form_for Rsvp.new, url: rsvps_path, method: :post do |f| %>
-          <p><strong>My RSVP:</strong>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :event_id, value: params[:id] %>
-            <%= f.submit 'Count Me In', :class => 'btn btn-success' %>
-          </p>
-        <% end %>
-
-      <!-- form to delete user rsvp -->
-      <% elsif user_signed_in? && !Rsvp.find_by_user_id(current_user.id).nil? %>
-        <%= form_for Rsvp.find_by(user_id: current_user.id, event_id: params[:id]), url: rsvp_path, method: :delete do |f| %>
-          <p><strong>My RSVP:</strong>
-            <%= f.submit "Cancel RSVP", :class => 'btn btn-danger' %>
-          </p>
-        <% end %>
-
-      <% else %>
-
-        <p><%= link_to "Sign in to RSVP!", new_user_session_path %></p>
-
-      <% end %>
-
-      <!-- end of form that deletes user's rsvp -->
-
-      <p>
-        <strong>RSVPs</strong>
-        <% rsvp_length = Rsvp.where(event_id: @event.id).length %>
-          <% if rsvp_length == 1 %>
-          - (<%= rsvp_length %> attendee)
-          <% else %>
-             - (<%= rsvp_length %> attendees)
+        <!-- form to delete user rsvp -->
+        <% elsif user_signed_in? && !Rsvp.find_by_user_id(current_user.id).nil? %>
+          <%= form_for Rsvp.find_by(user_id: current_user.id, event_id: params[:id]), url: rsvp_path, method: :delete do |f| %>
+            <p><strong>My RSVP:</strong>
+              <%= f.submit "Cancel RSVP", :class => 'btn btn-danger' %>
+            </p>
           <% end %>
 
-        <ol>
-        <% Rsvp.where(event_id: @event.id).each do |attendee| %>
-          <li><%= link_to "#{attendee.user.first_name} #{attendee.user.last_name}", "/users/#{attendee.id}" %></li>
+        <% else %>
+
+          <p><%= link_to "Sign in to RSVP!", new_user_session_path %></p>
+
         <% end %>
-        </ol>
-      </p>
+
+        <!-- end of form that deletes user's rsvp -->
+
+        <p>
+          <strong>RSVPs</strong>
+          <% rsvp_length = Rsvp.where(event_id: @event.id).length %>
+            <% if rsvp_length == 1 %>
+            - (<%= rsvp_length %> attendee)
+            <% else %>
+               - (<%= rsvp_length %> attendees)
+            <% end %>
+
+          <ol>
+          <% Rsvp.where(event_id: @event.id).each do |attendee| %>
+            <li><%= link_to "#{attendee.user.first_name} #{attendee.user.last_name}", "/users/#{attendee.id}" %></li>
+          <% end %>
+          </ol>
+        </p>
+      </div>
 
     </div> <!-- class="caption-full" -->
   </div> <!-- class="thumbnail" -->
@@ -151,6 +156,5 @@
       <% end %>
     <% end %>
   </div>
-  <div id="event_map" data-venue-id="<%=@event.venue.id%>">Google Map will appear here...</div>
 </div> <!-- col-md-8 -->
 <div class="col-md-2"></div>
