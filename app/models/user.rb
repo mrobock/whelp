@@ -1,12 +1,12 @@
 class User < ApplicationRecord
+  rolify
   has_many :venues
   has_many :venue_reviews
   has_many :event_reviews
   has_many :comments
   has_many :ratings
 
-  #Make a ratyrate rater
-  # ratyrate_rater
+  # resourcify
 
   has_many :events, through: :rsvp
   # Include default devise modules. Others available are:
@@ -19,6 +19,12 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
+
+  after_create :assign_role
+
+  def assign_role
+    add_role(:default)
+  end
 
   attr_accessor :login
 

@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
+  post 'users/update'
+
+
+
   #generates /events/get_events route for calendar
   resources :events do
     get :get_events, on: :collection
@@ -23,8 +27,11 @@ Rails.application.routes.draw do
   resources :venues do
     get 'map_location'
   end
-  devise_for :users
+
+  # Devise routes
+  devise_for :users, path_prefix: 'my', controllers: { registrations: 'registrations' }
   resources :users
+
   root to: "welcome#index"
 
 
