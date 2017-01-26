@@ -93,13 +93,10 @@
           <% end %>
 
         <% else %>
-
           <p><%= link_to "Sign in to RSVP!", new_user_session_path %></p>
-
         <% end %>
 
         <!-- end of form that deletes user's rsvp -->
-
         <p>
           <strong>RSVPs</strong>
           <% rsvp_length = Rsvp.where(event_id: @event.id).length %>
@@ -116,7 +113,6 @@
           </ol>
         </p>
       </div>
-
     </div> <!-- class="caption-full" -->
   </div> <!-- class="thumbnail" -->
 
