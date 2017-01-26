@@ -8,6 +8,7 @@ class Event < ApplicationRecord
   has_many :event_reviews
   has_many :comments
   has_many :users, through: :rsvp
+  has_many :ratings
 
   validates :name, presence: true
 

@@ -5,6 +5,8 @@ class Venue < ApplicationRecord
   has_many :events
   has_many :venue_reviews
 
+  has_many :ratings
+
   has_many :comments
 
   validates :name, presence: true, uniqueness: true, length: { in: 5..20 }
