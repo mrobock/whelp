@@ -1,3 +1,14 @@
+<% content_for :head do %>
+  <meta property="og:url"           content="http://whelpsd.com<%= venue_path(@venue) %>" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="<%= @venue.name %>" />
+  <meta property="og:description"   content="<%= @venue.description %>" />
+  <meta property="og:image"         content="<%= @venue.image %>" />
+<% end %>
+
+
+<div id="venue_map" data-venue-id="<%=@venue.id%>">Google Map will appear here...</div>
+
 <p>
   <strong>Average Rating:</strong>
   <%= rating_for @venue, 'name', disable_after_rate: true %>
@@ -8,13 +19,9 @@
   <%= @venue.name %>
 </p>
 
-<% if @venue.image.file? %>
 <p>
  <%= link_to image_tag(@venue.image.url(:large)), @venue.image.url %>
- <% else %>
- <% link_to image_tag('default.png') %>
 </p>
-<% end %>
 
 <p>
   <strong>Description:</strong>
@@ -50,6 +57,10 @@
   <strong>User:</strong>
   <%= @venue.user.username %>
 </p>
+
+<!-- Share/Tweet buttons for Facebook and Twitter -->
+<div class="fb-share-button" data-href="http://whelpsd.com<%= venue_path(@venue) %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
+<a href="https://twitter.com/share/tweet?text=Bring%20your%20dogs%20to%20<%= @venue.name.gsub!(/\s/,'%20') %>%20as%20found%20on%20WhelpSD.com%21" class="twitter-share-button" data-show-count="false">Tweet</a>
 
 <% if user_signed_in? %>
   <form action="/venue_reviews" method="post">

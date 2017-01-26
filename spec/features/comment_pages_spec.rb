@@ -34,12 +34,10 @@ RSpec.feature "Comment Pages", type: :feature do
       end
 
       And "I can add a comment to the venue" do
-        click_on "Back"
-        click_on "Show"
         expect(page).to have_content("New Comment")
         fill_in "Title", with: "Comment Title"
-        fill_in "Text", with: "Mars ATTACKED!"
-        click_on "Create Comment"
+        fill_in "comment[text]", with: "Mars ATTACKED!"
+        click_on "Leave a Review"
         expect(page).to have_content("Comment was successfully created")
         expect(page).to have_content("Mars ATTACKED!")
       end
@@ -54,12 +52,10 @@ RSpec.feature "Comment Pages", type: :feature do
       end
 
       And "I can add a comment to the event" do
-        click_on "Back"
-        click_on "Show"
         expect(page).to have_content("New Comment")
         fill_in "Title", with: "Comment Title"
-        fill_in "Text", with: "Mating Season ATTACKED!"
-        click_on "Create Comment"
+        fill_in "comment[text]", with: "Mating Season ATTACKED!"
+        click_on "Leave a Review"
         expect(page).to have_content("Comment was successfully created")
         expect(page).to have_content("Mating Season ATTACKED!")
       end

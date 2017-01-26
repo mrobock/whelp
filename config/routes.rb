@@ -17,12 +17,20 @@ Rails.application.routes.draw do
   resources :venue_reviews
   resources :comments
   resources :events
-  resources :venues
+  resources :venues do
+    member do
+      get 'map_location'
+    end
+    collection do
+      get 'map_locations'
+    end
+  end
   devise_for :users
   resources :users
   get 'welcome/index'
   root 'welcome#index'
   root to: "welcome#index"
+
 
 
 

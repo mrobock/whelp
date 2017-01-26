@@ -11,14 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
+  <div id="comment-container">
+    <div id="comment-row-1">
+      <div class="field pull-left" id="comment-title">
+        <%= f.text_field :title, placeholder: :title %>
+      </div>
 
-  <div class="field">
-    <%= f.label :text %>
-    <%= f.text_area :text %>
+      <div class="actions pull-right" id="comment-submit">
+        <%= f.submit 'Leave a Review', :class => 'btn btn-success' %>
+      </div>
+    </div> <!-- id="comment-row-1" -->
+
+    <div id="comment-row-2">
+      <div class="field" id="comment-text">
+        <%= f.text_area :text, placeholder: 'Questions? Comments? Concerns?', id: 'comment_submit' %>
+      </div>
+    </div> <!-- id="comment-row-2" -->
   </div>
 
 <% if !current_user.nil? %>
@@ -39,7 +47,5 @@
   </div>
 <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>

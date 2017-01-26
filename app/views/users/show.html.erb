@@ -1,10 +1,18 @@
-<h1>Hi, <%= @user.username %>!</h1>
+    <h1>Hi, <%= @user.username %>!</h1>
 
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+    <p>
+      <strong>Username:</strong>
+      <%= @user.username %>
+    </p>
+
+    <% if @user.image.file? %>
+    <p>
+     <%= link_to image_tag(@user.image.url(:medium)), @user.image.url %>
+     <% else %>
+     <%= link_to image_tag('profile.jpeg') %>
+    </p>
+    <% end %>
 
 <p>
   <strong>First Name:</strong>
@@ -44,6 +52,45 @@
   <strong>Zip:</strong>
   <%= @user.zip %>
 </p>
+<br>
+
+<% if !@user_events.nil? %>
+  <h4>My Events</h4>
+  <table>
+    <% @user_events.each do |event| %>
+      <tr>
+        <td><a href="/events/<%= event.id %>"><%= event.name %></a></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+<br>
+
+<% if !@user_venues.nil? %>
+  <h4>My Venues:</h4>
+  <table>
+    <% @user_venues.each do |venue| %>
+      <tr>
+        <td><a href="/venues/<%= venue.id %>"><%= venue.name %></a></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+<br>
+
+
+<% if !@user_rsvps.nil? %>
+  <h4>My RSVPs:</h4>
+  <table>
+    <% @user_rsvps.each do |rsvp| %>
+      <tr>
+        <td><a href="/venues/<%= rsvp.event_id %>"><%= rsvp.event.name %></a></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+<br>
+
 
 
   <%= link_to "Edit", edit_user_registration_path %>

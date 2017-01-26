@@ -1,15 +1,4 @@
 class WelcomeController < ApplicationController
-
-  def map_locations
-    venues = Venue.all # TODO
-    @hash = Gmaps4rails.build_markers(venues) do |venue, marker|
-      marker.lat(venue.latitude)
-      marker.lng(venue.longitude)
-      marker.infowindow("<em>" + venue.name + "</em>")
-    end
-    render json: @hash.to_json
-  end
-
   def index
     if !params[:search_params].nil? && !params[:search_params].to_s.strip.empty?
       @venue_results = Venue.search(params[:search_params])
@@ -20,5 +9,15 @@ class WelcomeController < ApplicationController
       @search_results = nil
     end
   end
-
-end
+  def map_locations
+     draw_map(Venue.all)
+    end
+  def draw_map(venues)
+    @hash = Gmaps4rails.build_markers(venues) do |venue, marker|
+      marker.lat(venue.latitude)
+      marker.lng(venue.longitude)
+      marker.infowindow("<em>" + venue.name + "</em>")
+    end
+    render json: @hash.to_json
+  end
+  end
