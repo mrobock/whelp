@@ -34,8 +34,7 @@ RSpec.feature "AddRatings", type: :feature do
       end
 
       And "I can see a rating on the venue's page." do
-        click_on "Back"
-        click_on "Show"
+        visit "/venues/#{Venue.find_by_name('Mars Attacks').id}"
         expect(page).to have_css('.star')
       end
 

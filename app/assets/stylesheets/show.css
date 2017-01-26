@@ -5,16 +5,27 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+  padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+h3 {
+  margin-top: 0;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.twitter-share-button[style] {
+  vertical-align: top !important;
+  margin-top: 1px;
+}
+
+footer {
+  margin: 50px 0;
 }
 
 /*div ids*/
 #comment-row-1 {
   height: 48px;
-}
-
-#comment-row-2 {
-
 }
 
 #comment-title {
@@ -43,41 +54,57 @@ body {
   height: 144px;
 }
 
-
-
-#main-img img {
-    width: 100%;
+#info-left {
+  order: 0;
+  flex: 1 0 25%;
+  min-width: 350px;
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  justify-content: space-between;
 }
 
-.thumbnail > .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
-    max-width: 50%;
-    max-height: 50%;
+#info-right {
+  order: 1;
+  flex: 1 0 200px;
 }
 
-.ratings {
-    color: #d17581;
+#info-right > img {
+  width: 75% !important;
+  display: block;
+  margin: 0 auto;
+}
+
+#info-text {
+  align-self: flex-start;
+}
+
+#ratings {
+  color: #d17581;
+}
+
+#rsvp {
+  order: 2;
+  width: 100%;
+}
+
+#venue_map, #event_map {
+  height: 36vh;
+  width: 100%;
+}
+
+.caption-full {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
 .thumbnail {
-    padding: 0;
+  padding: 0;
 }
 
 .thumbnail .caption-full {
-    padding: 9px;
-    color: #333;
-}
-
-h3 {
-  margin-top: 0;
-  margin-right: 10px;
-  display: inline-block;
-}
-
-.twitter-share-button[style] {
-    vertical-align: top !important;
-    margin-top: 1px;
-}
-
-footer {
-    margin: 50px 0;
+  padding: 9px;
+  color: #333;
 }

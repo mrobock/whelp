@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('#eventsCalendar').fullCalendar({
     header: {
       left: 'title',
-      center: 'Events',
+      center: '',
       right: 'month, basicWeek, basicDay, prev,next'
     },
     events: '/events/get_events',
