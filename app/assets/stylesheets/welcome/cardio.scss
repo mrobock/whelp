@@ -173,6 +173,12 @@ a {
 }
 /* Navigation Bar ( Navbar ) */
 
+.nav > li > div {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
 nav.navbar {
 	position: absolute;
 	z-index: 9500;

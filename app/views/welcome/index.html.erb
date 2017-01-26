@@ -23,10 +23,21 @@
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right main-nav">
+			<ul class="nav navbar-nav navbar-left main-nav">
 				<li><a href="/">Home</a></li>
 				<li><a href="/venues">Venues</a></li>
 				<li><a href="/events">Events</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right main-nav">
+
+        <% if !user_signed_in? %>
+          <li><%= link_to 'Sign Up', new_user_registration_path, { data: { toggle: 'modal', target: '#modal1'}, class: 'btn-blue'} %></li>
+					<li><%= link_to 'Sign In', new_user_session_path, { data: { toggle: 'modal', target: '#modal1'}, class: 'btn-blue'} %></li>
+        <% else %>
+          <li><%= link_to "Hi, #{current_user.username}", "/users/#{current_user.id}" %></li>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, { method: :delete, data: { toggle: 'modal', target: '#modal1'}, class: 'btn-blue'} %></li>
+        <% end %>
+
 				<li>
           <div> <!-- Search bar begins -->
             <%= form_tag({controller: "welcome", action: "index"}, method: "get") do %>
@@ -50,14 +61,6 @@
             </div> <!-- Search results area ends -->
           <% end %>
         </li>
-
-        <% if !user_signed_in? %>
-          <li><%= link_to 'Sign Up', new_user_registration_path, { data: { toggle: 'modal', target: '#modal1'}, class: 'btn-blue'} %></li>
-					<li><%= link_to 'Sign In', new_user_session_path, { data: { toggle: 'modal', target: '#modal1'}, class: 'btn-blue'} %></li>
-        <% else %>
-          <li><%= link_to "Hi, #{current_user.username}", "/users/#{current_user.id}" %></li>
-          <li class="pull-right"><%= link_to 'Sign Out', destroy_user_session_path, { method: :delete, data: { toggle: 'modal', target: '#modal1'}, class: 'btn-blue'} %></li>
-        <% end %>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -73,6 +76,11 @@
 						<h3 class="light white">Whelp!</h3>
 						<h1 class="white typed">Dog lovers site for dog events and venues.</h1>
 						<span class="typed-cursor">|</span>
+						<p>
+						  <div class="fb-share-button" data-href="<%= root_path %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
+
+						  <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -299,43 +307,14 @@
 <section id="pricing" class="section">
 	<div class="container">
 		<div class="row title text-center">
-			<h2 class="margin-top white">Pricing</h2>
-			<h4 class="light white">Choose your favorite pricing plan and sign up today!</h4>
+			<h2 class="margin-top white">Upcoming Events</h2>
+			<h4 class="light white">See what dog-friendly events are coming up near you!</h4>
 		</div>
 		<div class="row no-margin">
 			<div class="col-md-7 no-padding col-md-offset-5 pricings text-center">
 				<div class="pricing">
 					<div class="box-main active" data-img="<%= asset_path('pricing1.jpg') %>">
-						<h4 class="white">Yoga Pilates</h4>
-						<h4 class="white regular light">$850.00 <span class="small-font">/ year</span></h4>
-						<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Sign Up Now</a>
-						<i class="info-icon icon_question"></i>
-					</div>
-					<div class="box-second active">
-						<ul class="white-list text-left">
-							<li>One Personal Trainer</li>
-							<li>Big gym space for training</li>
-							<li>Free tools &amp; props</li>
-							<li>Free locker</li>
-							<li>Free before / after shower</li>
-						</ul>
-					</div>
-				</div>
-				<div class="pricing">
-					<div class="box-main" data-img="<%= asset_path('pricing2.jpg') %>">
-						<h4 class="white">Cardio Training</h4>
-						<h4 class="white regular light">$100.00 <span class="small-font">/ year</span></h4>
-						<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Sign Up Now</a>
-						<i class="info-icon icon_question"></i>
-					</div>
-					<div class="box-second">
-						<ul class="white-list text-left">
-							<li>One Personal Trainer</li>
-							<li>Big gym space for training</li>
-							<li>Free tools &amp; props</li>
-							<li>Free locker</li>
-							<li>Free before / after shower</li>
-						</ul>
+						<div id="eventsCalendar"></div>
 					</div>
 				</div>
 			</div>
@@ -421,7 +400,7 @@
 		</div>
 		<div class="row bottom-footer text-center-mobile">
 			<div class="col-sm-8">
-				<p>&copy; 2015 All Rights Reserved. Powered by <a href="http://www.phir.co/">PHIr</a> exclusively for <a href="http://tympanus.net/codrops/">Codrops</a></p>
+				<p>&copy; 2017 Whelp. All Rights Reserved. Powered by <a href="http://www.phir.co/">PHIr</a> exclusively for <a href="http://tympanus.net/codrops/">Codrops</a></p>
 			</div>
 			<div class="col-sm-4 text-right text-center-mobile">
 				<ul class="social-footer">
