@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :ratings do
+    get 'get_rating'
+    get 'rating_update'
+  end
   get 'users/index'
 
   get 'users/show'
@@ -9,19 +13,18 @@ Rails.application.routes.draw do
     get :get_events, on: :collection
   end
 
-  post '/rate' => 'rater#create', :as => 'rate'
   resources :rsvps
   resources :event_reviews
   resources :venue_reviews
   resources :comments
-  resources :events
+  resources :events do
+    get 'rating_update'
+  end
   resources :venues do
     get 'map_location'
   end
   devise_for :users
   resources :users
-  get 'welcome/index'
-  root 'welcome#index'
   root to: "welcome#index"
 
 
