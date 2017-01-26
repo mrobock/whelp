@@ -48,8 +48,47 @@ RSpec.feature "LoggingIn", type: :feature do
 
   context 'Using the navbar to find venues or events' do
     Steps 'I can use the navbar to find a list of venues' do
-      Given 'I am on the home page' do
-        visit '/'
+      Given "I am on the landing (root) page" do
+        visit "/"
+      end
+      And "I click the 'Sign Up' button" do
+        click_link "Sign Up"
+      end
+      Then "I see a registration form that I can fill out" do
+        expect(page).to have_content("Sign up")
+        fill_in 'user[username]', with: "ssmith"
+        fill_in 'user[email]', with: "ssmith@test.com"
+        fill_in 'user[password]', with: "password"
+        fill_in 'user[password_confirmation]', with: "password"
+        fill_in "First name", with: "firstname"
+        fill_in "Last name", with: "lastname"
+      end
+      And "I can submit the registration form succesfully having filled out the required fields" do
+        click_button 'Sign up'
+        expect(page).to have_content("Welcome! You have signed up successfully.")
+      end
+      Then 'I can navigate to the on the venues page' do
+        visit '/venues'
+      end
+      And 'I can click the New Venue link' do
+        click_link 'New Venue'
+      end
+      Then 'I can enter new venue info and create new venue' do
+        user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password", first_name: "firstname", last_name: "lastname")
+        user1.save
+        user2 = User.find_by_username("Joe1")
+
+        fill_in 'venue[name]', with: "Joe's Venue"
+        fill_in 'venue[description]', with: "Joe's Awesome Venue"
+        fill_in 'venue[street_1]', with: "123 Joe Street"
+        fill_in 'venue[street_2]', with: "Suite 1"
+        fill_in 'venue[city]', with: "San Diego"
+        fill_in 'venue[state]', with: "CA"
+        fill_in 'venue[zip]', with: "92109"
+        attach_file('venue[image]', 'spec/images/foo.jpg')
+        click_button 'Create Venue'
+        expect(page).to have_content("Joe's Venue")
+        expect(page).to have_content("Description: Joe's Awesome Venue")
       end
       And 'I click on "Venues"' do
         click_link 'Venues'
@@ -57,26 +96,22 @@ RSpec.feature "LoggingIn", type: :feature do
       Then 'I can see a header and a table of venues containing information about said venues' do
         expect(page).to have_content("Venues")
         expect(page).to have_content("Description")
-        expect(page).to have_content("Street Address")
-        expect(page).to have_content("City")
-        expect(page).to have_content("State")
-        expect(page).to have_content("Zip")
+        expect(page).to have_content("Address")
+        expect(page).to have_content("New Venue")
       end
-    end
-
-    Steps 'I can use the navbar to find a list of events' do
-      Given 'I am on the home page' do
-        visit '/'
+      Then "I can add a new event" do
+        click_on "Events"
+        click_on "New Event"
+        fill_in "Name", with: "Mating Season"
+        select "Joe's Venue", from: "Venue"
+        click_on "Create Event"
       end
-      And 'I click on "Events"' do
-        click_link 'Events'
-      end
-      Then 'I can see a header and a table of venues containing information about said events' do
-        expect(page).to have_content("Name")
-        expect(page).to have_content("Date")
+      Then 'I visit the events page and see a header and a table of venues containing information about said events' do
+        visit "/events"
+        expect(page).to have_content("Events")
         expect(page).to have_content("Venue")
         expect(page).to have_content("Description")
-        expect(page).to have_content("Host")
+        expect(page).to have_content("New Event")
       end
     end
   end

@@ -7,119 +7,105 @@
 <% end %>
 
 
-<div id="venue_map" data-venue-id="<%=@venue.id%>">Google Map will appear here...</div>
+<!-- Bootstrap Template -->
+<div class="col-md-2"></div>
+<div class="col-md-8">
 
-<p>
-  <strong>Average Rating:</strong>
-  <%= rating_for @venue, 'name', disable_after_rate: true %>
-</p>
+  <div class="thumbnail">
+    <div id="venue_map" data-venue-id="<%=@venue.id%>">
+      Google Map will appear here...
+    </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @venue.name %>
-</p>
+    <div class="caption-full">
+      <div id="info-left">
+        <div id="info-text">
+          <p>
+            <h3><%= @venue.name %></h3>
+            <% if !current_user.nil? && @venue.user == current_user %>
+              <%= link_to 'Edit', edit_venue_path(@venue) %> |
+              <%= link_to 'Destroy', @venue, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </p>
 
-<p>
- <%= link_to image_tag(@venue.image.url(:large)), @venue.image.url %>
-</p>
+          <p>
+          <!-- Share/Tweet buttons for Facebook and Twitter -->
+            <div class="fb-share-button" data-href="http://whelpsd.com<%= venue_path(@venue) %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
+            <a href="https://twitter.com/share/tweet?text=Bring%20your%20dogs%20to%20<%= @venue.name.gsub!(/\s/,'%20') %>%20as%20found%20on%20WhelpSD.com%21" class="twitter-share-button" data-show-count="false">Tweet</a>
+          </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @venue.description %>
-</p>
+          <p>
+            <strong>Address: </strong>
+              <%= "#{@venue.street_1} #{@venue.street_2} #{@venue.city} #{@venue.state} #{@venue.zip}" %>
+          </p>
 
-<p>
-  <strong>Street 1:</strong>
-  <%= @venue.street_1 %>
-</p>
+          <p>
+            <strong>Added By:</strong>
+            <%= link_to "#{@venue.user.username}", "/users/#{@venue.user_id}"  %>
+          </p>
 
-<p>
-  <strong>Street 2:</strong>
-  <%= @venue.street_2 %>
-</p>
+          <p>
+            <strong>Description:</strong>
+            <%= @venue.description %>
+          </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @venue.city %>
-</p>
+        </div>
 
-<p>
-  <strong>State:</strong>
-  <%= @venue.state %>
-</p>
+        <div id="ratings">
+            <% if !current_user.nil? %>
+              <p class="pull-left">
+                <strong>My Rating:</strong>
+                <%= rating_for_user @venue, current_user, 'name' %>
+              </p>
+            <% end %>
+            <p class="pull-right"><%= @venue.rates("name").count %> Rating(s)</p>
+            <p class="pull-left">
+              <strong>Average Rating:</strong>
+              <%= rating_for @venue, 'name' %>
+            </p>
+        </div>
+      </div> <!-- info-left -->
 
-<p>
-  <strong>Zip:</strong>
-  <%= @venue.zip %>
-</p>
+      <div id="info-right">
+        <%= image_tag @venue.image.url %>
+      </div>
+    </div> <!-- class="caption-full" -->
+  </div> <!-- class="thumbnail" -->
 
-<p>
-  <strong>User:</strong>
-  <%= @venue.user.username %>
-</p>
+  <div class="five_space">
+  </div>
 
-<!-- Share/Tweet buttons for Facebook and Twitter -->
-<div class="fb-share-button" data-href="http://whelpsd.com<%= venue_path(@venue) %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
-<a href="https://twitter.com/share/tweet?text=Bring%20your%20dogs%20to%20<%= @venue.name.gsub!(/\s/,'%20') %>%20as%20found%20on%20WhelpSD.com%21" class="twitter-share-button" data-show-count="false">Tweet</a>
+  <p class="pull-right"><%= @comments.count %> Comment(s)</p>
+  <h3>Comments</h3>
+  <div class="well">
+    <div>
+      <!-- New comment form renders if user is logged in -->
+      <!-- Also displays current user's rating of event -->
+      <% if !current_user.nil? %>
+        <h3>New Comment</h3>
+        <%= render 'comments/form', comment: @comment %>
+      <% else %>
+       <%= link_to 'Sign in to Comment', new_user_session_path %>
+      <% end %>
+    </div>
 
-<% if user_signed_in? %>
-  <form action="/venue_reviews" method="post">
-  <label for="venue_review_review">Review</label>
-    <textarea name="venue_review[review]" id="venue_review"></textarea> <br>
-     <input type="hidden" name="venue_review[user_id]" value="<%= current_user.id%>">
-    <input type="hidden" name="venue_review[venue_id]" value="<%= params[:id]%> "> <br>
-    <input type="submit" value="Review!">
-
-    <% if @venue_reviews %>
-      <h3>Reviews</h3>
-      <% @venue_reviews.each do |venue_review| %>
-        <h5> Posted By: <%= venue_review.user.username %> </h5>
-        <div class="venue_reviews_area">
-        <%= venue_review.review %>
-        <%= link_to 'edit', edit_venue_review_path(venue_review) %>
-        <%= link_to 'destroy', venue_review_path(venue_review), method: "delete" %><br><br>
+    <hr>
+    <% if @comments %>
+      <% @comments.each do |comment| %>
+        <div class="row">
+          <div class="col-md-12">
+            <h4> <%= comment.title %> </h4>
+            <span>Posted By: <%= link_to "#{comment.user.username}", "/users/#{comment.user_id}" %> </span>
+            <span class="pull-right"><%= comment.created_at %></span>
+            <p>
+            <%= comment.text %>
+            </p>
+            <%= link_to 'Edit', edit_comment_path(comment) %> |
+            <%= link_to 'Destroy', comment_path(comment), method: "delete" %>
+          </div>
+        </div>
+        <hr>
       <% end %>
     <% end %>
-
-  </form>
-  <% else %>
-   <%= link_to 'Sign in to Review', new_user_session_path %>
-
-  <% end %>
-  <br>
-
-  <!-- New comment form renders if user is logged in -->
-  <!-- Also displays current user's rating of venue -->
-<% if !current_user.nil? %>
-  <p>
-    My Rating : <%= rating_for_user @venue, current_user, 'name', cancel: false %>
-  </p>
-  <h3>New Comment</h3>
-  <%= render 'comments/form', comment: @comment %>
-<% else %>
- <%= link_to 'Sign in to Comment', new_user_session_path %>
-<% end %>
-
-<% if @comments %>
-  <h3>Comments</h3>
-  <% @comments.each do |comment| %>
-    <h4> <%= comment.title %> </h4>
-    <h5> Posted By: <%= comment.user.username %> </h5>
-    <div class="comment_area">
-    <%= comment.text %>
-    <%= link_to 'edit', edit_comment_path(comment) %>
-    <%= link_to 'destroy', comment_path(comment), method: "delete" %><br><br>
-  <% end %>
-    </div>
-<% end %>
-
-
-<div class="five_space">
-</div>
-
-<div class="show_edit_back_section">
-  <% if !current_user.nil? && @venue.user == current_user %>
-    <%= link_to 'Edit', edit_venue_path(@venue) %> |
-  <% end%>
-  <%= link_to 'Back', venues_path %>
-</div>
+  </div>
+</div> <!-- col-md-8 -->
+<div class="col-md-2"></div>

@@ -64,10 +64,9 @@ RSpec.feature "VenuePages", type: :feature do
         fill_in 'venue[zip]', with: "92109"
         attach_file('venue[image]', 'spec/images/foo.jpg')
         click_button 'Create Venue'
-        expect(page).to have_content("Name: Joe's Venue")
+        expect(page).to have_content("Joe's Venue")
         expect(page).to have_content("Description: Joe's Awesome Venue")
       end
-
       When 'I click "Edit"' do
         click_on 'Edit'
       end
