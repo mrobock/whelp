@@ -99,7 +99,7 @@ jQuery(function($) {
 		$('.pricing .box-second').removeClass('active');
 		$(this).addClass('active');
 		$(this).next($('.box-second')).addClass('active');
-		$('#pricing').css("background-image", "url(" + $(this).data('img') + ")");
+		$('#pricing').css("background-image", "image-url(" + $(this).data('img') + ")");
 		$('#pricing').css("background-size", "cover");
 	});
 
@@ -109,6 +109,8 @@ jQuery(function($) {
 		$('.mobile-nav').addClass('active');
 	});
 
+
+// THESE PATH GENERATORS MAY NEED TO BE MODIFIED FOR RAILS
 	$('body').on('click', '.mobile-nav a', function(event) {
 		$('.mobile-nav').removeClass('active');
 		if(!this.hash) return;
@@ -131,6 +133,8 @@ jQuery(function($) {
 		event.preventDefault();
 	});
 
+
+// THESE PATH GENERATORS MAY NEED TO BE MODIFIED FOR RAILS
 	$('body').on('click', 'nav.original .navbar-nav a:not([data-toggle])', function() {
 		if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
 			event.stopPropagation();
@@ -152,7 +156,7 @@ jQuery(function($) {
 			bottomMargin = parseInt($dialog.css('marginBottom'), 10);
 
 		// Make sure you don't hide the top part of the modal w/ a negative margin
-		// if it's longer than the screen height, and keep the margin equal to 
+		// if it's longer than the screen height, and keep the margin equal to
 		// the bottom margin of the modal
 		if (offset < bottomMargin) offset = bottomMargin;
 		$dialog.css("margin-top", offset);

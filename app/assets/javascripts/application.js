@@ -19,3 +19,4 @@
 //= require jquery.raty
 //= require ratyrate
 //= require_tree .
+//= require_tree ./welcome

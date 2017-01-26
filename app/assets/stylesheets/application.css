@@ -11,10 +11,13 @@
  * It is generally better to create a new file per style scope.
  *
 
+ *= require_tree ./welcome
  *= require_tree .
  *= require_self
  *= require fullcalendar
  *= require bootstrap
  *= stub 'index'
  *= stub 'show'
+ *= stub 'venues'
+ *= stub 'events'
  */
