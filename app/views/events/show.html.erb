@@ -63,15 +63,7 @@
       <hr>
 
       <!-- form for user to rsvp to an event -->
-
       <% if user_signed_in? && Rsvp.find_by_user_id(current_user.id).nil? %>
-        <!-- <form action="/rsvps" method="post">
-          <p><strong>RSVP:</strong>
-            <input type="hidden" name="rsvp[user_id]" value="<%= current_user.id%>">
-            <input type="hidden" name="rsvp[event_id]" value="<%= params[:id]%>">
-            <input type="submit" value="Yes">
-          </p>
-        </form> -->
         <%= form_for Rsvp.new, url: rsvps_path, method: :post do |f| %>
           <p><strong>My RSVP:</strong>
             <%= f.hidden_field :user_id, value: current_user.id %>
@@ -87,14 +79,12 @@
             <%= f.submit "Cancel RSVP", :class => 'btn btn-danger' %>
           </p>
         <% end %>
-
+        <!-- end of form that deletes user's rsvp -->
       <% else %>
 
         <p><%= link_to "Sign in to RSVP!", new_user_session_path %></p>
 
       <% end %>
-
-      <!-- end of form that deletes user's rsvp -->
 
       <p>
         <strong>RSVPs</strong>

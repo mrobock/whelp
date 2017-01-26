@@ -4,7 +4,7 @@ RSpec.feature "LoggingIn", type: :feature do
   context "I register a user." do
     Steps "I am going to the Landing page, registering, and logging in" do
       Given "I am registering a user" do
-        visit '/users/sign_up'
+        visit '/my/users/sign_up'
         fill_in 'user[username]', with: "ssmith"
         fill_in 'user[email]', with: "ssmith@test.com"
         fill_in 'user[password]', with: "password"

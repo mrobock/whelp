@@ -42,4 +42,21 @@ RSpec.describe User, type: :model do
     expect(u.state).to eq("California")
     expect(u.zip).to eq("92116")
   end
+  it "must be able to be assigned a role" do
+    user = User.new
+    user.add_role :default
+    expect(user.has_role? :default).to eq true
+  end
+  it "must be able to manage everything, if it has the admin role" do
+    user = User.new
+    user.add_role :admin
+    a = Ability.new(user)
+    expect(a.can? :manage, :all).to eq true
+  end
+  it "must be able to read everything, if it has the default role" do
+    user = User.new
+    user.add_role :default
+    a = Ability.new(user)
+    expect(a.can? :read, :all).to eq true
+  end
 end
