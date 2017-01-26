@@ -90,7 +90,7 @@ $(document).ready(function() {
     // getRating();
   }
 
-//Reset once off DIV!!!!!
+//Reset once off SPAN!!!!!
   $("#rating_div").hover(function(){},function(){
     getRating();
   });

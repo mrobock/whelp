@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.feature "AddRatings", type: :feature do
   context 'Ratings were added to the venue and events show pages.' do
     Steps "I created a user, venue and event" do
@@ -8,7 +9,7 @@ RSpec.feature "AddRatings", type: :feature do
       end
       Then "I can sign up and log in as a user" do
         click_on "Sign Up"
-        fill_in "Email", with: "mrin@mrin.com"
+        fill_in "Email", with: "mrin@mrin.m"
         fill_in "Password", with: "mrinsin"
         fill_in "Password confirmation", with: "mrinsin"
         fill_in "First name", with: "firstname"
@@ -17,7 +18,7 @@ RSpec.feature "AddRatings", type: :feature do
       end
 
       Then "I can create a new venue" do
-        user1 = User.new(email: "mrin@mrin.com", password: "mrinsin", password_confirmation: "mrinsin", first_name: "firstname", last_name: "lastname")
+        user1 = User.new(email: "mrin@mrin.m", password: "mrinsin", password_confirmation: "mrinsin", first_name: "firstname", last_name: "lastname")
         user1.save
         user2 = User.find_by_first_name("firstname")
 
@@ -33,11 +34,13 @@ RSpec.feature "AddRatings", type: :feature do
         expect(page).to have_content("Venue was successfully created")
       end
 
-      And "I can see a rating on the venue's page." do
-        click_on "Back"
-        click_on "Show"
-        expect(page).to have_css('.star')
+      And "I can see the average and current count of rating(s) on the venue's page." do
+        Rating.create(rating: 4, user: User.first, venue: Venue.first)
+        visit "/venues/#{Venue.find_by_name('Mars Attacks').id}"
+        expect(page).to have_content('Average Rating: 4')
+        # expect(page).to have_content('1 Rating(s)')
       end
+
 
       Then "I can add a new event" do
         visit "/events"
@@ -48,9 +51,13 @@ RSpec.feature "AddRatings", type: :feature do
         expect(page).to have_content("Event was successfully created")
       end
 
-      And "I can see a rating on the venue's page." do
-        expect(page).to have_css('.star')
+      And "I can see a rating on the event's page." do
+        Rating.create(rating: 3, user: User.first, event: Event.first)
+        visit "/events/#{Event.find_by_name('Mating Season').id}"
+        expect(page).to have_content('Average Rating:')
+        expect(page).to have_content('Rating(s)')
       end
+
     end
   end
 end
