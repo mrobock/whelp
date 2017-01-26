@@ -1,9 +1,14 @@
 class Event < ApplicationRecord
-  belongs_to :venue
   belongs_to :user
+  validates :user, presence: true
+
+  belongs_to :venue
+  validates :venue, presence: true
+
   has_many :event_reviews
   has_many :comments
   has_many :users, through: :rsvp
+
   validates :name, presence: true
 
 #Adding paperclip
@@ -14,5 +19,5 @@ class Event < ApplicationRecord
 
 
   #Adding Ratyrate
-  ratyrate_rateable "name"
+  # ratyrate_rateable "name"
 end

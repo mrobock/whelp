@@ -1,0 +1,40 @@
+<%= form_for(rating) do |f| %>
+  <% if rating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+      <ul>
+      <% rating.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.select :rating, [1, 2, 3, 4, 5], selected: @rating.rating %>
+  </div>
+
+  <% if !current_user.nil? %>
+    <div class="field">
+      <%= f.hidden_field :user_id, value: current_user.id  %>
+    </div>
+  <% end %>
+
+  <% if !@venue.nil? %>
+    <div class="field">
+      <%= f.hidden_field :venue_id, value: @venue.id %>
+    </div>
+  <% end %>
+
+  <% if !@event.nil? %>
+    <div class="field">
+      <%= f.hidden_field :event_id, value: @event.id  %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

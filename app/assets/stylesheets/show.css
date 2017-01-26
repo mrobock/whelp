@@ -81,3 +81,7 @@ h3 {
 footer {
     margin: 50px 0;
 }
+
+#rating_div {
+  margin-bottom: 10px;
+}

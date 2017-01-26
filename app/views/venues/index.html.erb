@@ -26,7 +26,7 @@
         <% if venue.street_1.to_s.strip == "" || venue.street_2.to_s.strip == "" %>
           <% segment = "" %>
         <% end %>
-        <td><%= venue.street_1 + segment + venue.street_2.to_s %></td>
+        <td><%= venue.street_1 + segment.to_s + venue.street_2.to_s %></td>
         <td><%= venue.city %></td>
         <td><%= venue.state %></td>
         <td><%= venue.zip %></td>

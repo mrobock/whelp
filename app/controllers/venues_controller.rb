@@ -26,6 +26,24 @@ class VenuesController < ApplicationController
 
     @comment = Comment.new
     @comments = Comment.where(venue_id: @venue.id)
+
+    # Finds user's current rating if existing or creates new blank rating. Also finds rating average
+    rating = Rating.where(user: current_user, venue: @venue)
+    if rating.length == 1
+      @rating = rating[0]
+    else
+      @rating = Rating.new
+    end
+    avg_rating(@venue)
+    @count_rating = Rating.where(venue: @venue).count
+  end
+
+  def avg_rating(venue)
+    if params[:venue_id].nil?
+      @avg_rating = Rating.where(venue: venue).average("rating").to_f.round(2)
+    else
+      @avg_rating = Rating.where(venue_id: params[:venue_id]).average("rating").to_f.round(2)
+    end
   end
 
   # GET /venues/new
@@ -105,4 +123,6 @@ class VenuesController < ApplicationController
     def venue_params
       params.require(:venue).permit(:name, :description, :street_1, :street_2, :city, :state, :zip, :user_id, :image)
     end
+
+
 end

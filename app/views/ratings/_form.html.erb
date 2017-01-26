@@ -1,0 +1,49 @@
+<%= form_for(rating) do |f| %>
+  <% if rating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+      <ul>
+      <% rating.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<!-- Setting 'default' rating depending on if user already has a rating -->
+
+  <% if !@rating.rating.nil? %>
+    <% default_rating = @rating.rating %>
+  <% else %>
+    <% default_rating = 0 %>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :rating, value: default_rating %>
+  </div>
+
+<!-- Passing through existing rating's ID -->
+  <div class="field">
+    <%= f.hidden_field :rating_id, value: rating.id %>
+  </div>
+
+<!-- Setting user_id as current user -->
+  <% if !current_user.nil? %>
+    <div class="field">
+      <%= f.hidden_field :user_id, value: current_user.id  %>
+    </div>
+  <% end %>
+
+  <% if !@venue.nil? %>
+    <div class="field">
+      <%= f.hidden_field :venue_id, value: @venue.id %>
+    </div>
+  <% end %>
+
+  <% if !@event.nil? %>
+    <div class="field">
+      <%= f.hidden_field :event_id, value: @event.id  %>
+    </div>
+  <% end %>
+<% end %>

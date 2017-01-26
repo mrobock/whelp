@@ -16,6 +16,4 @@
 //= require gmaps/google
 //= require moment
 //= require fullcalendar
-//= require jquery.raty
-//= require ratyrate
 //= require_tree .

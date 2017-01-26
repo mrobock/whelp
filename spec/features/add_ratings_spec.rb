@@ -8,7 +8,7 @@ RSpec.feature "AddRatings", type: :feature do
       end
       Then "I can sign up and log in as a user" do
         click_on "Sign Up"
-        fill_in "Email", with: "mrin@mrin.m"
+        fill_in "Email", with: "mrin@mrin.com"
         fill_in "Password", with: "mrinsin"
         fill_in "Password confirmation", with: "mrinsin"
         fill_in "First name", with: "firstname"
@@ -17,7 +17,7 @@ RSpec.feature "AddRatings", type: :feature do
       end
 
       Then "I can create a new venue" do
-        user1 = User.new(email: "mrin@mrin.m", password: "mrinsin", password_confirmation: "mrinsin", first_name: "firstname", last_name: "lastname")
+        user1 = User.new(email: "mrin@mrin.com", password: "mrinsin", password_confirmation: "mrinsin", first_name: "firstname", last_name: "lastname")
         user1.save
         user2 = User.find_by_first_name("firstname")
 
