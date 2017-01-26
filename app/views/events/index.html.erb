@@ -19,8 +19,8 @@
             <p><strong>Description:</strong><br><%= event.description %></p>
           </div>
           <div id="ratings">
-            <p class="pull-right"><%= event.rates("name").count %> Rating(s)</p>
-            <p><%= rating_for event, 'name' %></p>
+            <p class="pull-right"><%= event.ratings.length %> Rating(s)</p>
+            <p><%= event.ratings.average("rating") %></p>
           </div>
           <p>
             <% if !current_user.nil? && event.user == current_user %>

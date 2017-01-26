@@ -9,6 +9,7 @@
 
   <div class="row">
     <% @venues.each do |venue| %>
+
       <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail">
           <%= image_tag venue.image.url %>
@@ -20,8 +21,8 @@
             <p><strong>Description:</strong><br><%= venue.description %></p>
           </div>
           <div id="ratings">
-            <p class="pull-right"><%= venue.rates("name").count %> Rating(s)</p>
-            <p><%= rating_for venue, 'name' %></p>
+            <p class="pull-right"><%= venue.ratings.length %> Rating(s)</p>
+            <p><%= venue.ratings.average("rating") %></p>
           </div>
           <p>
             <% if !current_user.nil? && venue.user == current_user %>

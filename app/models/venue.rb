@@ -1,7 +1,11 @@
 class Venue < ApplicationRecord
   belongs_to :user
+  validates :user, presence: true
+
   has_many :events
   has_many :venue_reviews
+
+  has_many :ratings
 
   has_many :comments
 
@@ -19,7 +23,7 @@ class Venue < ApplicationRecord
     size: { in: 0..10.megabytes }
 
 #Adding ratyrate
-ratyrate_rateable "name"
+# ratyrate_rateable "name"
 
 private
   def full_address

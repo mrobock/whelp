@@ -58,19 +58,26 @@ User.create([
   password_confirmation: "password"
   }])
 
+user_1 = User.first
+user_2 = User.last
+
+
 Venue.create([{
   name: "LEARN",
   description: "Place in downtown",
   street_1: "704 J St",
-  zip: "92101"
+  zip: "92101",
+  user: user_1
   },{
   name: "OLD LEARN",
   description: "LIKE OLD GREGG BUT OLDER",
   street_1: "1550 Market St",
-  zip: "92101"
+  zip: "92101",
+  user: user_1
   },{
   name: "Thorn Brewery",
   description: "Located on Thorn Street!",
   street_1: "3176 Thorn St",
-  zip: "92104"
+  zip: "92104",
+  user: user_2
   }])

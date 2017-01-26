@@ -4,9 +4,7 @@ class User < ApplicationRecord
   has_many :venue_reviews
   has_many :event_reviews
   has_many :comments
-
-  #Make a ratyrate rater
-  ratyrate_rater
+  has_many :ratings
 
   # resourcify
 
