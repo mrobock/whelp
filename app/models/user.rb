@@ -10,8 +10,7 @@ class User < ApplicationRecord
   # resourcify
 
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
-  # validates :first_name, :last_name, presence: true
-
+  validates :first_name, :last_name, presence: true
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "/images/:style/defaultß.png"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 

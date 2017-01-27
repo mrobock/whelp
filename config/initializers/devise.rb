@@ -13,7 +13,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-
+  config.omniauth :facebook, "610650635796604", "6fb81d8d53527ba09d81a0991e3beddb"
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
@@ -249,6 +249,9 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, '1215140515264893', '5f690f6fc2503c161b6506ba0a4b203a', image_size: { width: 300, height: 300 }, secure_image_url: true
+
+
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

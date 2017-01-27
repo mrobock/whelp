@@ -48,7 +48,7 @@ RSpec.feature "TestMaps", type: :feature do
         click_on "Create Event"
         expect(page).to have_content("Event was successfully created")
       end
-
+#so extra because we cannot have two map_location
       Then 'I can go to the map locations JSON page' do
        visit "/venues/#{Event.first.venue.id}/map_location.json"
       end
