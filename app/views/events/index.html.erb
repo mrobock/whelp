@@ -1,44 +1,47 @@
-<div class="col-md-2"></div>
 
-<div class="col-md-8">
-  <div class="row">
-    <div class="col-md-12" id="banner">
-      <h1>Events</h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <% @events.each do |event| %>
-      <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-          <%= image_tag event.image.url %>
-          <div class="caption">
-            <h4 class="pull-right"><%= event.date %></h4>
-            <h4><%= link_to "#{event.name}", event %></h4>
-            <p><strong>Venue:</strong> <%= link_to "#{event.venue.name}", "/venues/#{event.venue_id}" %></p>
-            <p><strong>Description:</strong><br><%= event.description %></p>
-          </div>
-          <div id="ratings">
-            <p class="pull-right"><%= event.ratings.length %> Rating(s)</p>
-            <p><%= event.ratings.average("rating") %></p>
-          </div>
-          <p>
-            <% if !current_user.nil? && event.user == current_user %>
-              <%= link_to 'Edit', edit_event_path(event) %> |
-              <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-          </p>
-        </div>
-      </div>
-      <% end %>
-
-    <% if user_signed_in? %>
-      <div class="col-sm-4 col-lg-4 col-md-4">
-          <h4><%= link_to 'New Event', new_event_path %></h4>
-          <p>Planning an exiciting new dogapalooza? Click the button below to get started!</p>
-          <a class="btn btn-primary" href="/events/new">Create New Event</a>
-      </div>
-    <% end %>
+<div class="row">
+  <div class="col-md-12" id="banner">
+    <h1>Events</h1>
   </div>
 </div>
-<div class="col-md-2"></div>
+
+<div class="row">
+  <% @events.each do |event| %>
+    <div class="col-sm-4 col-lg-4 col-md-4">
+      <div class="thumbnail">
+        <%= image_tag event.image.url %>
+        <div class="caption">
+          <h4 class="pull-right"><%= event.date %></h4>
+          <h4><%= link_to "#{event.name}", event %></h4>
+          <p><strong>Venue:</strong> <%= link_to "#{event.venue.name}", "/venues/#{event.venue_id}" %></p>
+          <p><strong>Description:</strong><br><%= event.description %></p>
+        </div>
+        <div id="ratings">
+          <p class="pull-right"><%= event.ratings.length %> Rating(s)</p>
+          <p><%= event.ratings.average("rating") %></p>
+        </div>
+        <p>
+          <% if !current_user.nil? && event.user == current_user %>
+            <%= link_to 'Edit', edit_event_path(event) %> |
+            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </p>
+
+      </div>
+      <p>
+        <% if !current_user.nil? && event.user == current_user %>
+          <%= link_to 'Edit', edit_event_path(event) %> |
+          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <h4><%= link_to 'New Event', new_event_path %></h4>
+        <p>Planning an exiciting new dogapalooza? Click the button below to get started!</p>
+        <a class="btn btn-primary" href="/events/new">Create New Event</a>
+    </div>
+  <% end %>
+</div>
