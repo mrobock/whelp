@@ -24,6 +24,8 @@
 
     <%= javascript_include_tag "venues" %>
     <%= javascript_include_tag "events" %>
+    <%= javascript_include_tag "ratings" %>
+
 
     <% if request.original_url.ends_with?('/venues') || request.original_url.ends_with?('/events') %>
       <%= stylesheet_link_tag "index" %>
