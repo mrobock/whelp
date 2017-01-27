@@ -72,22 +72,6 @@
         </div>
       </div> <!-- info-left -->
 
-    <!-- Stars for rating -->
-      <div id="ratings">
-          <% if !current_user.nil? %>
-            <p class="pull-left">
-              <strong>My Rating:</strong>
-              <!--  rating_for_user @event, current_user, 'name' -->
-            </p>
-          <% end %>
-          <p class="pull-right"><%= %> Rating(s)</p>
-          <p class="pull-left">
-            <strong>Average Rating:</strong>
-            <!--  rating_for @event, 'name'  -->
-          </p>
-      </div>
-    </div> <!-- info-left -->
-
     <div id="info-right">
       <%= image_tag @event.image.url %>
     </div>
