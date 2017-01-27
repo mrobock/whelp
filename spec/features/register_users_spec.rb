@@ -7,7 +7,7 @@ RSpec.feature "RegisterUser", type: :feature do
         visit "/"
       end
       Then "I see the site's welcome message!" do
-        expect(page).to have_content("Whelcome to Whelp!")
+        expect(page).to have_content("Whelp!")
       end
     end
   end

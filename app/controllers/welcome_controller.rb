@@ -1,4 +1,7 @@
 class WelcomeController < ApplicationController
+# class WelcomeController < ActionController::Base
+  layout "welcome", only: [:index]
+
   def index
     if !params[:search_params].nil? && !params[:search_params].to_s.strip.empty?
       @venue_results = Venue.search(params[:search_params])

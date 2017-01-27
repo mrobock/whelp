@@ -44,6 +44,10 @@ gem 'paperclip'
 # Use Textacular for search functionality
 gem 'textacular'
 
+# Use CanCanCan and Rolify for roles functionality
+gem 'cancancan'
+gem 'rolify'
+
 gem 'ratyrate'
 
 gem 'devise'

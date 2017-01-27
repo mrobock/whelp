@@ -13,14 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore
+//= require bootstrap
+//= require cable
 //= require gmaps/google
 //= require moment
 //= require fullcalendar
-//= require jquery.raty
-//= require ratyrate
-//= require_tree .
-//= require jquery
-//= require jquery_ujs
-//= require underscore
-//= require gmaps/google
-//= require_tree .
+//= require eventsCalendar

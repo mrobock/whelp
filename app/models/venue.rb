@@ -1,8 +1,12 @@
 class Venue < ApplicationRecord
 
   belongs_to :user
+  validates :user, presence: true
+
   has_many :events
   has_many :venue_reviews
+
+  has_many :ratings
 
   has_many :comments
 
@@ -19,9 +23,8 @@ class Venue < ApplicationRecord
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
     size: { in: 0..10.megabytes }
 
-    #Adding ratyrate
-    ratyrate_rateable "name"
-
+#Adding ratyrate
+# ratyrate_rateable "name"
 
 private
   def full_address

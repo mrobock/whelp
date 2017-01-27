@@ -8,7 +8,7 @@ RSpec.feature "UserProfiles", type: :feature do
         visit "/"
       end
       Then "I see the site's welcome message!" do
-        expect(page).to have_content("Whelcome to Whelp!")
+        expect(page).to have_content("Whelp!")
       end
     end
   end
@@ -100,7 +100,7 @@ RSpec.feature "UserProfiles", type: :feature do
 
       Then "I can RSVP to that event" do
         click_on "Events"
-        click_on "Show"
+        click_on "Mating Season"
         click_on "Count Me In"
       end
 

@@ -7,71 +7,79 @@
 <% end %>
 
 <!-- Bootstrap Template -->
-<div class="col-md-2"></div>
-<div class="col-md-8">
+<div class="thumbnail">
+  <div id="event_map" data-venue-id="<%=@event.venue.id%>">
+    Google Map will appear here...
+  </div>
 
-  <div class="thumbnail">
-    <div id="main-img">
-      <%= link_to image_tag(@event.image.url(:large)), @event.image.url %>
-    </div>
-    <hr>
-    <div class="caption-full">
-      <div class="pull-right">
+  <div class="caption-full">
+    <div id="info-left">
+      <div id="info-text">
+        <p>
+          <h3><%= @event.name %></h3>
+          <% if !current_user.nil? && @event.user == current_user %>
+            <%= link_to 'Edit', edit_event_path(@event) %> |
+            <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </p>
+
+        <p>
         <!-- Share/Tweet buttons for Facebook and Twitter -->
-        <div class="fb-share-button" data-href="http://whelpsd.com<%= event_path(@event) %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
-        <a href="https://twitter.com/share/tweet?text=Bring%20your%20dogs%20to%20<%= @event.name.gsub!(/\s/,'%20') %>%20as%20found%20on%20WhelpSD.com%21" class="twitter-share-button" data-show-count="false">Tweet</a>
-      </div>
+          <div class="fb-share-button" data-href="http://whelpsd.com<%= event_path(@event) %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
+          <a href="https://twitter.com/share/tweet?text=Bring%20your%20dogs%20to%20<%= @event.name.gsub!(/\s/,'%20') %>%20as%20found%20on%20WhelpSD.com%21" class="twitter-share-button" data-show-count="false">Tweet</a>
+        </p>
 
-      <h3><%= @event.name.gsub!('%20', ' ') %></h3>
-      <% if !current_user.nil? && @event.user == current_user %>
-        <%= link_to 'Edit', edit_event_path(@event) %>
-      <% end %>
+        <p>
+          <strong>Date:</strong>
+          <%= @event.date %>
+        </p>
 
-      <p>
-        <strong>Date:</strong>
-        <%= @event.date %>
-      </p>
+        <p>
+          <strong>Venue:</strong>
+          <%= @event.venue.name %>
+        </p>
 
-      <p>
-        <strong>Venue:</strong>
-        <%= @event.venue.name %>
-      </p>
+        <p>
+          <strong>Hosted By:</strong>
+          <%= link_to "#{@event.user.username}", "/users/#{@event.user_id}"  %>
+        </p>
 
-      <p>
-        <strong>Hosted By:</strong>
-        <%= link_to "#{@event.user.username}", "/users/#{@event.user_id}"  %>
-      </p>
+        <p>
+          <strong>Description:</strong>
+          <%= @event.description %>
+        </p>
 
-      <p>
-        <strong>Description:</strong>
-        <%= @event.description %>
-      </p>
-
-      <div class="ratings">
-          <% if !current_user.nil? %>
+        <div id="ratings">
+          <%= render 'ratings/form', rating: @rating %>
+            <% if !current_user.nil? %>
             <p class="pull-left">
-              <strong>My Rating:</strong>
-              <%= rating_for_user @event, current_user, 'name' %>
+              <div id="rating_div">
+                <span id="rating_span">
+                  <%= image_tag("star-off.png", id: "star_1") %>
+                  <%= image_tag("star-off.png", id: "star_2") %>
+                  <%= image_tag("star-off.png", id: "star_3") %>
+                  <%= image_tag("star-off.png", id: "star_4") %>
+                  <%= image_tag("star-off.png", id: "star_5") %>
+                </span>
+              </div>
             </p>
           <% end %>
-          <p class="pull-right"><%= @event.rates("name").count %> Rating(s)</p>
+          <p class="pull-right"><span id="count_rating"></span> Rating(s)</p>
           <p class="pull-left">
             <strong>Average Rating:</strong>
-            <%= rating_for @event, 'name' %>
+            <span id="avg_rating"></span>
           </p>
-      </div>
+        </div>
+      </div> <!-- info-left -->
+
+    <div id="info-right">
+      <%= image_tag @event.image.url %>
+    </div>
+
+    <div id="rsvp">
       <hr>
-
       <!-- form for user to rsvp to an event -->
-
-      <% if user_signed_in? && Rsvp.find_by(user_id: current_user.id, event_id: params[:id]).nil? %>
-        <!-- <form action="/rsvps" method="post">
-          <p><strong>RSVP:</strong>
-            <input type="hidden" name="rsvp[user_id]" value="<%= current_user.id%>">
-            <input type="hidden" name="rsvp[event_id]" value="<%= params[:id]%>">
-            <input type="submit" value="Yes">
-          </p>
-        </form> -->
+      <% if user_signed_in? && Rsvp.find_by_user_id(current_user.id).nil? %>
         <%= form_for Rsvp.new, url: rsvps_path, method: :post do |f| %>
           <p><strong>My RSVP:</strong>
             <%= f.hidden_field :user_id, value: current_user.id %>
@@ -81,21 +89,18 @@
         <% end %>
 
       <!-- form to delete user rsvp -->
-      <% elsif user_signed_in? && !Rsvp.find_by(user_id: current_user.id, event_id: params[:id]).nil? %>
+      <% elsif user_signed_in? && !Rsvp.find_by_user_id(current_user.id).nil? %>
         <%= form_for Rsvp.find_by(user_id: current_user.id, event_id: params[:id]), url: rsvp_path, method: :delete do |f| %>
           <p><strong>My RSVP:</strong>
             <%= f.submit "Cancel RSVP", :class => 'btn btn-danger' %>
           </p>
         <% end %>
 
-      <% elsif !current_user %>
-
+      <% else %>
         <p><%= link_to "Sign in to RSVP!", new_user_session_path %></p>
-
       <% end %>
 
       <!-- end of form that deletes user's rsvp -->
-
       <p>
         <strong>RSVPs</strong>
         <% rsvp_length = Rsvp.where(event_id: @event.id).length %>
@@ -111,46 +116,43 @@
         <% end %>
         </ol>
       </p>
-
-    </div> <!-- class="caption-full" -->
-  </div> <!-- class="thumbnail" -->
-
-  <div class="five_space">
-  </div>
-
-  <p class="pull-right"><%= @comments.count %> Comment(s)</p>
-  <h3>Comments</h3>
-  <div class="well">
-    <div>
-      <!-- New comment form renders if user is logged in -->
-      <!-- Also displays current user's rating of event -->
-      <% if !current_user.nil? %>
-        <h3>New Comment</h3>
-        <%= render 'comments/form', comment: @comment %>
-      <% else %>
-       <%= link_to 'Sign in to Comment', new_user_session_path %>
-      <% end %>
     </div>
+  </div> <!-- class="caption-full" -->
+</div> <!-- class="thumbnail" -->
 
-    <hr>
-    <% if @comments %>
-      <% @comments.each do |comment| %>
-        <div class="row">
-          <div class="col-md-12">
-            <h4> <%= comment.title %> </h4>
-            <span>Posted By: <%= link_to "#{comment.user.username}", "/users/#{comment.user_id}" %> </span>
-            <span class="pull-right"><%= comment.created_at %></span>
-            <p>
-            <%= comment.text %>
-            </p>
-            <%= link_to 'Edit', edit_comment_path(comment) %> |
-            <%= link_to 'Destroy', comment_path(comment), method: "delete" %>
-          </div>
-        </div>
-        <hr>
-      <% end %>
+<div class="five_space">
+</div>
+
+<p class="pull-right"><%= @comments.count %> Comment(s)</p>
+<h3>Comments</h3>
+<div class="well">
+  <div>
+    <!-- New comment form renders if user is logged in -->
+    <!-- Also displays current user's rating of event -->
+    <% if !current_user.nil? %>
+      <h3>New Comment</h3>
+      <%= render 'comments/form', comment: @comment %>
+    <% else %>
+     <%= link_to 'Sign in to Comment', new_user_session_path %>
     <% end %>
   </div>
-  <div id="event_map" data-venue-id="<%=@event.venue.id%>">Google Map will appear here...</div>
-</div> <!-- col-md-8 -->
-<div class="col-md-2"></div>
+
+  <hr>
+  <% if @comments %>
+    <% @comments.each do |comment| %>
+      <div class="row">
+        <div class="col-md-12">
+          <h4> <%= comment.title %> </h4>
+          <span>Posted By: <%= link_to "#{comment.user.username}", "/users/#{comment.user_id}" %> </span>
+          <span class="pull-right"><%= comment.created_at %></span>
+          <p>
+          <%= comment.text %>
+          </p>
+          <%= link_to 'Edit', edit_comment_path(comment) %> |
+          <%= link_to 'Destroy', comment_path(comment), method: "delete" %>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+  <% end %>
+</div>
