@@ -11,10 +11,9 @@
  * It is generally better to create a new file per style scope.
  *
 
- *= require_tree .
  *= require_self
- *= require fullcalendar
  *= require bootstrap
- *= stub 'index'
- *= stub 'show'
- */
+ *= require fullcalendar
+ *= require glyphicons
+ *= require font-awesome.min
+*/

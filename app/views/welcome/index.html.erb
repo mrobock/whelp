@@ -6,41 +6,411 @@
   <!-- <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" /> -->
 <% end %>
 
-<h1>Whelcome to Whelp!</h1>
+<div class="preloader">
+	<%= image_tag("loader.gif", alt: "Preloader image") %>
+</div>
+<nav class="navbar">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/"><%= image_tag("logo.png", data: { active: { url: "logo-active.png" } }, alt: "") %></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-left main-nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="/venues">Venues</a></li>
+				<li><a href="/events">Events</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right main-nav">
 
-<p>
-  <div class="fb-share-button" data-href="<%= root_path %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
-
-  <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-</p>
-
-<p>Dog lovers site for dog events and venues.</p>
-
-<br>
-
-<div> <!-- Search bar begins -->
-  <label>Search for dog-friendly events or venues here!</label>
-  <%= form_tag({controller: "welcome", action: "index"}, method: "get") do %>
-    <%= text_field_tag :search_params %>
-    <%= submit_tag 'Search' %>
-  <% end %>
-</div> <!-- Search bar ends -->
-
-<% if !@search_results.nil? %>
-  <div> <!-- Search results area begins -->
-    <% if @search_results.empty? %>
-      <h4>No results match your search!</h4>
-    <% elsif @search_results.length > 0 %>
-      <h4>Here are your results:</h4>
-      <ul>
-        <% @search_results.each do |result| %>
-          <li><%= result.name %></li>
+        <% if !user_signed_in? %>
+          <li><%= link_to 'Sign Up', new_user_registration_path, { data: { toggle: 'modal', target: '#modal1'}, class: 'btn-blue'} %></li>
+					<li><%= link_to 'Sign In', new_user_session_path, { data: { toggle: 'modal', target: '#modal1'}, class: 'btn-blue'} %></li>
+        <% else %>
+          <li><%= link_to "Hi, #{current_user.username}", "/users/#{current_user.id}" %></li>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, { method: :delete, data: { toggle: 'modal', target: '#modal1'}, class: 'btn-blue'} %></li>
         <% end %>
-      </ul>
-    <% end %>
-  </div> <!-- Search results area ends -->
-<% end %>
 
-<hr>
-<h2>Events and Meet(p)ups</h2>
-<div id="eventsCalendar"></div>
+				<li>
+          <div> <!-- Search bar begins -->
+            <%= form_tag({controller: "welcome", action: "index"}, method: "get") do %>
+              <%= text_field_tag :search_params, nil, placeholder: "Search" %>
+              <%= submit_tag 'Search' %>
+            <% end %>
+          </div> <!-- Search bar ends -->
+
+          <% if !@search_results.nil? %>
+            <div> <!-- Search results area begins -->
+              <% if @search_results.empty? %>
+                <h4>No results match your search!</h4>
+              <% elsif @search_results.length > 0 %>
+                <h4>Here are your results:</h4>
+                <ul>
+                  <% @search_results.each do |result| %>
+                    <li><%= result.name %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div> <!-- Search results area ends -->
+          <% end %>
+        </li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container-fluid -->
+</nav>
+
+<header id="intro">
+	<div class="container">
+		<div class="table">
+			<div class="header-text">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<h3 class="light white">Whelp!</h3>
+						<h1 class="white typed">A dog lover's site for dog-friendly events and venues.</h1>
+						<span class="typed-cursor">|</span>
+						<p>
+						  <div class="fb-share-button" data-href="<%= root_path %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
+
+						  <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<section>
+	<div class="cut cut-top"></div>
+	<div class="container">
+		<div class="row intro-tables">
+			<div class="col-md-4">
+				<div class="intro-table intro-table-first">
+					<h5 class="white heading">Upcoming Events</h5>
+					<div class="owl-carousel owl-schedule bottom">
+						<div class="item">
+							<div class="schedule-row row">
+								<div class="col-xs-6">
+									<h5 class="regular white">Event 1</h5>
+								</div>
+								<div class="col-xs-6 text-right">
+									<h5 class="white">Date</h5>
+								</div>
+							</div>
+							<div class="schedule-row row">
+								<div class="col-xs-6">
+									<h5 class="regular white">Event 2</h5>
+								</div>
+								<div class="col-xs-6 text-right">
+									<h5 class="white">Date</h5>
+								</div>
+							</div>
+							<div class="schedule-row row">
+								<div class="col-xs-6">
+									<h5 class="regular white">Event 3</h5>
+								</div>
+								<div class="col-xs-6 text-right">
+									<h5 class="white">Date</h5>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="schedule-row row">
+								<div class="col-xs-6">
+									<h5 class="regular white">Event 4</h5>
+								</div>
+								<div class="col-xs-6 text-right">
+									<h5 class="white">Date</h5>
+								</div>
+							</div>
+							<div class="schedule-row row">
+								<div class="col-xs-6">
+									<h5 class="regular white">Event 5</h5>
+								</div>
+								<div class="col-xs-6 text-right">
+									<h5 class="white">Date</h5>
+								</div>
+							</div>
+							<div class="schedule-row row">
+								<div class="col-xs-6">
+									<h5 class="regular white">Event 6</h5>
+								</div>
+								<div class="col-xs-6 text-right">
+									<h5 class="white">Date</h5>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="schedule-row row">
+								<div class="col-xs-6">
+									<h5 class="regular white">Event 7</h5>
+								</div>
+								<div class="col-xs-6 text-right">
+									<h5 class="white">Date</h5>
+								</div>
+							</div>
+							<div class="schedule-row row">
+								<div class="col-xs-6">
+									<h5 class="regular white">Event 8</h5>
+								</div>
+								<div class="col-xs-6 text-right">
+									<h5 class="white">Date</h5>
+								</div>
+							</div>
+							<div class="schedule-row row">
+								<div class="col-xs-6">
+									<h5 class="regular white">Event 9</h5>
+								</div>
+								<div class="col-xs-6 text-right">
+									<h5 class="white">Date</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="intro-table intro-table-hover">
+					<h5 class="white heading hide-hover">Don't Know Where to Start? Try:</h5>
+					<div class="bottom" id="bottom-2">
+						<a href="#" class="btn btn-white-fill expand">Maps</a><br>
+						<a href="#" class="btn btn-white-fill expand">Calendars</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="intro-table intro-table-third">
+					<h5 class="white heading">Happy Pups</h5>
+					<div class="owl-testimonials bottom">
+						<div class="item">
+							<h4 class="white heading content">Best idea ever! I can bring my dawgs everywhere!</h4>
+							<h5 class="white heading light author">2 Chainz</h5>
+						</div>
+						<div class="item">
+							<h4 class="white heading content">Who let the dogs out? Me! And for only 5&cent; a month!</h4>
+							<h5 class="white heading light author">Sarah McLachlan</h5>
+						</div>
+						<div class="item">
+							<h4 class="white heading content">I can't believe it's not butter!</h4>
+							<h5 class="white heading light author">Paula Deen</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="services" class="section section-padded">
+	<div class="container">
+		<div class="row text-center title">
+			<h2>Whelp Resources</h2>
+			<h4 class="light muted">Get out of the doghouse with these awesome resources!</h4>
+		</div>
+		<div class="row services">
+			<div class="col-md-4">
+				<div class="service">
+					<div class="icon-holder">
+						<!-- <%= image_tag("heart-blue.png", class: "icon", alt: "") %> -->
+						<i class="fa fa-map-marker icon" aria-hidden="true"></i>
+					</div>
+					<h4 class="heading">This</h4>
+					<p class="description">Very ipsum such dolor wow much excuse such margin. Many develop concern such excuse so excuse much picture many. So excite very padding so web very styling such layer.</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="service">
+					<div class="icon-holder">
+						<!-- <%= image_tag("guru-blue.png", class: "icon", alt: "") %> -->
+						<i class="fa fa-calendar icon" aria-hidden="true"></i>
+					</div>
+					<h4 class="heading">That</h4>
+					<p class="description">So css much divs very excuse so layer, very spans so margin such layer much beta such spans amaze so scare very styling many web such filler very filler.</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="service">
+					<div class="icon-holder">
+						<!-- <%= image_tag("weight-blue.png", class: "icon", alt: "") %> -->
+						<i class="fa fa-comment" aria-hidden="true"></i>
+					</div>
+					<h4 class="heading">And This</h4>
+					<p class="description">So excite very padding so web very styling such layer. Much divs such much, such excuse so excuse many beta so beta so css.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="cut cut-bottom"></div>
+</section>
+<section class="section section-padded blue-bg" id="map-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h2 class="margin-top white">Current Venues &amp; Events</h2>
+				<h4 class="light white">Check out all of these pup destinations!</h4>
+				<h5 class="light white">Total Venues: <span>#</span></h5>
+				<h5 class="light white">Upcoming Events: <span>#</span></h5>
+				<div id="map" data-map-id="">
+			    Google Map will appear here...
+			  </div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="pricing" class="section">
+	<div class="container">
+		<div class="row title text-center">
+			<h2 class="margin-top white">Upcoming Events</h2>
+			<h4 class="light white">See what dog-friendly events are coming up near you!</h4>
+		</div>
+		<div class="row no-margin">
+			<div class="col-md-7 no-padding col-md-offset-5 pricings text-center">
+				<div class="pricing">
+					<div class="box-main active" data-img="<%= asset_path('pricing1.jpg') %>">
+						<div id="eventsCalendar"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="team" class="section gray-bg">
+	<div class="container">
+		<div class="row title text-center">
+			<h2 class="margin-top">Team</h2>
+			<h4 class="light muted">We're a dream team!</h4>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="team text-center">
+					<div class="cover" style="background:<%= asset_path('team-cover1.jpg') %>; background-size:cover;">
+						<div class="overlay text-center">
+							<h3 class="white">$69.00</h3>
+							<h5 class="light light-white">1 - 5 sessions / month</h5>
+						</div>
+					</div>
+					<%= image_tag("team3.jpg", class: "avatar", alt: "Team Image") %>
+					<div class="title">
+						<h4>Ben Adamson</h4>
+						<h5 class="muted regular">Fitness Instructor</h5>
+					</div>
+					<button data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill">Sign Up Now</button>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="team text-center">
+					<div class="cover" style="background:<%= asset_path('team-cover2.jpg') %>; background-size:cover;">
+						<div class="overlay text-center">
+							<h3 class="white">$69.00</h3>
+							<h5 class="light light-white">1 - 5 sessions / month</h5>
+						</div>
+					</div>
+					<%= image_tag("team1.jpg", class: "avatar", alt: "Team Image") %>
+					<div class="title">
+						<h4>Eva Williams</h4>
+						<h5 class="muted regular">Personal Trainer</h5>
+					</div>
+					<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill ripple">Sign Up Now</a>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="team text-center">
+					<div class="cover" style="background:<%= asset_path('team-cover3.jpg') %>; background-size:cover;">
+						<div class="overlay text-center">
+							<h3 class="white">$69.00</h3>
+							<h5 class="light light-white">1 - 5 sessions / month</h5>
+						</div>
+					</div>
+					<%= image_tag("team2.jpg", class: "avatar", alt: "Team Image") %>
+					<div class="title">
+						<h4>John Phillips</h4>
+						<h5 class="muted regular">Personal Trainer</h5>
+					</div>
+					<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill ripple">Sign Up Now</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content modal-popup">
+			<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+			<h3 class="white">Sign Up</h3>
+			<form action="" class="popup-form">
+				<input type="text" class="form-control form-white" placeholder="Full Name">
+				<input type="text" class="form-control form-white" placeholder="Email Address">
+				<div class="dropdown">
+					<button id="dLabel" class="form-control form-white dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Pricing Plan
+					</button>
+					<ul class="dropdown-menu animated fadeIn" role="menu" aria-labelledby="dLabel">
+						<li class="animated lightSpeedIn"><a href="#">1 month membership ($150)</a></li>
+						<li class="animated lightSpeedIn"><a href="#">3 month membership ($350)</a></li>
+						<li class="animated lightSpeedIn"><a href="#">1 year membership ($1000)</a></li>
+						<li class="animated lightSpeedIn"><a href="#">Free trial class</a></li>
+					</ul>
+				</div>
+				<div class="checkbox-holder text-left">
+					<div class="checkbox">
+						<input type="checkbox" value="None" id="squaredOne" name="check" />
+						<label for="squaredOne"><span>I Agree to the <strong>Terms &amp; Conditions</strong></span></label>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-submit">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 text-center-mobile">
+				<h3 class="white">Reserve a Free Trial Class!</h3>
+				<h5 class="light regular light-white">Shape your body and improve your health.</h5>
+				<a href="#" class="btn btn-blue ripple trial-button">Start Free Trial</a>
+			</div>
+			<div class="col-sm-6 text-center-mobile">
+				<h3 class="white">Opening Hours <span class="open-blink"></span></h3>
+				<div class="row opening-hours">
+					<div class="col-sm-6 text-center-mobile">
+						<h5 class="light-white light">Mon - Fri</h5>
+						<h3 class="regular white">9:00 - 22:00</h3>
+					</div>
+					<div class="col-sm-6 text-center-mobile">
+						<h5 class="light-white light">Sat - Sun</h5>
+						<h3 class="regular white">10:00 - 18:00</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row bottom-footer text-center-mobile">
+			<div class="col-sm-8">
+				<p>&copy; 2017 Whelp. All Rights Reserved. Powered by <a href="http://www.phir.co/">PHIr</a> exclusively for <a href="http://tympanus.net/codrops/">Codrops</a></p>
+			</div>
+			<div class="col-sm-4 text-right text-center-mobile">
+				<ul class="social-footer">
+					<li><a href="http://www.facebook.com/pages/Codrops/159107397912"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="http://www.twitter.com/codrops"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="https://plus.google.com/101095823814290637419"><i class="fa fa-google-plus"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- Holder for mobile navigation -->
+<div class="mobile-nav">
+	<ul>
+	</ul>
+	<a href="#" class="close-link"><i class="arrow_up"></i></a>
+</div>
