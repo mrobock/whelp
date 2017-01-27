@@ -23,6 +23,7 @@ Rails.application.config.assets.precompile += %w( index.css )
 Rails.application.config.assets.precompile += %w( show.css )
 Rails.application.config.assets.precompile += %w( venues.css )
 Rails.application.config.assets.precompile += %w( events.css )
+Rails.application.config.assets.precompile += %w( ratings.scss )
 
 Rails.application.config.assets.precompile += %w( owl.carousel.min.js )
 Rails.application.config.assets.precompile += %w( typed.js )
