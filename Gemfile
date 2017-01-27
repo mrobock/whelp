@@ -37,8 +37,6 @@ gem 'jbuilder', '~> 2.5'
 # Use Paperclip for uploading photos
 gem 'paperclip'
 
-gem 'omniauth-facebook'
-
 # Use Textacular for search functionality
 gem 'textacular'
 
@@ -54,11 +52,13 @@ gem 'momentjs-rails'
 gem 'underscore-rails'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'omniauth-facebook'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
+  gem 'chromedriver-helper'
 end
 
 group :test do

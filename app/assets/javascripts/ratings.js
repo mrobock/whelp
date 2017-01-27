@@ -138,12 +138,12 @@ $(document).ready(function() {
     };
     $.get("/ratings/" + $("#rating_user_id").val() + "/get_rating?type_id=" + $("#rating_"+type+"_id").val() + "&type=" + type).success(function(data) {
       // console.log($("#rating_"+type+"_id").val());
-      console.log(data.rating);
+      // console.log(data.rating);
       for (var i = 1; i <= 5; i++) {
         $("#star_" + i).attr("src", "star-on.png").attr("src", "/assets/star-off.png");
       }
       for (var i = 1; i <= data.rating; i++) {
-        console.log(data.rating);
+        // console.log(data.rating);
         $("#star_" + i).attr("src", "star-off.png").attr("src", "/assets/star-on.png");
       };
     });
@@ -195,6 +195,7 @@ $(document).ready(function() {
       }
     });
   }
+
   function updateAvgCnt() {
     if($("#rating_venue_id").val() === undefined) {
       var type = "event"

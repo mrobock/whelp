@@ -34,17 +34,17 @@ class VenuesController < ApplicationController
     else
       @rating = Rating.new
     end
-    avg_rating(@venue)
-    @count_rating = Rating.where(venue: @venue).count
+    # avg_rating(@venue)
+    # @count_rating = Rating.where(venue: @venue).count
   end
 
-  def avg_rating(venue)
-    if params[:venue_id].nil?
-      @avg_rating = Rating.where(venue: venue).average("rating").to_f.round(2)
-    else
-      @avg_rating = Rating.where(venue_id: params[:venue_id]).average("rating").to_f.round(2)
-    end
-  end
+  # def avg_rating(venue)
+  #   if params[:venue_id].nil?
+  #     @avg_rating = Rating.where(venue: venue).average("rating").to_f.round(2)
+  #   else
+  #     @avg_rating = Rating.where(venue_id: params[:venue_id]).average("rating").to_f.round(2)
+  #   end
+  # end
 
   # GET /venues/new
   def new
