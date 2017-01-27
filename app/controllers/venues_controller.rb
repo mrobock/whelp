@@ -9,15 +9,14 @@ class VenuesController < ApplicationController
   end
 
   def map_location
-    @venue = Venue.find(params[:venue_id])
-    @hash = Gmaps4rails.build_markers(@venue) do |venue, marker|
-      marker.lat(venue.latitude)
-      marker.lng(venue.longitude)
-      marker.infowindow("<em>" + venue.name + "</em>")
-    end
-    render json: @hash.to_json
+    @venue = Venue.find(params[:id])
+    draw_map(@venue)
   end
 
+  def map_locations
+    venues = Venue.all # TODO
+    draw_map(venues)
+  end
 
   # GET /venues/1
   # GET /venues/1.json
@@ -125,5 +124,13 @@ class VenuesController < ApplicationController
       params.require(:venue).permit(:name, :description, :street_1, :street_2, :city, :state, :zip, :user_id, :image)
     end
 
+    def draw_map(venues)
+      @hash = Gmaps4rails.build_markers(venues) do |venue, marker|
+        marker.lat(venue.latitude)
+        marker.lng(venue.longitude)
+        marker.infowindow('<a>' + venue.name + '</a>')
+      end
+      render json: @hash.to_json
+    end
 
 end
