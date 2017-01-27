@@ -29,10 +29,11 @@ Rails.application.routes.draw do
   end
 
   # Devise routes
-  devise_for :users, path_prefix: 'my', controllers: { registrations: 'registrations' }
+  devise_for :users, controllers: { registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }, path_prefix: 'my'
   resources :users
 
   root to: "welcome#index"
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

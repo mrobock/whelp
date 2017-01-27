@@ -38,6 +38,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Paperclip for uploading photos
 gem 'paperclip'
 
+gem 'omniauth-facebook'
+
 # Use Textacular for search functionality
 gem 'textacular'
 
