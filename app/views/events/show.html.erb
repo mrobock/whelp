@@ -50,7 +50,8 @@
         </p>
 
         <div id="ratings">
-          <% if !current_user.nil? %>
+          <%= render 'ratings/form', rating: @rating %>
+            <% if !current_user.nil? %>
             <p class="pull-left">
               <div id="rating_div">
                 <span id="rating_span">
