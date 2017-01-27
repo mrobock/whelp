@@ -18,14 +18,23 @@
       <title>Whelp | Show</title>
     <% end %>
 
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "bootstrap" %>
-    <%= stylesheet_link_tag "glyphicons" %>
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag "venues" %>
+    <%= javascript_include_tag "events" %>
 
     <% if request.original_url.ends_with?('/venues') || request.original_url.ends_with?('/events') %>
       <%= stylesheet_link_tag "index" %>
     <% else %>
       <%= stylesheet_link_tag "show" %>
+    <% end %>
+
+    <% if request.original_url.include?('/venues') %>
+      <%= stylesheet_link_tag "venues" %>
+    <% else %>
+      <%= stylesheet_link_tag "events" %>
     <% end %>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -36,30 +36,6 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <div> <!-- Search bar begins -->
-            <%= form_tag({controller: "welcome", action: "index"}, method: "get") do %>
-              <%= text_field_tag :search_params, nil, placeholder: "Search" %>
-              <%= submit_tag 'Search' %>
-            <% end %>
-          </div> <!-- Search bar ends -->
-
-          <% if !@search_results.nil? %>
-            <div> <!-- Search results area begins -->
-              <% if @search_results.empty? %>
-                <h4>No results match your search!</h4>
-              <% elsif @search_results.length > 0 %>
-                <h4>Here are your results:</h4>
-                <ul>
-                  <% @search_results.each do |result| %>
-                    <li><%= result.name %></li>
-                  <% end %>
-                </ul>
-              <% end %>
-            </div> <!-- Search results area ends -->
-          <% end %>
-        </li>
-
         <% if !user_signed_in? %>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
           <li><%= link_to 'Sign In', new_user_session_path %></li>

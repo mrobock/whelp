@@ -26,5 +26,6 @@ module Whelp
     config.assets.paths << Rails.root.join("app", "assets", "images", "welcome", "icons")
     config.assets.paths << Rails.root.join("app", "assets", "images", "welcome", "team")
     config.assets.paths << Rails.root.join("app", "assets", "javascripts", "welcome")
+    config.assets.paths << Rails.root.join("app", "assets", "stylesheets", "welcome")
   end
 end
