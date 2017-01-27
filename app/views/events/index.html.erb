@@ -17,8 +17,8 @@
           <p><strong>Description:</strong><br><%= event.description %></p>
         </div>
         <div id="ratings">
-          <p class="pull-right"><%= event.rates("name").count %> Rating(s)</p>
-          <p><%= rating_for event, 'name' %></p>
+          <p class="pull-right"><%= event.ratings.length %> Rating(s)</p>
+          <p><%= event.ratings.average("rating") %></p>
         </div>
         <p>
           <% if !current_user.nil? && event.user == current_user %>
@@ -26,9 +26,16 @@
             <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
         </p>
+
       </div>
+      <p>
+        <% if !current_user.nil? && event.user == current_user %>
+          <%= link_to 'Edit', edit_event_path(event) %> |
+          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </p>
     </div>
-    <% end %>
+  <% end %>
 
   <% if user_signed_in? %>
     <div class="col-sm-4 col-lg-4 col-md-4">

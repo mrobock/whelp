@@ -47,7 +47,7 @@ function loadAndCreateEventGmap() {
       url: '/venues/' + venueId + '/map_location',
       method: 'GET',
       success: function(dataFromServer) {
-        console.log(dataFromServer)
+        // console.log(dataFromServer)
         createEventGmap(dataFromServer);
       },
       error: function(jqXHR, textStatus, errorThrown) {
@@ -61,4 +61,4 @@ function loadAndCreateEventGmap() {
   $(document).on('ready', loadAndCreateEventGmap);
   // Create the map when the contents is loaded using turbolinks
   // To be 'turbolinks:load' in Rails 5
-  $(document).on('page:load', loadAndCreateEventGmap);
+  // $(document).on('page:load', loadAndCreateEventGmap);

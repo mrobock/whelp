@@ -48,19 +48,41 @@
           <strong>Description:</strong>
           <%= @event.description %>
         </p>
-      </div>
 
+        <div id="ratings">
+          <% if !current_user.nil? %>
+            <p class="pull-left">
+              <div id="rating_div">
+                <span id="rating_span">
+                  <%= image_tag("star-off.png", id: "star_1") %>
+                  <%= image_tag("star-off.png", id: "star_2") %>
+                  <%= image_tag("star-off.png", id: "star_3") %>
+                  <%= image_tag("star-off.png", id: "star_4") %>
+                  <%= image_tag("star-off.png", id: "star_5") %>
+                </span>
+              </div>
+            </p>
+          <% end %>
+          <p class="pull-right"><span id="count_rating"></span> Rating(s)</p>
+          <p class="pull-left">
+            <strong>Average Rating:</strong>
+            <span id="avg_rating"></span>
+          </p>
+        </div>
+      </div> <!-- info-left -->
+
+    <!-- Stars for rating -->
       <div id="ratings">
           <% if !current_user.nil? %>
             <p class="pull-left">
               <strong>My Rating:</strong>
-              <%= rating_for_user @event, current_user, 'name' %>
+              <!--  rating_for_user @event, current_user, 'name' -->
             </p>
           <% end %>
-          <p class="pull-right"><%= @event.rates("name").count %> Rating(s)</p>
+          <p class="pull-right"><%= %> Rating(s)</p>
           <p class="pull-left">
             <strong>Average Rating:</strong>
-            <%= rating_for @event, 'name' %>
+            <!--  rating_for @event, 'name'  -->
           </p>
       </div>
     </div> <!-- info-left -->

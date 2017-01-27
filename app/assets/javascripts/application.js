@@ -19,5 +19,3 @@
 //= require moment
 //= require fullcalendar
 //= require eventsCalendar
-//= require jquery.raty
-//= require ratyrate

@@ -14,11 +14,29 @@ class EventsController < ApplicationController
     @event_review = EventReview.new
     @event_reviews = EventReview.where(event_id: @event.id)
 
+    # Set up blank comment and list of comments
     @comment = Comment.new
     @comments = Comment.where(event_id: @event.id)
+
+    # Finds user's current rating if existing or creates new blank rating. Also finds rating average
+    rating = Rating.where(user: current_user, event: @event)
+    if rating.length >= 1
+      @rating = rating[0]
+    else
+      @rating = Rating.new
+    end
+    # @avg_rating = Rating.where(event: @event).average("rating").to_f.round(2)
+    # @count_rating = Rating.where(event: @event).count
+
+    # RSVP
     if user_signed_in?
       @remove_rsvp = Rsvp.find_by(event_id: params[:id], user_id: current_user.id)
     end
+  end
+
+  def rating_update
+    @avg_rating = {average: Rating.where(event_id: params[:event_id]).average("rating").to_f.round(2), count: Rating.where(event_id: params[:event_id]).count}
+    render json: @avg_rating.to_json
   end
 
   # GET /events/new

@@ -45,21 +45,26 @@
           <%= @venue.description %>
         </p>
 
-      </div>
-
-      <div id="ratings">
+        <div id="ratings">
           <% if !current_user.nil? %>
             <p class="pull-left">
               <strong>My Rating:</strong>
-              <%= rating_for_user @venue, current_user, 'name' %>
+              <span id="rating_span">
+                <%= image_tag("star-off.png", id: "star_1") %>
+                <%= image_tag("star-off.png", id: "star_2") %>
+                <%= image_tag("star-off.png", id: "star_3") %>
+                <%= image_tag("star-off.png", id: "star_4") %>
+                <%= image_tag("star-off.png", id: "star_5") %>
+              </span>
             </p>
           <% end %>
-          <p class="pull-right"><%= @venue.rates("name").count %> Rating(s)</p>
+          <p class="pull-right"><span id="count_rating"></span> Rating(s)</p>
           <p class="pull-left">
             <strong>Average Rating:</strong>
-            <%= rating_for @venue, 'name' %>
+            <span id="avg_rating"></span>
           </p>
-      </div>
+        </div>
+      </div> <!-- info-text -->
     </div> <!-- info-left -->
 
     <div id="info-right">
