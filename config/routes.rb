@@ -42,7 +42,6 @@ Rails.application.routes.draw do
   # Devise routes
   devise_for :users, path_prefix: 'my', controllers: { registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  devise_for :users, path_prefix: 'my', controllers: { registrations: 'registrations', omniauth_callbacks: "users/omniauth_callbacks" }
   resources :users
 
   root to: "welcome#index"
