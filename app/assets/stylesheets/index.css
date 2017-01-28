@@ -36,6 +36,12 @@ footer {
   color: red;
 }
 
+.nav > li > div {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
 .caption {
   /*height: 130px;
   overflow: hidden;*/

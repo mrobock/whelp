@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get '/map_locations' => 'welcome#map_locations'
-
+  get '/search' => 'welcome#search'
   resources :ratings do
     get 'get_rating'
     get 'rating_update'
