@@ -19,9 +19,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # Only allow letter, number, underscore and punctuation.
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:twitter], authentication_keys: [:login]
-         :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
-  devise :omniauthable, omniauth_providers: [:facebook]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
+  devise :omniauthable, omniauth_providers: [:facebook, :twitter]
 
   after_create :assign_role
 
