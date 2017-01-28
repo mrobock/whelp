@@ -47,6 +47,8 @@ gem 'rolify'
 
 gem 'ratyrate'
 
+gem 'omniauth-twitter'
+
 gem 'devise'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
