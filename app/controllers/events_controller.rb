@@ -34,11 +34,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def rating_update
-    @avg_rating = {average: Rating.where(event_id: params[:event_id]).average("rating").to_f.round(2), count: Rating.where(event_id: params[:event_id]).count}
-    render json: @avg_rating.to_json
-  end
-
   # GET /events/new
   def new
     @venues_for_select = Venue.all.map do |venue|
