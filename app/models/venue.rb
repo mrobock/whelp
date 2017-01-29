@@ -18,7 +18,7 @@ class Venue < ApplicationRecord
   after_validation :geocode
 
 #Adding paperclip
-  has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }, :default_url => "default.png"
+  has_attached_file :image, styles: { small: "64x64#", med: "100x100#", large: "350x250#", xlarge: "400x400#" }, :default_url => "default_:style.png"
   validates_attachment :image,
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
     size: { in: 0..10.megabytes }
