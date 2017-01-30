@@ -13,3 +13,13 @@ footer {
 .alert {
   color: red;
 }
+
+.nav > li > div {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
+.table-striped {
+  width: 100%;
+}
