@@ -1,0 +1,50 @@
+/* Dropdown Button */
+/* line 3, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/events.scss */
+.dropbtn {
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+/* line 9, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/events.scss */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+/* The container <div> - needed to position the dropdown content */
+/* line 14, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/events.scss */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+/* line 20, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/events.scss */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Links inside the dropdown */
+/* line 29, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/events.scss */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+/* line 37, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/events.scss */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+/* line 40, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/events.scss */
+.show {
+  display: block;
+}
