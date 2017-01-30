@@ -1,70 +1,84 @@
-<% if !@search_results.nil? %>
-  <div> <!-- Search results area begins -->
-    <% if @search_results.empty? %>
-      <h4>No results match your search!</h4>
-    <% elsif @search_results.length > 0 %>
-      <h4>Results matching "<%= @query %>"</h4>
-      <hr>
-      <h4>Venues:</h4>
-      <% if @venue_results.empty? %>
-        <h5>Sorry! No venues found!</h5>
-      <% else %>
-      <table class="table table-striped">
-        <tr>
-          <th>Image</th>
-          <th>Venue Name</th>
-          <th>Description</th>
-        </tr>
-        <% @venue_results.each do |result| %>
-          <tr>
-            <td><%= image_tag result.image.url %></td>
-            <td><%= link_to "#{result.name}", "/venues/#{result.id}" %></td>
-            <td><%= result.description %></td>
-          </tr>
-        <% end %>
-      </table>
-      <% end %>
-      <hr>
-      <h4>Events:</h4>
-      <% if @event_results.empty? %>
-        <h5>Sorry! No events found!</h5>
-      <% else %>
-      <table class="table table-striped">
-        <tr>
-          <th>Image</th>
-          <th>Event Name</th>
-          <th>Description</th>
-        </tr>
-        <% @event_results.each do |result| %>
-          <tr>
-            <td><%= image_tag result.image.url %></td>
-            <td><%= link_to "#{result.name}", "/events/#{result.id}" %></td>
-            <td><%= result.description %></td>
-          </tr>
-        <% end %>
-      </table>
-      <% end %>
-      <h4>Users:</h4>
-      <% if @user_results.empty? %>
-        <h5>Sorry! No users found!</h5>
-      <% else %>
-      <table class="table table-striped">
-        <tr>
-          <th>Image</th>
-          <th>User Name</th>
-        </tr>
-        <% @user_results.each do |result| %>
-          <tr>
-            <% if result.image.url.nil? %>
-            <td><%= image_tag "profile.jpeg" %></td>
-            <% else %>
-            <td><%= image_tag result.image.url %></td>
-            <% end %>
-            <td><%= link_to "#{result.username}", "/users/#{result.id}" %></td>
-          </tr>
-        <% end %>
-      </table>
-      <% end %>
-    <% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <% if !@search_results.nil? %> <!-- Search results area begins -->
+        <% if @search_results.empty? %>
+          <h4>No results match your search!</h4>
+        <% elsif @search_results.length > 0 %>
+          <h4>Results matching "<%= @query %>"</h4>
+          <hr>
+          </div>
+          <div class="col-md-4">
+            <h4>Venues</h4>
+            <table class="table table-striped">
+                <tr>
+                  <th>Image</th>
+                  <th>Venue Name</th>
+                  <th>Description</th>
+                </tr>
+                <% if @venue_results.empty? %>
+                  <tr>
+                    <td colspan="4">Sorry! No venues found!</td>
+                  </tr>
+                <% else %>
+                  <% @venue_results.each do |result| %>
+                    <tr>
+                      <td><%= image_tag result.image.url %></td>
+                      <td><%= link_to "#{result.name}", "/venues/#{result.id}" %></td>
+                      <td><%= result.description %></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+            </table>
+          </div>
+          <div class="col-md-4">
+            <h4>Events</h4>
+            <table class="table table-striped">
+              <tr>
+                <th>Image</th>
+                <th>Event Name</th>
+                <th>Description</th>
+              </tr>
+              <% if @event_results.empty? %>
+                <tr>
+                  <td colspan="4">Sorry! No events found!</td>
+                </tr>
+              <% else %>
+                <% @event_results.each do |result| %>
+                  <tr>
+                    <td><%= image_tag result.image.url %></td>
+                    <td><%= link_to "#{result.name}", "/events/#{result.id}" %></td>
+                    <td><%= result.description %></td>
+                  </tr>
+                  <% end %>
+                <% end %>
+            </table>
+          </div> <!-- Ends col -->
+          <div class="col-md-4">
+            <h4>Users</h4>
+            <table class="table table-striped">
+              <tr>
+                <th>Image</th>
+                <th>User Name</th>
+              </tr>
+              <% if @user_results.empty? %>
+                <td colspan="4">Sorry! No users found!</td>
+              <% else %>
+                <% @user_results.each do |result| %>
+                  <tr>
+                    <% if result.image.url.nil? %>
+                    <td><%= image_tag "profile.jpeg" %></td>
+                    <% else %>
+                    <td><%= image_tag result.image.url %></td>
+                    <% end %>
+                    <td><%= link_to "#{result.username}", "/users/#{result.id}" %></td>
+                  </tr>
+                  <% end %>
+              <% end %>
+            </table>
+          <% end %>
+        </div>    <!-- Ends the col -->
+      </div>  <!-- Ends the row -->
+    </div>  <!-- Ends the container  -->
   </div> <!-- Search results area ends -->
 <% end %>

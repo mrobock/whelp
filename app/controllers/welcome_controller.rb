@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
 # class WelcomeController < ActionController::Base
   layout "welcome", only: [:index]
-  layout "application", only: [:search]
+  layout "application_search", only: [:search]
 
   def index
   end
