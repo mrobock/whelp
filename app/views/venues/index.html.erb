@@ -15,11 +15,11 @@
           <%= "#{venue.street_1} #{venue.street_2} #{venue.city} #{venue.state} #{venue.zip}" %></p>
           <p><strong>Description:</strong><br><%= venue.description %></p>
         </div>
+      </div>
         <div id="ratings">
           <p class="pull-right"><%= venue.ratings.length %> Rating(s)</p>
-          <p><%= venue.ratings.average("rating") %></p>
+          <p>Avg Rating: <%= venue.ratings.average("rating") %></p>
         </div>
-      </div>
       <p>
         <% if !current_user.nil? && venue.user == current_user %>
           <%= link_to 'Edit', edit_venue_path(venue) %> |

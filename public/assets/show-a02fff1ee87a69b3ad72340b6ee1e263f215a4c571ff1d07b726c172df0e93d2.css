@@ -1,0 +1,123 @@
+/*!
+ * Start Bootstrap - Shop Item (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+
+body {
+  padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+h3 {
+  margin-top: 0;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.twitter-share-button[style] {
+  vertical-align: top !important;
+  margin-top: 1px;
+}
+
+footer {
+  margin: 50px 0;
+}
+
+/*div ids*/
+#comment-row-1 {
+  height: 48px;
+}
+
+#comment-title {
+  width: 80%;
+  display: inline-block;
+}
+
+#comment-submit {
+  width: 20%;
+  display: inline-block;
+  text-align: right;
+}
+
+#comment-text {
+  width: 100%;
+}
+
+/*form inputs*/
+#comment_title {
+  width: 100%;
+  height: 34px;
+}
+
+#comment_submit {
+  width: 100%;
+  height: 144px;
+}
+
+#info-left {
+  order: 0;
+  flex: 1 0 25%;
+  min-width: 350px;
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+#info-right {
+  order: 1;
+  flex: 1 0 200px;
+}
+
+#info-right > img {
+  width: 75% !important;
+  display: block;
+  margin: 0 auto;
+}
+
+#info-text {
+  align-self: flex-start;
+}
+
+#ratings {
+  color: #d17581;
+}
+
+#rsvp {
+  order: 2;
+  width: 100%;
+}
+
+#venue_map, #event_map {
+  height: 36vh;
+  width: 100%;
+}
+
+.notice {
+  color: #318e40;
+}
+
+.alert {
+  color: red;
+}
+
+.caption-full {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.thumbnail {
+  padding: 0;
+}
+
+.thumbnail .caption-full {
+  padding: 9px;
+  color: #333;
+}
+
+#rating_div {
+  margin-bottom: 10px;
+}
