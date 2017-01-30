@@ -18,7 +18,7 @@
       <div id="info-text">
         <p>
           <h3><%= @venue.name %></h3>
-          <% if !current_user.nil? && @venue.user == current_user %>
+          <% if !current_user.nil? && @ability.can?(:rud, @venue, user_id: current_user.id) %>
             <%= link_to 'Edit', edit_venue_path(@venue) %> |
             <%= link_to 'Destroy', @venue, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
@@ -60,20 +60,21 @@
             </p>
           <% end %>
           <br>
+          <span class="pull-left">
+            <strong>Average Rating:</strong>
+            <span id="avg_rating"></span>
+          </span>
             <span class="pull-right">
               <span id="count_rating"></span>
               <strong> Rating(s)</strong>
             </span>
-            <span class="pull-left">
-              <strong>Average Rating:</strong>
-              <span id="avg_rating"></span>
-            </span>
+
         </div>
       </div> <!-- info-text -->
     </div> <!-- info-left -->
 
     <div id="info-right">
-      <%= image_tag @venue.image.url %>
+      <%= link_to image_tag(@venue.image.url(:large)), @venue.image.url %>
     </div>
   </div> <!-- class="caption-full" -->
 </div> <!-- class="thumbnail" -->

@@ -46,10 +46,13 @@
     <%= f.text_field :zip %>
   </div>
 
-  <div class="field">
-    <input type="hidden" name="venue[user_id]" id="venue_id" value="<%=current_user.id%>">
-  </div>
-  
+  <% ability = Ability.new(current_user) %>
+  <% if ability.can?(:create, Venue) %>
+    <div class="field">
+      <input type="hidden" name="venue[user_id]" id="venue_id" value="<%=current_user.id%>">
+    </div>
+  <% end %>
+
   <div class="field">
     <%= f.file_field :image %>
   </div>

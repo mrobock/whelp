@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Paperclip for uploading photos
 gem 'paperclip'
+# AWS S3 for image storage with paperclip
+gem 'aws-sdk', '~> 2.3'
 
 # Use Textacular for search functionality
 gem 'textacular'
@@ -44,19 +46,26 @@ gem 'textacular'
 gem 'cancancan'
 gem 'rolify'
 
-gem 'ratyrate'
-
+# Devise for login authentication
 gem 'devise'
+# Omniauth for Twitter and Facebook logins
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
+# Adds calendar
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+# Adds gmaps
 gem 'underscore-rails'
 gem 'geocoder'
 gem 'gmaps4rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
+  gem 'chromedriver-helper'
 end
 
 group :test do

@@ -8,9 +8,8 @@
   <% @venues.each do |venue| %>
     <div class="col-sm-4 col-lg-4 col-md-4">
       <div class="thumbnail">
-        <%= image_tag venue.image.url %>
+        <%= link_to image_tag(venue.image.url(:small)), venue.image.url %>
         <div class="caption">
-          <h4 class="pull-right"><%= "#{venue.city}, #{venue.state}" %></h4>
           <h4><%= link_to "#{venue.name}", venue %></h4>
           <p><strong>Address:</strong><br>
           <%= "#{venue.street_1} #{venue.street_2} #{venue.city} #{venue.state} #{venue.zip}" %></p>
@@ -20,23 +19,11 @@
           <p class="pull-right"><%= venue.ratings.length %> Rating(s)</p>
           <p><%= venue.ratings.average("rating") %></p>
         </div>
-        <p>
-          <% if !current_user.nil? && venue.user == current_user %>
-            <%= link_to 'Edit', edit_venue_path(venue) %> |
-            <%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </p>
       </div>
-      <p>
-        <% if !current_user.nil? && venue.user == current_user %>
-          <%= link_to 'Edit', edit_venue_path(venue) %> |
-          <%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-      </p>
     </div>
   <% end %>
 
-  <% if user_signed_in? %>
+  <% if !current_user.nil? && @ability.can?(:create, Venue) %>
     <div class="col-sm-4 col-lg-4 col-md-4">
         <h4><%= link_to 'New Venue', new_venue_path %></h4>
         <p>Do you know of a new or hidden dog paradise not listed here? Click the button below to spread the word!</p>

@@ -66,13 +66,13 @@ user_5 = User.find_by(username: "vkapila")
 user_6 = User.find_by(username: "mrobock")
 user_7 = User.find_by(username: "msinha")
 
-user_1.add_role("default")
-user_2.add_role("default")
-user_3.add_role("default")
-user_4.add_role("default")
-user_5.add_role("default")
-user_6.add_role("default")
-user_7.add_role("default")
+# user_1.add_role("default")
+# user_2.add_role("default")
+# user_3.add_role("default")
+# user_4.add_role("default")
+# user_5.add_role("default")
+# user_6.add_role("default")
+# user_7.add_role("default")
 
 
 Venue.create([{
