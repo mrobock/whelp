@@ -22,7 +22,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
   devise :omniauthable, omniauth_providers: [:facebook, :twitter]
 
-  after_create :assign_role
+  after_save :assign_role
 
   def assign_role
     add_role(:default)
