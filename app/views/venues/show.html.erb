@@ -45,7 +45,7 @@
           <%= @venue.description %>
         </p>
 
-        <div id="ratings">
+        <div id="rating_div">
           <% if !current_user.nil? %>
             <%= render 'ratings/form', rating: @rating %>
             <p class="pull-left">
@@ -59,17 +59,22 @@
               </span>
             </p>
           <% end %>
-          <p class="pull-right"><span id="count_rating"></span> Rating(s)</p>
-          <p class="pull-left">
+          <br>
+          <span class="pull-left">
             <strong>Average Rating:</strong>
             <span id="avg_rating"></span>
-          </p>
+          </span>
+            <span class="pull-right">
+              <span id="count_rating"></span>
+              <strong> Rating(s)</strong>
+            </span>
+
         </div>
       </div> <!-- info-text -->
     </div> <!-- info-left -->
 
     <div id="info-right">
-      <%= image_tag @venue.image.url %>
+      <%= link_to image_tag(@venue.image.url(:large)), @venue.image.url %>
     </div>
   </div> <!-- class="caption-full" -->
 </div> <!-- class="thumbnail" -->

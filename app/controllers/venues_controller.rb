@@ -17,15 +17,14 @@ class VenuesController < ApplicationController
   end
 
   def map_location
-    @venue = Venue.find(params[:venue_id])
-    @hash = Gmaps4rails.build_markers(@venue) do |venue, marker|
-      marker.lat(venue.latitude)
-      marker.lng(venue.longitude)
-      marker.infowindow("<em>" + venue.name + "</em>")
-    end
-    render json: @hash.to_json
+    @venue = Venue.find(params[:id])
+    draw_map(@venue)
   end
 
+  def map_locations
+    venues = Venue.all # TODO
+    draw_map(venues)
+  end
 
   # GET /venues/1
   # GET /venues/1.json
@@ -44,17 +43,17 @@ class VenuesController < ApplicationController
     else
       @rating = Rating.new
     end
-    avg_rating(@venue)
-    @count_rating = Rating.where(venue: @venue).count
+    # avg_rating(@venue)
+    # @count_rating = Rating.where(venue: @venue).count
   end
 
-  def avg_rating(venue)
-    if params[:venue_id].nil?
-      @avg_rating = Rating.where(venue: venue).average("rating").to_f.round(2)
-    else
-      @avg_rating = Rating.where(venue_id: params[:venue_id]).average("rating").to_f.round(2)
-    end
-  end
+  # def avg_rating(venue)
+  #   if params[:venue_id].nil?
+  #     @avg_rating = Rating.where(venue: venue).average("rating").to_f.round(2)
+  #   else
+  #     @avg_rating = Rating.where(venue_id: params[:venue_id]).average("rating").to_f.round(2)
+  #   end
+  # end
 
   # GET /venues/new
   def new
@@ -136,5 +135,13 @@ class VenuesController < ApplicationController
       params.require(:venue).permit(:name, :description, :street_1, :street_2, :city, :state, :zip, :user_id, :image)
     end
 
+    def draw_map(venues)
+      @hash = Gmaps4rails.build_markers(venues) do |venue, marker|
+        marker.lat(venue.latitude)
+        marker.lng(venue.longitude)
+        marker.infowindow('<a>' + venue.name + '</a>')
+      end
+      render json: @hash.to_json
+    end
 
 end
