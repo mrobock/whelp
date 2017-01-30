@@ -22,10 +22,10 @@
 
         <td><%= link_to 'Show', user %></td>
         <!-- Note: The way this works is that this condition works on whoever current_user is, regardless of the fact that current_user may be an admin. Because in an if-else condition the first condition that is true is ALWAYS the condition that is chosen, keep ownership in mind if you change the conditions. -->
-        <% if !current_user.nil? && user.id == current_user.id %>
+        <% if @ability.can?(:manage, user, id: current_user.id) %>
           <td><%= link_to 'Edit', edit_user_registration_path %></td>
-          <td><%= link_to 'Destroy', registration_path(user), data: { confirm: "Are you sure?" }, method: :delete %></td>
-        <% elsif @ability.can?(:manage, :all) %>
+          <td><%= link_to 'Destroy', user_path(user), data: { confirm: "Are you sure?" }, method: :delete %></td>
+        <% elsif @ability.can?(:rud, user) %>
           <td><%= link_to 'Edit', edit_user_path(user) %></td>
           <td><%= link_to 'Destroy', user_path(user), data: { confirm: "Are you sure?" }, method: :delete %></td>
         <% end %>

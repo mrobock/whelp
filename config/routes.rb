@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   # Devise routes
-  devise_for :users, path_prefix: 'my', controllers: { registrations: 'registrations' }
+  devise_for :users, path_prefix: 'my', controllers: { registrations: 'devise/registrations' }
   resources :users
 
   root to: "welcome#index"

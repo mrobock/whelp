@@ -20,7 +20,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
 
-  after_create :assign_role
+  after_save :assign_role
 
   def assign_role
     add_role(:default)

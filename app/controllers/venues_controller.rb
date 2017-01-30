@@ -2,10 +2,18 @@ class VenuesController < ApplicationController
   layout "index-show", only: [:show, :index]
   before_action :set_venue, only: [:show, :edit, :update, :destroy, :rate]
 
+  load_and_authorize_resource
+  skip_authorize_resource only: [:map_location]
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to '/venues', :alert => exception.message
+  end
+
   # GET /venues
   # GET /venues.json
   def index
     @venues = Venue.all
+    @ability = Ability.new(current_user)
   end
 
   def map_location
@@ -22,6 +30,7 @@ class VenuesController < ApplicationController
   # GET /venues/1
   # GET /venues/1.json
   def show
+    @ability = Ability.new(current_user)
     @venue_review = VenueReview.new
     @venue_reviews = VenueReview.where(venue_id: @venue.id)
 
@@ -54,9 +63,6 @@ class VenuesController < ApplicationController
 
   # GET /venues/1/edit
   def edit
-    if current_user != @venue.user
-      redirect_to 'venues'
-    end
   end
 
   # POST /venues
@@ -78,6 +84,10 @@ class VenuesController < ApplicationController
   # PATCH/PUT /venues/1
   # PATCH/PUT /venues/1.json
   def update
+    @ability = Ability.new(current_user)
+    if !@ability.can(:manage, @venue, user_id: current_user.id)
+      redirect_to 'venues'
+    end
     respond_to do |format|
       if @venue.update(venue_params)
         format.html { redirect_to @venue, notice: 'Venue was successfully updated.' }
@@ -92,7 +102,8 @@ class VenuesController < ApplicationController
   # DELETE /venues/1
   # DELETE /venues/1.json
   def destroy
-    if current_user != @venue.user
+    @ability = Ability.new(current_user)
+    if !@ability.can(:manage, @venue, user_id: current_user.id)
       redirect_to 'venues'
     end
     @venue.destroy
