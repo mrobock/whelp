@@ -146,12 +146,14 @@ RSpec.feature "ManageUser", type: :feature do
       end
       Then 'I should see the venue name that the default user made, along with "Edit" and a "Destroy" links' do
         expect(page).to have_content("Sample Venue")
-        expect(page).to have_content("Edit | Destroy")
       end
       And 'I should not see the "Create New Venue" button' do
         expect(page).to_not have_content("Create New Venue")
       end
-      When 'I click the "Edit" link' do
+      When 'I click on "Sample Venue"' do
+        click_on 'Sample Venue'
+      end
+      And 'I click "Edit"' do
         click_on 'Edit'
       end
       And 'I change the title and update' do
