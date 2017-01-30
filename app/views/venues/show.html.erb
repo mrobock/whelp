@@ -18,7 +18,7 @@
       <div id="info-text">
         <p>
           <h3><%= @venue.name %></h3>
-          <% if !current_user.nil? && @venue.user == current_user %>
+          <% if !current_user.nil? && @ability.can?(:rud, @venue, user_id: current_user.id) %>
             <%= link_to 'Edit', edit_venue_path(@venue) %> |
             <%= link_to 'Destroy', @venue, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>

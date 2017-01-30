@@ -26,10 +26,10 @@
           <%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
       </p>
-    </div>
+      </div>
   <% end %>
 
-  <% if user_signed_in? %>
+  <% if !current_user.nil? && @ability.can?(:create, Venue) %>
     <div class="col-sm-4 col-lg-4 col-md-4">
         <h4><%= link_to 'New Venue', new_venue_path %></h4>
         <p>Do you know of a new or hidden dog paradise not listed here? Click the button below to spread the word!</p>
