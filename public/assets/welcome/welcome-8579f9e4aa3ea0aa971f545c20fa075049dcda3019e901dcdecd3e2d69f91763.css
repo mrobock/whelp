@@ -61,8 +61,8 @@ body {
 /* line 53, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
 .preloader div {
   display: none;
-  /* Preload the Second Pricing Image */
-  background: url(/assets/welcome/pricing2-1ec91ece0818db04b44314b807b59625502cba6f9fc39f6832588b6738a53126.jpg) no-repeat 9999px 9999px;
+  /* Preload the Second calendar Image */
+  background: url(/assets/welcome/calendar2-1ec91ece0818db04b44314b807b59625502cba6f9fc39f6832588b6738a53126.jpg) no-repeat 9999px 9999px;
   background-position: 9999px 9999px;
 }
 
@@ -509,7 +509,7 @@ section {
   }
 }
 /* line 486, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.services {
+.featured {
   margin: 40px 0;
 }
 
@@ -634,10 +634,10 @@ section {
   margin: 50px 0;
 }
 
-/* Pricing */
+/* calendar */
 /* line 596, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-#pricing {
-  background: #00a8ff url(/assets/welcome/pricing1-6b22e06d604dae4443c9b6ccaf72331f197810690cc40eabd89a7e563e44ff8e.jpg) no-repeat center center;
+#calendar {
+  background: #00a8ff url(/assets/welcome/calendar1-6b22e06d604dae4443c9b6ccaf72331f197810690cc40eabd89a7e563e44ff8e.jpg) no-repeat center center;
   -webkit-background-size: cover;
   background-size: cover;
   -webkit-transition: background-image 0.6s linear 0.3s;
@@ -645,26 +645,26 @@ section {
 }
 
 /* line 604, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.owl-pricing img {
+.owl-calendar img {
   width: 100%;
 }
 
 /* line 608, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.owl-pricing,
-.pricings {
+.owl-calendar,
+.calendars {
   margin-top: 100px;
   margin-bottom: 100px;
 }
 
 /* line 614, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricing {
+.calendar {
   position: relative;
   width: 100%;
 }
 
 /* line 619, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricings .pricing .box-main,
-.pricings .pricing .box-second {
+.calendars .calendar .box-main,
+.calendars .calendar .box-second {
   position: relative;
   left: 25%;
   display: inline-block;
@@ -679,18 +679,18 @@ section {
 }
 
 /* line 634, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricings .pricing .box-main {
+.calendars .calendar .box-main {
   z-index: 10;
   padding-top: 40px;
 }
 
 /* line 639, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricings .pricing .box-main:not(.active) {
+.calendars .calendar .box-main:not(.active) {
   cursor: pointer;
 }
 
 /* line 643, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricings .pricing .box-main .info-icon {
+.calendars .calendar .box-main .info-icon {
   font-size: 14px;
   position: absolute;
   top: 20px;
@@ -703,19 +703,19 @@ section {
 }
 
 /* line 655, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricings .pricing .box-main:not(.active) .info-icon {
+.calendars .calendar .box-main:not(.active) .info-icon {
   opacity: 1;
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
 
 /* line 661, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricings .pricing .box-main:not(.active):hover {
+.calendars .calendar .box-main:not(.active):hover {
   background: #afafaf;
 }
 
 /* line 665, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricings .pricing .box-main.active {
+.calendars .calendar .box-main.active {
   background: #00a8ff;
   -webkit-transform: translateX(-99%);
   -ms-transform: translateX(-99%);
@@ -723,7 +723,7 @@ section {
 }
 
 /* line 672, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricings .pricing .box-second {
+.calendars .calendar .box-second {
   position: absolute;
   top: 0;
   right: 0% !important;
@@ -733,19 +733,19 @@ section {
 }
 
 /* line 681, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricings .pricing .box-second.active {
+.calendars .calendar .box-second.active {
   opacity: 1;
   background: #00a8ff;
 }
 
 /* line 686, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricings .pricing.active .box-main,
-.pricings .pricing .box-second {
+.calendars .calendar.active .box-main,
+.calendars .calendar .box-second {
   background: #00a8ff;
 }
 
 /* line 691, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-.pricings .pricing .box-main a.btn {
+.calendars .calendar .box-main a.btn {
   margin-top: 50px;
 }
 
@@ -1244,18 +1244,18 @@ footer .social-footer li:hover a {
   }
 
   /* line 1117, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-  .pricing {
+  .calendar {
     margin-bottom: 30px;
   }
 
   /* line 1120, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-  .pricings .pricing .info-icon {
+  .calendars .calendar .info-icon {
     display: none;
   }
 
   /* line 1123, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-  .pricings .pricing .box-main,
-  .pricings .pricing .box-second {
+  .calendars .calendar .box-main,
+  .calendars .calendar .box-second {
     left: 0;
     width: 100%;
     padding: 50px 50px 0;
@@ -1264,7 +1264,7 @@ footer .social-footer li:hover a {
   }
 
   /* line 1131, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-  .pricings .pricing .box-main.active {
+  .calendars .calendar .box-main.active {
     background: #00a8ff;
     -webkit-transform: translateX(0%);
     -ms-transform: translateX(0%);
@@ -1272,7 +1272,7 @@ footer .social-footer li:hover a {
   }
 
   /* line 1137, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-  .pricings .pricing .box-second {
+  .calendars .calendar .box-second {
     position: relative;
     opacity: 1;
   }
@@ -1302,7 +1302,7 @@ footer .social-footer li:hover a {
   }
 
   /* line 1159, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
-  .pricings .pricing .box-second {
+  .calendars .calendar .box-second {
     padding-top: 0;
   }
 }

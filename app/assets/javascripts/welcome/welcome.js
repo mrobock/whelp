@@ -2,7 +2,7 @@ jQuery(function($) {
 	"use strict";
 	// Author Code Here
 
-	var owlPricing;
+	var owlCalendar;
 	var ratio = 2;
 
 	// Window Load
@@ -93,14 +93,14 @@ jQuery(function($) {
 		$('header').height($(window).height());
 	});
 
-	// Pricing Box Click Event
-	$('.pricing .box-main').click(function() {
-		$('.pricing .box-main').removeClass('active');
-		$('.pricing .box-second').removeClass('active');
+	// Calendar Box Click Event
+	$('.calendar .box-main').click(function() {
+		$('.calendar .box-main').removeClass('active');
+		$('.calendar .box-second').removeClass('active');
 		$(this).addClass('active');
 		$(this).next($('.box-second')).addClass('active');
-		$('#pricing').css("background-image", "image-url(" + $(this).data('img') + ")");
-		$('#pricing').css("background-size", "cover");
+		$('#calendar').css("background-image", "image-url(" + $(this).data('img') + ")");
+		$('#calendar').css("background-size", "cover");
 	});
 
 	// Mobile Nav
@@ -184,7 +184,7 @@ function createGmap(dataFromServer) {
       markers = handler.addMarkers(dataFromServer);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
-      handler.getMap().setZoom(12)
+      // handler.getMap().setZoom(12)
     }
   );
 };
