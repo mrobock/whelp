@@ -29,35 +29,35 @@
   <%= @user.email %>
 </p>
 
-<% if !@user.street_1.nil? %>
+<% if !@user.street_1.nil? && !@user.street_1.empty? %>
   <p>
   <strong>Street 1:</strong>
     <%= @user.street_1 %>
   </p>
 <% end %>
 
-<% if !@user.street_2.nil? %>
+<% if !@user.street_2.nil? && !@user.street_2.empty? %>
   <p>
   <strong>Street 2:</strong>
     <%= @user.street_2 %>
   </p>
 <% end %>
 
-<% if !@user.city.nil? %>
+<% if !@user.city.nil? && !@user.city.empty? %>
   <p>
   <strong>City:</strong>
     <%= @user.city %>
   </p>
 <% end %>
 
-<% if !@user.state.nil? %>
+<% if !@user.state.nil? && !@user.state.empty? %>
   <p>
   <strong>State:</strong>
     <%= @user.state %>
   </p>
 <% end %>
 
-<% if !@user.zip.nil? %>
+<% if !@user.zip.nil? && !@user.zip.empty? %>
   <p>
   <strong>Zip:</strong>
     <%= @user.zip %>
@@ -105,7 +105,7 @@
   <table>
     <% @user_rsvps.each do |rsvp| %>
       <tr>
-        <td><a href="/venues/<%= rsvp.event_id %>"><%= rsvp.event.name %></a></td>
+        <td><a href="/events/<%= rsvp.event_id %>"><%= rsvp.event.name %></a></td>
       </tr>
     <% end %>
   </table>
