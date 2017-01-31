@@ -1,0 +1,86 @@
+/*!
+ * Start Bootstrap - Shop Homepage (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+/* line 8, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+body {
+  padding-top: 70px;
+  /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+/* line 12, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+footer {
+  margin: 50px 0;
+}
+
+/* line 16, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+#banner {
+  width: 100%;
+  height: 350px;
+  color: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* line 28, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+#ratings {
+  /*padding-right: 10px;
+  padding-left: 10px;*/
+  color: #d17581;
+}
+
+/* line 34, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+.notice {
+  color: #318e40;
+}
+
+/* line 38, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+.alert {
+  color: red;
+}
+
+/* line 42, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+.nav > li > div {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
+/* line 48, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+.caption {
+  max-width: 100%;
+  overflow-y: auto;
+  word-wrap: break-word;
+  max-height: 200px;
+}
+
+/* line 55, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+.thumbnail > img {
+  width: 75% !important;
+  display: block;
+  margin: 10px auto;
+}
+
+/* line 61, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+.thumbnail > p {
+  text-align: center;
+}
+
+/* line 65, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+.thumbnail {
+  padding: 0;
+  padding-top: 10px;
+  height: 300px;
+  border: 2px solid #00a8ff;
+}
+
+/* line 72, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/index.scss */
+.thumbnail .caption-full {
+  padding: 9px;
+  color: #333;
+}

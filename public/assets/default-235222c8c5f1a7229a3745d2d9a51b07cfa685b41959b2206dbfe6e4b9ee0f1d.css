@@ -1,0 +1,78 @@
+/* line 1, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+body {
+  padding-top: 70px;
+  /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+/* line 5, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+footer {
+  margin: 50px 0;
+}
+
+/* line 9, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+.notice {
+  color: #318e40;
+}
+
+/* line 13, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+.alert {
+  color: red;
+}
+
+/* line 17, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+.navbar-inverse {
+  background-color: #00a8ff;
+  border: 0px;
+}
+
+/* line 22, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff;
+}
+
+/* line 26, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #ff7f00;
+}
+
+/* line 30, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+  color: #fff;
+  background-color: #ff7f00;
+}
+
+/* line 35, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+.nav > li > div {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
+/* line 41, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+.navbar-brand {
+  padding: 5px;
+}
+
+/* line 45, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+.navbar-brand > img {
+  height: 100%;
+}
+
+/* line 49, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+nav button {
+  background-color: #ff7f00;
+  color: #fff;
+  border-width: 0;
+}
+
+/* line 55, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+.table-striped {
+  width: 100%;
+}
+
+/* line 59, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/default.scss */
+.search_div {
+  text-overflow: ellipsis;
+  white-space: wrap;
+  overflow: scroll;
+}
