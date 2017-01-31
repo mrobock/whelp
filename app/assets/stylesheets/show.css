@@ -79,8 +79,9 @@ footer {
 #info-text {
   align-self: flex-start;
   max-width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   word-wrap: break-word;
+  max-height: 300px;
 }
 
 #ratings {
