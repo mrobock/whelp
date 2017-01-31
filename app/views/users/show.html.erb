@@ -29,35 +29,35 @@
   <%= @user.email %>
 </p>
 
-<% if !@user.street_1.empty? %>
+<% if !@user.street_1.nil? && !@user.street_1.empty? %>
   <p>
   <strong>Street 1:</strong>
     <%= @user.street_1 %>
   </p>
 <% end %>
 
-<% if !@user.street_2.empty? %>
+<% if !@user.street_2.nil? && !@user.street_2.empty? %>
   <p>
   <strong>Street 2:</strong>
     <%= @user.street_2 %>
   </p>
 <% end %>
 
-<% if !@user.city.empty? %>
+<% if !@user.city.nil? && !@user.city.empty? %>
   <p>
   <strong>City:</strong>
     <%= @user.city %>
   </p>
 <% end %>
 
-<% if !@user.state.empty? %>
+<% if !@user.state.nil? && !@user.state.empty? %>
   <p>
   <strong>State:</strong>
     <%= @user.state %>
   </p>
 <% end %>
 
-<% if !@user.zip.empty? %>
+<% if !@user.zip.nil? && !@user.zip.empty? %>
   <p>
   <strong>Zip:</strong>
     <%= @user.zip %>
@@ -72,8 +72,21 @@
   <% end %>
 <br>
 
+<h4>My Venues:</h4>
+<% if !@user_venues.nil? && !@user_venues.empty? %>
+<table>
+  <% @user_venues.each do |venue| %>
+  <tr>
+    <td><a href="/venues/<%= venue.id %>"><%= venue.name %></a></td>
+  </tr>
+  <% end %>
+</table>
+<% else %>
+<%= link_to 'Add a new venue', new_venue_path %>
+<% end %>
+
   <h4>My Events</h4>
-  <% if !@user_eventss.nil? && !@user_events.empty? %>
+  <% if !@user_events.nil? && !@user_events.empty? %>
   <table>
     <% @user_events.each do |event| %>
       <tr>
@@ -86,27 +99,13 @@
 <% end %>
 <br>
 
-  <h4>My Venues:</h4>
-  <% if !@user_venues.nil? && !@user_venues.empty? %>
-  <table>
-    <% @user_venues.each do |venue| %>
-      <tr>
-        <td><a href="/venues/<%= venue.id %>"><%= venue.name %></a></td>
-      </tr>
-    <% end %>
-  </table>
-  <% else %>
-    <%= link_to 'Add a new venue', new_venue_path %>
-<% end %>
-<br>
-
 
   <h4>My RSVPs:</h4>
   <% if !@user_rsvps.nil? && !@user_rsvps.empty? %>
   <table>
     <% @user_rsvps.each do |rsvp| %>
       <tr>
-        <td><a href="/venues/<%= rsvp.event_id %>"><%= rsvp.event.name %></a></td>
+        <td><a href="/events/<%= rsvp.event_id %>"><%= rsvp.event.name %></a></td>
       </tr>
     <% end %>
   </table>

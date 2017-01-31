@@ -11,11 +11,16 @@ class Ability
       can :read, :all
       can :rud, User
       can :rud, Venue
+      can :rud, Event
     else user.has_role? :default
       can :read, :all
       can :manage, User, id: user.id
       can :create, Venue
       can :manage, Venue, user_id: user.id
+      can :create, Event
+      can :manage, Event, user_id: user.id
+      can :create, Rsvp
+      can :manage, Rsvp, user_id: user.id
     end
   end
 end

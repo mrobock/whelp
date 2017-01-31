@@ -92,7 +92,7 @@
 										<h5 class="regular white"><%= link_to "#{@upcoming[i].name}", "/events/#{@upcoming[i].id}" %></h5>
 									</div>
 									<div class="col-xs-6 text-right">
-										<h5 class="white"><%= @upcoming[i].date %></h5>
+										<h5 class="white"><%= upcase_first date_to_s(@upcoming[i].date) %></h5>
 									</div>
 								</div>
 							<% end %>
@@ -106,7 +106,7 @@
 										<h5 class="regular white"><%= link_to "#{@upcoming[i].name}", "/events/#{@upcoming[i].id}" %></h5>
 									</div>
 									<div class="col-xs-6 text-right">
-										<h5 class="white"><%= @upcoming[i].date %></h5>
+										<h5 class="white"><%= upcase_first date_to_s(@upcoming[i].date) %></h5>
 									</div>
 								</div>
 							<% end %>
@@ -120,7 +120,7 @@
 										<h5 class="regular white"><%= link_to "#{@upcoming[i].name}", "/events/#{@upcoming[i].id}" %></h5>
 									</div>
 									<div class="col-xs-6 text-right">
-										<h5 class="white"><%= @upcoming[i].date %></h5>
+										<h5 class="white"><%= upcase_first date_to_s(@upcoming[i].date) %></h5>
 									</div>
 								</div>
 							<% end %>
