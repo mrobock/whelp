@@ -44,8 +44,8 @@
           <strong>Description:</strong>
           <%= @venue.description %>
         </p>
-
-        <div id="rating_div">
+        <br>
+        <div id="ratings">
           <% if !current_user.nil? %>
             <%= render 'ratings/form', rating: @rating %>
             <p class="pull-left">
@@ -59,7 +59,6 @@
               </span>
             </p>
           <% end %>
-          <br>
           <div class="rating_block">
             <span class="pull-left">
               <strong>Average Rating:</strong>

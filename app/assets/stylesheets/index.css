@@ -23,8 +23,8 @@ footer {
 }
 
 #ratings {
-  padding-right: 10px;
-  padding-left: 10px;
+  /*padding-right: 10px;
+  padding-left: 10px;*/
   color: #d17581;
 }
 
@@ -43,15 +43,10 @@ footer {
 }
 
 .caption {
-  /*height: 130px;
-  overflow: hidden;*/
-  text-overflow: ellipsis;
-  white-space: wrap;
-  overflow: scroll;
-}
-
-.caption h4 {
-  white-space: nowrap;
+  max-width: 100%;
+  overflow-y: auto;
+  word-wrap: break-word;
+  max-height: 200px;
 }
 
 .thumbnail > img {
@@ -67,7 +62,7 @@ footer {
 .thumbnail {
   padding: 0;
   padding-top: 10px;
-  height: 250px;
+  height: 300px;
 }
 
 .thumbnail .caption-full {
