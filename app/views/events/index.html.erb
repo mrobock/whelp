@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="col-md-12" id="banner">
     <h1>Events</h1>
@@ -12,7 +11,7 @@
         <%= link_to image_tag(event.image.url(:small)), event.image.url %>
         <div class="caption">
           <h4><%= link_to "#{event.name}", event %></h4>
-          <h6><%= event.date %></h6>
+          <h6><%= upcase_first date_to_s(event.created_at) %></h6>
           <p><strong>Venue:</strong> <%= link_to "#{event.venue.name}", "/venues/#{event.venue_id}" %></p>
           <p><strong>Description:</strong><br><%= event.description %></p>
         </div>
@@ -21,13 +20,6 @@
         <p class="pull-right"><%= event.ratings.length %> Rating(s)</p>
         <p>Avg Rating: <%= event.ratings.average("rating") %></p>
       </div>
-        <p>
-          <% if !current_user.nil? && event.user == current_user %>
-            <%= link_to 'Edit', edit_event_path(event) %> |
-            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </p>
-
     </div>
   <% end %>
 

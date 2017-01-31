@@ -38,8 +38,11 @@ RSpec.feature "Comment Pages", type: :feature do
         fill_in "Title", with: "Comment Title"
         fill_in "comment[text]", with: "Mars ATTACKED!"
         click_on "Leave a Review"
+        comment = Comment.find_by(title: "Comment Title")
+        string = comment.created_at.strftime("%l:%M %p")
         expect(page).to have_content("Comment was successfully created")
         expect(page).to have_content("Mars ATTACKED!")
+        expect(page).to have_content("Posted today at " + string)
       end
 
       Then "I can add a new event" do
@@ -56,8 +59,11 @@ RSpec.feature "Comment Pages", type: :feature do
         fill_in "Title", with: "Comment Title"
         fill_in "comment[text]", with: "Mating Season ATTACKED!"
         click_on "Leave a Review"
+        comment = Comment.find_by(title: "Comment Title")
+        string = comment.created_at.strftime("%l:%M %p")
         expect(page).to have_content("Comment was successfully created")
         expect(page).to have_content("Mating Season ATTACKED!")
+        expect(page).to have_content("Posted today at" + string)
       end
     end
   end

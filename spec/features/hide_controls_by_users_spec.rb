@@ -54,7 +54,6 @@ RSpec.feature "HideControlsByUsers", type: :feature do
       end
 
       Then "I can edit and delete the event that I created" do
-        visit "/events"
         expect(page).to have_content "Edit"
         expect(page).to have_content "Destroy"
       end
