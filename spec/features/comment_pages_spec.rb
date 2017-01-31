@@ -37,7 +37,7 @@ RSpec.feature "Comment Pages", type: :feature do
         expect(page).to have_content("New Comment")
         fill_in "Title", with: "Comment Title"
         fill_in "comment[text]", with: "Mars ATTACKED!"
-        click_on "Leave a Review"
+        click_on "Leave a Comment"
         comment = Comment.find_by(title: "Comment Title")
         string = comment.created_at.strftime("%l:%M %p")
         expect(page).to have_content("Comment was successfully created")
@@ -58,7 +58,7 @@ RSpec.feature "Comment Pages", type: :feature do
         expect(page).to have_content("New Comment")
         fill_in "Title", with: "Comment Title"
         fill_in "comment[text]", with: "Mating Season ATTACKED!"
-        click_on "Leave a Review"
+        click_on "Leave a Comment"
         comment = Comment.find_by(title: "Comment Title")
         string = comment.created_at.strftime("%l:%M %p")
         expect(page).to have_content("Comment was successfully created")
