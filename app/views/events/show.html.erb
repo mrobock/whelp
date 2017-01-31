@@ -78,7 +78,7 @@
     </div> <!-- class="info-left" -->
 
     <div id="info-right">
-      <%= image_tag @event.image.url %>
+      <a><%= image_tag @event.image.url(:large) %></a>
     </div>
 
     <div id="rsvp">
