@@ -2,7 +2,7 @@ jQuery(function($) {
 	"use strict";
 	// Author Code Here
 
-	var owlPricing;
+	var owlCalendar;
 	var ratio = 2;
 
 	// Window Load

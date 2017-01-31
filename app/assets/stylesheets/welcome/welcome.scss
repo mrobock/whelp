@@ -548,8 +548,8 @@ section {
 }
 
 #welcome_map {
-	width: 900px;
-	height: 600px;
+	width: 100%;
+	height: 500px;
 	margin: 0 auto;
   background-color: skyblue;
 }
@@ -584,33 +584,40 @@ section {
 .team .title {
 	margin: 50px 0;
 }
-/* Pricing */
+/* Calendar */
 
-#pricing {
-	background: #00a8ff image-url('pricing1.jpg') no-repeat center center;
+#calendar {
+	background: #00a8ff image-url('calendar1.jpg') no-repeat center center;
 	-webkit-background-size: cover;
 	background-size: cover;
 	-webkit-transition: background-image 0.6s linear 0.3s;
 	transition: background-image 0.6s linear 0.3s;
 }
 
-.owl-pricing img {
+#eventsCalendar {
+	background-color: rgba(0, 168, 255, 0.7);
+  color: white;
+	padding: 20px;
+	border: white 2px solid;
+}
+
+.owl-calendar img {
 	width: 100%;
 }
 
-.owl-pricing,
-.pricings {
+.owl-calendar,
+.calendars {
 	margin-top: 100px;
 	margin-bottom: 100px;
 }
 
-.pricing {
+.calendar {
 	position: relative;
 	width: 100%;
 }
 
-.pricings .pricing .box-main,
-.pricings .pricing .box-second {
+.calendars .calendar .box-main,
+.calendars .calendar .box-second {
 	position: relative;
 	left: 25%;
 	display: inline-block;
@@ -624,16 +631,16 @@ section {
 	backface-visibility: hidden;
 }
 
-.pricings .pricing .box-main {
+.calendars .calendar .box-main {
 	z-index: 10;
 	padding-top: 40px;
 }
 
-.pricings .pricing .box-main:not(.active) {
+.calendars .calendar .box-main:not(.active) {
 	cursor: pointer;
 }
 
-.pricings .pricing .box-main .info-icon {
+.calendars .calendar .box-main .info-icon {
 	font-size: 14px;
 	position: absolute;
 	top: 20px;
@@ -645,24 +652,24 @@ section {
 	transition: opacity 0.3s;
 }
 
-.pricings .pricing .box-main:not(.active) .info-icon {
+.calendars .calendar .box-main:not(.active) .info-icon {
 	opacity: 1;
 	-webkit-transition-delay: 0.2s;
 	transition-delay: 0.2s;
 }
 
-.pricings .pricing .box-main:not(.active):hover {
+.calendars .calendar .box-main:not(.active):hover {
 	background: #afafaf;
 }
 
-.pricings .pricing .box-main.active {
+.calendars .calendar .box-main.active {
 	background: #00a8ff;
 	-webkit-transform: translateX(-99%);
 	-ms-transform: translateX(-99%);
 	transform: translateX(-99%);
 }
 
-.pricings .pricing .box-second {
+.calendars .calendar .box-second {
 	position: absolute;
 	top: 0;
 	right: 0% !important;
@@ -671,17 +678,17 @@ section {
 	background: #afafaf;
 }
 
-.pricings .pricing .box-second.active {
+.calendars .calendar .box-second.active {
 	opacity: 1;
 	background: #00a8ff;
 }
 
-.pricings .pricing.active .box-main,
-.pricings .pricing .box-second {
+.calendars .calendar.active .box-main,
+.calendars .calendar .box-second {
 	background: #00a8ff;
 }
 
-.pricings .pricing .box-main a.btn {
+.calendars .calendar .box-main a.btn {
 	margin-top: 50px;
 }
 
@@ -1107,27 +1114,27 @@ footer .social-footer li:hover a {
     font-size: 16px !important;
     color: white !important;
 	}
-	.pricing {
+	.calendar {
 		margin-bottom: 30px;
 	}
-	.pricings .pricing .info-icon {
+	.calendars .calendar .info-icon {
 		display: none;
 	}
-	.pricings .pricing .box-main,
-	.pricings .pricing .box-second {
+	.calendars .calendar .box-main,
+	.calendars .calendar .box-second {
 		left: 0;
 		width: 100%;
 		padding: 50px 50px 0;
 		text-align: left;
 		background: #00a8ff;
 	}
-	.pricings .pricing .box-main.active {
+	.calendars .calendar .box-main.active {
 		background: #00a8ff;
 		-webkit-transform: translateX(0%);
 		-ms-transform: translateX(0%);
 		transform: translateX(0%);
 	}
-	.pricings .pricing .box-second {
+	.calendars .calendar .box-second {
 		position: relative;
 		opacity: 1;
 	}
@@ -1149,7 +1156,7 @@ footer .social-footer li:hover a {
 	header .typed-cursor {
 		display: none;
 	}
-	.pricings .pricing .box-second {
+	.calendars .calendar .box-second {
 		padding-top: 0;
 	}
 }

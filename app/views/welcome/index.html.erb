@@ -224,9 +224,9 @@
 			<div class="col-md-8 col-md-offset-2">
 				<h2 class="margin-top white">Current Venues &amp; Events</h2>
 				<h4 class="light white">Check out all of these pup destinations!</h4>
-				<h5 class="light white">Total Venues: <span>#</span></h5>
-				<h5 class="light white">Upcoming Events: <span>#</span></h5>
-				<div id="welcome_map">
+				<h5 class="light white">Total Venues: <span><%= @venues.count %></span></h5>
+				<h5 class="light white">Total Events: <span><%= @events.count %></span></h5>
+				<div id="welcome_map" class="text-center">
 			    Google Map will appear here...
 			  </div>
 			</div>
@@ -238,16 +238,11 @@
 	<div class="container">
 		<div class="row title text-center">
 			<h2 class="margin-top white">Upcoming Events</h2>
-			<h4 class="light white">See what dog-friendly events are coming up near you!</h4>
+			<h4 class="light white">See what dog-friendly events are coming up near you!</h4><br>
 		</div>
-		<div class="row no-margin">
-			<div class="col-md-7 no-padding col-md-offset-5 calendars text-center">
-				<div class="calendar">
-					<div class="box-main active" data-img="<%= asset_path('calendar1.jpg') %>">
-						<div id="eventsCalendar"></div>
-					</div>
-				</div>
-			</div>
+
+		<div class="box-main active text-center" data-img="<%= asset_path('calendar1.jpg') %>">
+			<div id="eventsCalendar" class="text-center"></div>
 		</div>
 	</div>
 </section>
