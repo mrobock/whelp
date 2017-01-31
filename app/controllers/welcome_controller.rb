@@ -11,6 +11,9 @@ class WelcomeController < ApplicationController
       flash.now[:alert] = "You must type something in the search bar."
       @search_results = nil
     end
+
+    @venues = Venue.all
+    @events = Event.all
   end
 
   def map_locations

@@ -181,8 +181,8 @@
 				<div class="intro-table intro-table-hover">
 					<h5 class="white heading hide-hover">Don't Know Where to Start? Try:</h5>
 					<div class="bottom" id="bottom-2">
-						<a href="#" class="btn btn-white-fill expand">Maps</a><br>
-						<a href="#" class="btn btn-white-fill expand">Calendars</a>
+						<a href="#services" class="btn btn-white-fill expand">Maps</a><br>
+						<a href="#pricing" class="btn btn-white-fill expand">Calendars</a>
 					</div>
 				</div>
 			</div>
@@ -211,40 +211,24 @@
 <section id="services" class="section section-padded">
 	<div class="container">
 		<div class="row text-center title">
-			<h2>Whelp Resources</h2>
-			<h4 class="light muted">Get out of the doghouse with these awesome resources!</h4>
+			<h2>Featured Events</h2>
+			<h4 class="light muted">Check out these awesome, hand-picked events!</h4>
 		</div>
 		<div class="row services">
-			<div class="col-md-4">
-				<div class="service">
-					<div class="icon-holder">
-						<!-- <%= image_tag("heart-blue.png", class: "icon", alt: "") %> -->
-						<i class="fa fa-map-marker icon" aria-hidden="true"></i>
+			<% @events.each do |event| %>
+				<% if event.featured? %>
+				<div class="col-md-4">
+					<div class="service">
+						<div class="icon-holder">
+							<%= image_tag("heart-blue.png", class: "icon", alt: "") %>
+						</div>
+						<h4 class="heading"><%= link_to "#{event.name}", "/events/#{event.id}" %></h4>
+						<h5 class="heading">Venue: <%= link_to "#{event.venue.name}", "/venues/#{event.venue_id}" %></h5>
+						<p class="description"><%= event.description %></p>
 					</div>
-					<h4 class="heading">This</h4>
-					<p class="description">Very ipsum such dolor wow much excuse such margin. Many develop concern such excuse so excuse much picture many. So excite very padding so web very styling such layer.</p>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="service">
-					<div class="icon-holder">
-						<!-- <%= image_tag("guru-blue.png", class: "icon", alt: "") %> -->
-						<i class="fa fa-calendar icon" aria-hidden="true"></i>
-					</div>
-					<h4 class="heading">That</h4>
-					<p class="description">So css much divs very excuse so layer, very spans so margin such layer much beta such spans amaze so scare very styling many web such filler very filler.</p>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="service">
-					<div class="icon-holder">
-						<!-- <%= image_tag("weight-blue.png", class: "icon", alt: "") %> -->
-						<i class="fa fa-comment" aria-hidden="true"></i>
-					</div>
-					<h4 class="heading">And This</h4>
-					<p class="description">So excite very padding so web very styling such layer. Much divs such much, such excuse so excuse many beta so beta so css.</p>
-				</div>
-			</div>
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 	<div class="cut cut-bottom"></div>

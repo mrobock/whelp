@@ -17,10 +17,22 @@
       <div id="info-text">
         <p>
           <h3><%= @event.name %></h3>
-          <% if !current_user.nil? && @event.user == current_user %>
-            <%= link_to 'Edit', edit_event_path(@event) %> |
-            <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
+          <p>
+            <% if !current_user.nil? && current_user.has_role?(:admin) %>
+              <% if !@event.featured %>
+              <%= link_to 'Make Featured', "#{event_path(@event)}/add_featured" %> |
+              <% else %>
+                <%= link_to 'Remove Featured', "#{event_path(@event)}/remove_featured" %> |
+              <% end %>
+              <%= link_to 'Edit', edit_event_path(@event) %> |
+              <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+
+            <% if !current_user.nil? && @event.user == current_user %>
+              <%= link_to 'Edit', edit_event_path(@event) %> |
+              <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </p>
         </p>
 
         <p>
