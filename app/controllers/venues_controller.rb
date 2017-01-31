@@ -105,6 +105,8 @@ class VenuesController < ApplicationController
     if !@ability.can(:manage, @venue, user_id: current_user.id)
       redirect_to 'venues'
     end
+    @venue.ratings.delete_all
+    @venue.events.delete_all
     @venue.destroy
     respond_to do |format|
       format.html { redirect_to venues_url, notice: 'Venue was successfully destroyed.' }

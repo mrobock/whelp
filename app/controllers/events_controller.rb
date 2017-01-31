@@ -107,6 +107,7 @@ class EventsController < ApplicationController
     if !@ability.can(:manage, @event, user_id: current_user.id)
       redirect_to 'events'
     end
+    @event.ratings.delete_all
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
