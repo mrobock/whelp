@@ -29,35 +29,35 @@
   <%= @user.email %>
 </p>
 
-<% if !@user.street_1.empty? %>
+<% if !@user.street_1.nil? %>
   <p>
   <strong>Street 1:</strong>
     <%= @user.street_1 %>
   </p>
 <% end %>
 
-<% if !@user.street_2.empty? %>
+<% if !@user.street_2.nil? %>
   <p>
   <strong>Street 2:</strong>
     <%= @user.street_2 %>
   </p>
 <% end %>
 
-<% if !@user.city.empty? %>
+<% if !@user.city.nil? %>
   <p>
   <strong>City:</strong>
     <%= @user.city %>
   </p>
 <% end %>
 
-<% if !@user.state.empty? %>
+<% if !@user.state.nil? %>
   <p>
   <strong>State:</strong>
     <%= @user.state %>
   </p>
 <% end %>
 
-<% if !@user.zip.empty? %>
+<% if !@user.zip.nil? %>
   <p>
   <strong>Zip:</strong>
     <%= @user.zip %>
@@ -72,8 +72,21 @@
   <% end %>
 <br>
 
+<h4>My Venues:</h4>
+<% if !@user_venues.nil? && !@user_venues.empty? %>
+<table>
+  <% @user_venues.each do |venue| %>
+  <tr>
+    <td><a href="/venues/<%= venue.id %>"><%= venue.name %></a></td>
+  </tr>
+  <% end %>
+</table>
+<% else %>
+<%= link_to 'Add a new venue', new_venue_path %>
+<% end %>
+
   <h4>My Events</h4>
-  <% if !@user_eventss.nil? && !@user_events.empty? %>
+  <% if !@user_events.nil? && !@user_events.empty? %>
   <table>
     <% @user_events.each do |event| %>
       <tr>
@@ -83,20 +96,6 @@
   </table>
   <% else %>
     <%= link_to 'Create a new event', new_event_path %>
-<% end %>
-<br>
-
-  <h4>My Venues:</h4>
-  <% if !@user_venues.nil? && !@user_venues.empty? %>
-  <table>
-    <% @user_venues.each do |venue| %>
-      <tr>
-        <td><a href="/venues/<%= venue.id %>"><%= venue.name %></a></td>
-      </tr>
-    <% end %>
-  </table>
-  <% else %>
-    <%= link_to 'Add a new venue', new_venue_path %>
 <% end %>
 <br>
 
