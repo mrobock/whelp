@@ -20,15 +20,21 @@ class WelcomeController < ApplicationController
   end
 
   def map_locations
-     draw_map(Venue.all)
+    all_venues = []
+    Venue.all.each do |venue|
+      if !venue.latitude.nil? && !venue.longitude.nil?
+        all_venues << venue
+      end
+    end
+    draw_map(all_venues)
   end
 
   def draw_map(venues)
     @hash = Gmaps4rails.build_markers(venues) do |venue, marker|
-      marker.lat(venue.latitude)
-      marker.lng(venue.longitude)
-      marker.infowindow('<a href="venues/' + venue.id.to_s + '
-      ">' + venue.name + '</a>')
+        marker.lat(venue.latitude)
+        marker.lng(venue.longitude)
+        marker.infowindow('<a href="venues/' + venue.id.to_s + '
+        ">' + venue.name + '</a>')
     end
     render json: @hash.to_json
   end

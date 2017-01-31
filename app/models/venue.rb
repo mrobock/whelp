@@ -6,7 +6,7 @@ class Venue < ApplicationRecord
   has_many :events
   has_many :venue_reviews
 
-  has_many :ratings
+  has_many :ratings, :dependent => :delete_all
 
   has_many :comments
 

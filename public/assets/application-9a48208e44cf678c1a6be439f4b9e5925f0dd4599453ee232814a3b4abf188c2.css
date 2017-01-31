@@ -10419,7 +10419,7 @@ Copyright (c) 2015 Daniel Eden
   -webkit-animation-name: slideOutUp;
   animation-name: slideOutUp;
 }
-@import url(http://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
 /* line 2, /Users/cmfasulo/Documents/whelp/app/assets/stylesheets/welcome/cardio.scss */
 .twitter-share-button[style] {
   vertical-align: top !important;
