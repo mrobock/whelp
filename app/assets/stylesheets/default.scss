@@ -56,8 +56,18 @@ nav button {
   width: 100%;
 }
 
+.thumbnail {
+  border: 0px;
+}
+
 .search_div {
-  text-overflow: ellipsis;
-  white-space: wrap;
-  overflow: scroll;
+  max-width: 100%;
+  word-wrap: break-word;
+  padding: 5px;
+}
+
+.search_div > div {
+  border: 2px solid #00a8ff;
+  margin: auto 1px;
+  padding: 10px;
 }
