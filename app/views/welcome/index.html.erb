@@ -84,83 +84,47 @@
 				<div class="intro-table intro-table-first">
 					<h5 class="white heading">Upcoming Events</h5>
 					<div class="owl-carousel owl-schedule bottom">
+            <div class="item">
+						<% (0..2).each do |i| %>
+							<% if !@upcoming[i].nil? %>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white"><%= link_to "#{@upcoming[i].name}", "/events/#{@upcoming[i].id}" %></h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white"><%= upcase_first date_to_s(@upcoming[i].date) %></h5>
+									</div>
+								</div>
+							<% end %>
+						<% end %>
+            </div>
 						<div class="item">
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 1</h5>
+						<% (3..5).each do |i| %>
+							<% if !@upcoming[i].nil? %>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white"><%= link_to "#{@upcoming[i].name}", "/events/#{@upcoming[i].id}" %></h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white"><%= upcase_first date_to_s(@upcoming[i].date) %></h5>
+									</div>
 								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 2</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 3</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
+							<% end %>
+						<% end %>
 						</div>
 						<div class="item">
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 4</h5>
+						<% (6..8).each do |i| %>
+							<% if !@upcoming[i].nil? %>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white"><%= link_to "#{@upcoming[i].name}", "/events/#{@upcoming[i].id}" %></h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white"><%= upcase_first date_to_s(@upcoming[i].date) %></h5>
+									</div>
 								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 5</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 6</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 7</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 8</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 9</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
+							<% end %>
+						<% end %>
 						</div>
 					</div>
 				</div>
@@ -255,59 +219,127 @@
 <section id="team" class="section gray-bg">
 	<div class="container">
 		<div class="row title text-center">
-			<h2 class="margin-top">Team</h2>
+			<h2 class="margin-top">Whelp Team</h2>
 			<h4 class="light muted">We're a dream team!</h4>
 		</div>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="team text-center">
-					<div class="cover" style="background:<%= asset_path('team-cover1.jpg') %>; background-size:cover;">
+					<div class="cover" style="background-img:<%= asset_path('sadie_cover.jpg') %>; background-size:cover;">
 						<div class="overlay text-center">
-							<h3 class="white">$69.00</h3>
-							<h5 class="light light-white">1 - 5 sessions / month</h5>
+							<h3 class="white">San Diego, CA</h3>
+							<h5 class="light light-white"></h5>
 						</div>
 					</div>
-					<%= image_tag("team3.jpg", class: "avatar", alt: "Team Image") %>
+					<%= image_tag("max.jpg", class: "avatar", alt: "Team Image") %>
 					<div class="title">
-						<h4>Ben Adamson</h4>
-						<h5 class="muted regular">Fitness Instructor</h5>
+						<h4>Max Robock</h4>
+						<h5 class="muted regular">Full Stack Developer</h5>
 					</div>
-					<button data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill">Sign Up Now</button>
+          <a href="http://maxrobock.com" class="btn btn-blue-fill ripple">My Portfolio</a>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="team text-center">
-					<div class="cover" style="background:<%= asset_path('team-cover2.jpg') %>; background-size:cover;">
+					<div class="cover" style="background:<%= asset_path('sadie_cover.jpg') %>; background-size:cover;">
 						<div class="overlay text-center">
-							<h3 class="white">$69.00</h3>
-							<h5 class="light light-white">1 - 5 sessions / month</h5>
+							<h3 class="white">San Diego, CA</h3>
+							<h5 class="light light-white"></h5>
 						</div>
 					</div>
-					<%= image_tag("team1.jpg", class: "avatar", alt: "Team Image") %>
+					<%= image_tag("fariya.jpg", class: "avatar", alt: "Team Image") %>
 					<div class="title">
-						<h4>Eva Williams</h4>
-						<h5 class="muted regular">Personal Trainer</h5>
+						<h4>Fariya Vasquez</h4>
+						<h5 class="muted regular">Full Stack Developer</h5>
 					</div>
-					<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill ripple">Sign Up Now</a>
+          <a href="https://github.com/Fariyav26" class="btn btn-blue-fill ripple">My Portfolio</a>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="team text-center">
-					<div class="cover" style="background:<%= asset_path('team-cover3.jpg') %>; background-size:cover;">
+					<div class="cover" style="background:<%= asset_path('sadie_cover.jpg') %>; background-size:cover;">
 						<div class="overlay text-center">
-							<h3 class="white">$69.00</h3>
-							<h5 class="light light-white">1 - 5 sessions / month</h5>
+							<h3 class="white">San Diego, CA</h3>
+							<h5 class="light light-white"></h5>
 						</div>
 					</div>
-					<%= image_tag("team2.jpg", class: "avatar", alt: "Team Image") %>
+					<%= image_tag("eric.jpg", class: "avatar", alt: "Team Image") %>
 					<div class="title">
-						<h4>John Phillips</h4>
-						<h5 class="muted regular">Personal Trainer</h5>
+						<h4>Eric Hendrickson</h4>
+						<h5 class="muted regular">Full Stack Web Developer</h5>
 					</div>
-					<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill ripple">Sign Up Now</a>
+          <a href="http://erichendrickson.tech" class="btn btn-blue-fill ripple">My Portfolio</a>
 				</div>
 			</div>
 		</div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="team text-center">
+          <div class="cover" style="background:<%= asset_path('sadie_cover.jpg') %>; background-size:cover;">
+            <div class="overlay text-center">
+              <h3 class="white">San Diego, CA</h3>
+              <h5 class="light light-white"></h5>
+            </div>
+          </div>
+          <%= image_tag("josh.jpg", class: "avatar", alt: "Team Image") %>
+          <div class="title">
+            <h4>Josh Fisher</h4>
+            <h5 class="muted regular">Full Stack Developer</h5>
+          </div>
+          <a href="#" class="btn btn-blue-fill ripple">My Portfolio</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="team text-center">
+          <div class="cover" style="background:<%= asset_path('sadie_cover.jpg') %>; background-size:cover;">
+            <div class="overlay text-center">
+              <h3 class="white">San Diego, CA</h3>
+              <h5 class="light light-white"></h5>
+            </div>
+          </div>
+          <%= image_tag("chris.jpg", class: "avatar", alt: "Team Image") %>
+          <div class="title">
+            <h4>Chris Fasulo</h4>
+            <h5 class="muted regular">Full Stack Developer</h5>
+          </div>
+          <a href="#" class="btn btn-blue-fill ripple">My Portfolio</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="team text-center">
+          <div class="cover" style="background:<%= asset_path('sadie_cover.jpg') %>; background-size:cover;">
+            <div class="overlay text-center">
+              <h3 class="white">San Diego</h3>
+              <h5 class="light light-white"></h5>
+            </div>
+          </div>
+          <%= image_tag("varun.jpg", class: "avatar", alt: "Team Image") %>
+          <div class="title">
+            <h4>Varun Kapila</h4>
+            <h5 class="muted regular">Full Stack Developer</h5>
+          </div>
+          <a href="#" class="btn btn-blue-fill ripple">My Portfolio</a>
+        </div>
+      </div>
+    </div>
+    <!-- Row 3 -->
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="team text-center">
+          <div class="cover" style="background:<%= asset_path('sadie_cover.jpg') %>; background-size:cover;">
+            <div class="overlay text-center">
+              <h3 class="white">San Diego, CA</h3>
+              <h5 class="light light-white"></h5>
+            </div>
+          </div>
+          <%= image_tag("mrinsin.jpg", class: "avatar", alt: "Team Image") %>
+          <div class="title">
+            <h4>Mrinalini Sinha</h4>
+            <h5 class="muted regular">Full Stack Developer</h5>
+          </div>
+          <a href="https://mrinsin.github.io/mrinsin" class="btn btn-blue-fill ripple">My Portfolio</a>
+        </div>
+      </div>
 	</div>
 </section>
 
@@ -328,9 +360,9 @@
 			</div>
 			<div class="col-sm-4 text-right text-center-mobile">
 				<ul class="social-footer">
-					<li><a href="http://www.facebook.com/pages/Codrops/159107397912"><i class="fa fa-facebook"></i></a></li>
-					<li><a href="http://www.twitter.com/codrops"><i class="fa fa-twitter"></i></a></li>
-					<li><a href="https://plus.google.com/101095823814290637419"><i class="fa fa-google-plus"></i></a></li>
+					<!-- <li><a href="http://www.facebook.com/pages/Codrops/159107397912"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="http://www.twitter.com/codrops"><i class="fa fa-twitter"></i></a></li> -->
+					<li><a href="https://github.com/mrobock/whelp"><i class="fa fa-github"></i></a></li>
 				</ul>
 			</div>
 		</div>

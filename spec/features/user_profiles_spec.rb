@@ -87,13 +87,13 @@ RSpec.feature "UserProfiles", type: :feature do
         click_on "Events"
         click_on "New Event"
         fill_in "Name", with: "Mating Season"
+        fill_in "Description", with: "Mating Season 123333333333"
         select "Mars", from: "Venue"
         click_on "Create Event"
       end
 
       And "I can see the event I just created" do
-        user = User.find_by_username('philTest')
-        visit "/users/#{user.id}"
+        click_on "Hi, philTest"
         expect(page).to have_content("My Events")
         expect(page).to have_content("Mating Season")
       end
@@ -105,10 +105,9 @@ RSpec.feature "UserProfiles", type: :feature do
       end
 
       And "I can see the event I just RSVPd to" do
-        user = User.find_by_username('philTest')
-        visit "/users/#{user.id}"
+        click_on "Hi, philTest"
         expect(page).to have_content("RSVPs:")
-        expect(page).to have_content("Mating Season")
+        expect(page).to have_link( "Mating Season")
       end
 
     end

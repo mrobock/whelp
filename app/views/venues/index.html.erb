@@ -14,19 +14,20 @@
           <p><strong>Address:</strong><br>
           <%= "#{venue.street_1} #{venue.street_2} #{venue.city} #{venue.state} #{venue.zip}" %></p>
           <p><strong>Description:</strong><br><%= venue.description %></p>
+
+          <div id="ratings">
+            <p class="pull-right"><%= venue.ratings.length %> Rating(s)</p>
+            <p>Avg Rating: <%= venue.ratings.average("rating") %></p>
+          </div>
         </div>
+        <p>
+          <% if !current_user.nil? && venue.user == current_user %>
+            <%= link_to 'Edit', edit_venue_path(venue) %> |
+            <%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </p>
       </div>
-        <div id="ratings">
-          <p class="pull-right"><%= venue.ratings.length %> Rating(s)</p>
-          <p>Avg Rating: <%= venue.ratings.average("rating") %></p>
-        </div>
-      <p>
-        <% if !current_user.nil? && venue.user == current_user %>
-          <%= link_to 'Edit', edit_venue_path(venue) %> |
-          <%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-      </p>
-      </div>
+    </div>
   <% end %>
 
   <% if !current_user.nil? && @ability.can?(:create, Venue) %>

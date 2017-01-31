@@ -14,11 +14,18 @@
           <h6><%= upcase_first date_to_s(event.created_at) %></h6>
           <p><strong>Venue:</strong> <%= link_to "#{event.venue.name}", "/venues/#{event.venue_id}" %></p>
           <p><strong>Description:</strong><br><%= event.description %></p>
+
+          <div id="ratings">
+            <p class="pull-right"><%= event.ratings.length %> Rating(s)</p>
+            <p>Avg Rating: <%= event.ratings.average("rating") %></p>
+          </div>
         </div>
-      </div>
-      <div id="ratings">
-        <p class="pull-right"><%= event.ratings.length %> Rating(s)</p>
-        <p>Avg Rating: <%= event.ratings.average("rating") %></p>
+        <p>
+          <% if !current_user.nil? && event.user == current_user %>
+            <%= link_to 'Edit', edit_event_path(event) %> |
+            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </p>
       </div>
     </div>
   <% end %>

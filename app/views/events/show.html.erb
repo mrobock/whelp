@@ -57,12 +57,13 @@
           <%= @event.description %>
         </p>
       </div> <!-- info-text -->
-
+      <br>
       <div id="ratings">
         <%= render 'ratings/form', rating: @rating %>
           <% if !current_user.nil? %>
           <p class="pull-left">
             <div id="rating_div">
+              <strong>My Rating:</strong>
               <span id="rating_span">
                 <%= image_tag("star-off.png", id: "star_1") %>
                 <%= image_tag("star-off.png", id: "star_2") %>
@@ -73,7 +74,6 @@
             </div>
           </p>
         <% end %>
-        <br>
         <div class="rating_block">
           <p class="pull-left">
             <strong>Average Rating:</strong>
@@ -95,6 +95,7 @@
       <hr>
       <!-- form for user to rsvp to an event -->
       <% if !current_user.nil? && @ability.can?(:create, Rsvp) && Rsvp.find_by(user_id: current_user.id, event_id: @event.id).nil? %>
+
         <%= form_for Rsvp.new, url: rsvps_path, method: :post do |f| %>
           <p><strong>My RSVP:</strong>
             <%= f.hidden_field :user_id, value: current_user.id %>
@@ -105,6 +106,7 @@
 
       <!-- form to delete user rsvp -->
       <% elsif !current_user.nil? && @ability.can?(:create, Rsvp) && !Rsvp.find_by(user_id: current_user.id, event_id: @event.id).nil? %>
+
         <%= form_for Rsvp.find_by(user_id: current_user.id, event_id: params[:id]), url: rsvp_path, method: :delete do |f| %>
           <p><strong>My RSVP:</strong>
             <%= f.submit "Cancel RSVP", :class => 'btn btn-danger' %>
