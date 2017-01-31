@@ -63,7 +63,7 @@ RSpec.feature "Comment Pages", type: :feature do
         string = comment.created_at.strftime("%l:%M %p")
         expect(page).to have_content("Comment was successfully created")
         expect(page).to have_content("Mating Season ATTACKED!")
-        expect(page).to have_content("Posted today at" + string)
+        expect(page).to have_content("Posted today at " + string)
       end
     end
   end
