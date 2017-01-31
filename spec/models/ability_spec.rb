@@ -87,4 +87,34 @@ RSpec.describe Ability, type: :model do
     expect(admin.can? :create, Rsvp).to eq false
     expect(admin.can? :manage, Rsvp).to eq false
   end
+  it "must only let a default user create an RSVP" do
+    a = User.new
+
+    default = Ability.new(a)
+
+    rsvp = Rsvp.new(user_id: a.id)
+
+    expect(default.can? :create, Rsvp).to eq true
+    expect(default.can? :manage, rsvp, user_id: a.id).to eq true
+  end
+  it "must not allow an admin to create or manage a rating" do
+    a = User.new
+    a.remove_role :default
+    a.add_role :admin
+
+    admin = Ability.new(a)
+
+    expect(admin.can? :create, Rating).to eq false
+    expect(admin.can? :manage, Rating).to eq false
+  end
+  it "must only let a default user create a rating" do
+    a = User.new
+
+    default = Ability.new(a)
+
+    rating = Rating.new(user_id: a.id)
+
+    expect(default.can? :create, Rating).to eq true
+    expect(default.can? :manage, rating, user_id: a.id).to eq true
+  end
 end

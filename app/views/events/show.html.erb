@@ -60,7 +60,7 @@
       <br>
       <div id="ratings">
         <%= render 'ratings/form', rating: @rating %>
-          <% if !current_user.nil? %>
+          <% if !current_user.nil? && @ability.can?(:create, Rating) %>
           <p class="pull-left">
             <div id="rating_div">
               <strong>My Rating:</strong>
@@ -73,6 +73,8 @@
               </span>
             </div>
           </p>
+        <% elsif current_user.nil? %>
+          <p><%= link_to "Sign in to rate this event!", new_user_session_path %></p>
         <% end %>
         <div class="rating_block">
           <p class="pull-left">
