@@ -15,6 +15,8 @@ class WelcomeController < ApplicationController
 
     @venues = Venue.all
     @events = Event.all
+
+    @upcoming = Event.where('date > ?', DateTime.now).order(:date).limit(9)
   end
 
   def map_locations
