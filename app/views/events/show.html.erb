@@ -42,8 +42,7 @@
         </p>
 
         <p>
-          <strong>Date:</strong>
-          <%= @event.date %>
+          <%= upcase_first date_to_s(@event.date) %>
         </p>
 
         <p>
@@ -163,7 +162,7 @@
         <div class="col-md-12">
           <h4> <%= comment.title %> </h4>
           <span>Posted By: <%= link_to "#{comment.user.username}", "/users/#{comment.user_id}" %> </span>
-          <span class="pull-right"><%= comment.created_at %></span>
+          <span class="pull-right"><%= "Posted " + date_to_s(comment.created_at) %></span>
           <p>
           <%= comment.text %>
           </p>

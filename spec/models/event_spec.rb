@@ -18,7 +18,7 @@ RSpec.describe Event, type: :model do
     event2 = Event.find_by_name("first event")
     venue2 = Venue.find(event2.venue_id)
     expect(venue2.name).to eq "Josh Mrin"
-    expect(event2.date).to eq "01/02/2018"
+    expect(event2.date).to eq "Thu, 01 Feb 2018 00:00:00 PST -08:00"
   end
 
   it 'should have a description and a user id' do

@@ -27,5 +27,8 @@ module Whelp
     config.assets.paths << Rails.root.join("app", "assets", "images", "welcome", "team")
     config.assets.paths << Rails.root.join("app", "assets", "javascripts", "welcome")
     config.assets.paths << Rails.root.join("app", "assets", "stylesheets", "welcome")
+
+    # Time zones
+    config.time_zone = "Pacific Time (US & Canada)"
   end
 end

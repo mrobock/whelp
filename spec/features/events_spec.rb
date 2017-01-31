@@ -38,6 +38,11 @@ RSpec.feature "Events", type: :feature do
         visit "/events"
         click_on "New Event"
         fill_in "Name", with: "Mating Season"
+        select "December", from: "event[date(2i)]"
+        select "31", from: "event[date(3i)]"
+        select "2022", from: "event[date(1i)]"
+        select "11 PM", from: "event[date(4i)]"
+        select "59", from: "event[date(5i)]"
         select "Mars", from: "Venue"
         click_on "Create Event"
       end
@@ -45,6 +50,7 @@ RSpec.feature "Events", type: :feature do
       And "I can see the event I just created" do
         expect(page).to have_content "Event was successfully created"
         expect(page).to have_content "Mating Season"
+        expect(page).to have_content "12/31/2022 at 11:59 PM"
       end
 
       When 'I click "Edit"' do
