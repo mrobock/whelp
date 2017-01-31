@@ -1,0 +1,1365 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
+/* line 2, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.twitter-share-button[style] {
+  vertical-align: top !important;
+  margin-top: 1px;
+}
+
+/* line 7, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.notice {
+  color: #318e40;
+}
+
+/* line 11, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.alert {
+  color: red;
+}
+
+/* line 15, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+body {
+  font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  overflow-x: hidden;
+  color: #2a3237;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 24, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.parallax {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* line 33, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.parallax img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Preloader */
+/* line 39, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.preloader {
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+/* line 47, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.preloader img {
+  position: absolute;
+  top: calc(50% - 32px);
+  left: calc(50% - 32px);
+}
+
+/* Typography */
+/* line 55, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+p {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #8a8e91;
+}
+
+/* line 61, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', 'Avenir Next', 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+  position: relative;
+  margin: 10px 0;
+}
+
+/* line 72, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+h1 {
+  font-size: 60px;
+}
+
+/* line 76, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+h2 {
+  font-size: 48px;
+}
+
+/* line 80, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+h3 {
+  font-size: 30px;
+}
+
+/* line 84, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+h4 {
+  font-size: 24px;
+}
+
+/* line 88, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+h5 {
+  font-size: 18px;
+}
+
+/* line 92, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+h6 {
+  font-size: 16px;
+}
+
+/* line 96, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+ul.white-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+/* line 101, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+ul.white-list li {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #fff;
+}
+
+/* line 107, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+ul.white-list li:before {
+  content: ' ';
+  position: relative;
+  top: -3px;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 15px;
+  background: white;
+}
+
+/* line 118, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+header {
+  position: relative;
+  width: 100%;
+  color: white;
+  background: rgba(28, 36, 65, 0.93);
+  background: url(/assets/welcome/header-2da3599a0721a9e962f4ef986bddff34c6a81f54a86ce35011baee1cd481b547.jpg);
+  background-size: cover;
+}
+
+/* line 127, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+header .table {
+  display: table;
+  height: 100%;
+}
+
+/* line 132, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+header .container {
+  height: 100%;
+}
+
+/* line 136, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+header .header-text {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+}
+
+/* line 143, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+header .typed {
+  display: inline-block;
+  margin: 0;
+}
+
+/* line 148, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+header .typed-cursor {
+  font-size: 60px;
+  display: inline-block;
+  margin: 0 10px;
+  color: #00a8ff;
+  -webkit-animation-name: flash;
+  animation-name: flash;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+/* line 161, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+a {
+  text-decoration: none;
+  color: #00a8ff;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* Navigation Bar ( Navbar ) */
+/* line 168, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.nav > li > div {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
+/* line 174, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.navbar-brand {
+  padding: 0;
+}
+
+/* line 178, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.navbar-brand > img {
+  display: block;
+  height: 100%;
+}
+
+/* line 183, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+nav.navbar {
+  position: absolute;
+  z-index: 9500;
+  width: 100%;
+  width: 100vw;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* line 192, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+nav.navbar .navbar-nav li.active a:not(.btn) {
+  color: #00a8ff !important;
+}
+
+/* line 196, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+nav.navbar-fixed-top {
+  z-index: 9499;
+  top: 0;
+  padding: 25px 0;
+  opacity: 0;
+  background: white;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* line 205, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
+  color: #00a8ff;
+}
+
+/* line 209, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: #ff7f00;
+}
+
+/* line 213, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+nav button {
+  background-color: #00a8ff;
+  color: #fff;
+  border-width: 0;
+}
+
+/* line 219, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.icon-bar {
+  background: #bbb;
+}
+
+/* Buttons */
+/* line 224, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn {
+  font-size: 18px;
+  display: inline-block;
+  padding: 15px 15px;
+  color: white;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  background: transparent;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* line 236, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn:hover,
+.btn:focus {
+  color: white;
+}
+
+/* line 241, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn.btn-blue {
+  background: #00a8ff;
+  margin: auto 5px;
+}
+
+/* line 246, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn.btn-blue:hover {
+  background: #31b9ff;
+}
+
+/* line 250, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn.btn-blue-fill {
+  color: #00a8ff;
+  border-color: #00a8ff;
+  background: transparent;
+}
+
+/* line 256, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn.btn-blue-fill:hover {
+  color: white;
+  background: #00a8ff;
+}
+
+/* line 261, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn.btn-white-fill {
+  color: #fff;
+  border-color: #fff;
+  background: transparent;
+}
+
+/* line 267, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn.btn-white-fill:hover {
+  color: #00a8ff;
+  background: #fff;
+}
+
+/* line 272, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn.btn-gray-fill {
+  color: #fff;
+  border-color: #fff;
+  background: transparent;
+}
+
+/* line 278, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn.btn-gray-fill:hover {
+  border-color: #bbb;
+  background: #bbb;
+}
+
+/* Blink Cursor */
+/* line 285, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.blink {
+  position: relative;
+  top: 4px;
+  display: inline-block;
+  width: 4px;
+  height: 50px;
+  height: 5vh;
+  margin: 0 10px;
+}
+
+/* line 295, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.navbar {
+  top: 50px;
+}
+
+/* line 299, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Sections */
+/* line 304, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+section {
+  position: relative;
+}
+
+/* line 308, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.section {
+  padding: 40px 0;
+  background: #fff;
+}
+
+/* line 313, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.section-padded {
+  padding: 140px 0 40px;
+}
+
+/* line 317, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.cut-top {
+  content: ' ';
+  position: absolute;
+  z-index: 1;
+  top: -80px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 80px solid transparent;
+  border-right: 30px solid white;
+}
+
+/* line 329, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.cut-bottom {
+  content: ' ';
+  position: absolute;
+  z-index: 1;
+  bottom: -80px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 80px solid transparent;
+  border-left: 30px solid white;
+}
+
+/* line 341, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.intro-tables {
+  top: -130px;
+  position: relative;
+}
+
+/* line 346, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.intro-table {
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: 0% 0%;
+}
+
+/* line 353, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.intro-table-first {
+  background-image: url(/assets/welcome/table-1-66752821fb40cb68c7e8bfa4df561df171cb89c20e7ddc3039b104732875a167.jpg);
+}
+
+/* line 357, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.intro-table-hover {
+  -webkit-transition: background-image 0.3s ease, background-position 0.3s;
+  transition: background-image 0.3s ease, background-position 0.3s;
+  background-image: url(/assets/welcome/table-2-d5764dcc5bacbead2d3abf17fed6ba481d7d456c9ea920a80b02f078cb852ce7.jpg);
+}
+
+/* line 363, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.intro-table-hover h4 {
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* line 368, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.intro-table-third {
+  background-image: url(/assets/welcome/table-3-b0d7d8e20f4ab3e3442cf85896c0eb1b6398fe2591cbab0b0742ee26ee31a677.jpg);
+}
+
+/* line 372, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.intro-tables .intro-table {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin: 20px 0;
+}
+
+/* line 379, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.intro-tables .intro-table .heading {
+  margin: 0;
+  padding: 30px;
+}
+
+/* line 384, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.intro-tables .intro-table .small-heading {
+  margin: 0;
+  padding: 0 30px;
+}
+
+/* line 389, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.intro-tables .intro-table .bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+/* line 394, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+#bottom-2 {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* line 400, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+#bottom-2 h4 {
+  padding: 10px 30px;
+}
+
+/* line 404, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+#bottom-2 a {
+  margin: 10px 0;
+}
+
+/* line 408, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.intro-tables .intro-table .owl-schedule .schedule-row {
+  padding: 10px 30px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* line 414, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.item a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* line 419, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.owl-schedule .schedule-row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* line 423, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.owl-testimonials .author {
+  margin-top: 50px;
+}
+
+/* line 427, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.ripple-effect {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  -webkit-animation: ripple-animation 2s;
+  animation: ripple-animation 2s;
+}
+
+@-webkit-keyframes ripple-animation {
+  from {
+    opacity: 0.2;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale(100);
+    transform: scale(100);
+  }
+}
+@keyframes ripple-animation {
+  from {
+    opacity: 0.2;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale(100);
+    transform: scale(100);
+  }
+}
+/* line 463, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.featured {
+  margin: 40px 0;
+}
+
+/* line 467, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.service {
+  width: 100%;
+  height: 320px;
+  margin: 80px 0;
+  text-align: center;
+  border: 1px solid #ddd;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* line 477, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.service .icon-holder {
+  position: relative;
+  top: 100px;
+  display: inline-block;
+  margin-bottom: 40px;
+  padding: 10px;
+  background: white;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* line 488, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.service .heading {
+  position: relative;
+  top: 80px;
+  -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* line 495, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.service .icon-holder > span.icon {
+  font-size: 40px;
+  color: black;
+}
+
+/* line 500, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.service:hover {
+  border-color: #00a8ff;
+}
+
+/* line 504, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.service:hover .icon-holder {
+  top: -30px;
+}
+
+/* line 508, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.service:hover .heading {
+  top: -30px;
+}
+
+/* line 512, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.service .description {
+  width: 80%;
+  margin: 0 auto;
+  opacity: 0;
+  -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+}
+
+/* line 523, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.service:hover .description {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+/* line 530, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+#map-section h2, #map-section h4 {
+  text-align: center;
+}
+
+/* line 534, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+#map-section h5 {
+  font-weight: bold;
+}
+
+/* line 538, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+#welcome_map {
+  width: 100%;
+  height: 500px;
+  margin: 0 auto;
+  background-color: skyblue;
+}
+
+/* line 545, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.team {
+  margin: 80px 0;
+  padding-bottom: 60px;
+  background: white;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+}
+
+/* line 552, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.team .cover .overlay {
+  height: 250px;
+  padding-top: 60px;
+  opacity: 0;
+  background: rgba(0, 168, 255, 0.9);
+  -webkit-transition: opacity 0.45s ease;
+  transition: opacity 0.45s ease;
+}
+
+/* line 561, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.team:hover .cover .overlay {
+  opacity: 1;
+}
+
+/* line 565, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.team .avatar {
+  position: relative;
+  z-index: 2;
+  height: 120px;
+  width: 120px;
+  margin-top: -60px;
+  border-radius: 50%;
+}
+
+/* line 574, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.team .title {
+  margin: 50px 0;
+}
+
+/* Calendar */
+/* line 579, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+#calendar {
+  background: #00a8ff url(/assets/welcome/calendar1-6b22e06d604dae4443c9b6ccaf72331f197810690cc40eabd89a7e563e44ff8e.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  -webkit-transition: background-image 0.6s linear 0.3s;
+  transition: background-image 0.6s linear 0.3s;
+}
+
+/* line 587, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+#eventsCalendar {
+  background-color: rgba(0, 168, 255, 0.7);
+  color: white;
+  padding: 20px;
+  border: white 2px solid;
+}
+
+/* line 594, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.owl-calendar img {
+  width: 100%;
+}
+
+/* line 598, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.owl-calendar,
+.calendars {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+/* line 604, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendar {
+  position: relative;
+  width: 100%;
+}
+
+/* line 609, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendars .calendar .box-main,
+.calendars .calendar .box-second {
+  position: relative;
+  left: 25%;
+  display: inline-block;
+  width: 50%;
+  height: 300px;
+  padding: 50px 40px;
+  background: #bbb;
+  -webkit-transition: -webkit-transform 0.3s, background-image 0.3s, opacity 0.3s;
+  transition: transform 0.3s, background-image 0.3s, opacity 0.3s;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* line 624, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendars .calendar .box-main {
+  z-index: 10;
+  padding-top: 40px;
+}
+
+/* line 629, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendars .calendar .box-main:not(.active) {
+  cursor: pointer;
+}
+
+/* line 633, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendars .calendar .box-main .info-icon {
+  font-size: 14px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  pointer-events: none;
+  opacity: 0;
+  color: #fff;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+/* line 645, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendars .calendar .box-main:not(.active) .info-icon {
+  opacity: 1;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+
+/* line 651, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendars .calendar .box-main:not(.active):hover {
+  background: #afafaf;
+}
+
+/* line 655, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendars .calendar .box-main.active {
+  background: #00a8ff;
+  -webkit-transform: translateX(-99%);
+  -ms-transform: translateX(-99%);
+  transform: translateX(-99%);
+}
+
+/* line 662, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendars .calendar .box-second {
+  position: absolute;
+  top: 0;
+  right: 0% !important;
+  left: auto;
+  opacity: 0;
+  background: #afafaf;
+}
+
+/* line 671, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendars .calendar .box-second.active {
+  opacity: 1;
+  background: #00a8ff;
+}
+
+/* line 676, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendars .calendar.active .box-main,
+.calendars .calendar .box-second {
+  background: #00a8ff;
+}
+
+/* line 681, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.calendars .calendar .box-main a.btn {
+  margin-top: 50px;
+}
+
+/* line 685, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.owl-twitter i.icon {
+  font-size: 36px;
+  margin-bottom: 60px;
+  color: white;
+}
+
+/* Footer */
+/* line 692, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+footer {
+  padding: 140px 0 40px;
+  background: url(/assets/welcome/footer-1f37561f490dc044f90b7b3dfaa3ebff1204fe947846fed4cf01c3d8606d2b9d.jpg);
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+/* line 699, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+footer .trial-button {
+  overflow: hidden !important;
+  margin: 40px 0;
+}
+
+/* line 704, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+footer .open-blink {
+  content: ' ';
+  position: relative;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin: 0 20px;
+  border-radius: 50%;
+  background-color: #4caf50;
+  -webkit-animation-name: flash;
+  animation-name: flash;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+/* line 721, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+footer .open-blink:before {
+  content: ' ';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  opacity: 0.1;
+  border-radius: 50%;
+  background-color: #4caf50;
+}
+
+/* line 734, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+footer .opening-hours {
+  margin-top: 60px;
+}
+
+/* line 738, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+footer .bottom-footer {
+  margin-top: 150px;
+}
+
+/* line 742, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+footer .social-footer {
+  padding: 0;
+  list-style: none;
+}
+
+/* line 747, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+footer .social-footer li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+/* line 752, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+footer .social-footer li a {
+  font-size: 24px;
+  color: #fff;
+}
+
+/* line 757, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+footer .social-footer li:hover a {
+  color: #00a8ff;
+}
+
+/* line 761, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+#footer-bottom {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 100px;
+}
+
+/* Form Control */
+/* line 768, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.form-control {
+  font-size: 18px;
+  position: relative;
+  left: 0;
+  height: auto;
+  padding: 20px 30px;
+  border: 1px;
+  border-radius: 0;
+  box-shadow: 0;
+}
+
+/* line 779, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.form-control.form-white {
+  color: #fff;
+  border: 2px solid white;
+  background: transparent;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+
+/* line 787, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.form-control.form-white::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #fff;
+}
+
+/* line 792, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.form-control.form-white:-moz-placeholder {
+  opacity: 1;
+  /* Mozilla Firefox 4 to 18 */
+  color: #fff;
+}
+
+/* line 798, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.form-control.form-white::-moz-placeholder {
+  opacity: 1;
+  /* Mozilla Firefox 19+ */
+  color: #fff;
+}
+
+/* line 804, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.form-control.form-white:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #fff;
+}
+
+/* line 809, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.form-control.form-white:focus {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Popup */
+/* line 814, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.modal {
+  padding: 0 25px !important;
+}
+
+/* line 818, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.modal-dialog {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* line 824, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.modal-popup {
+  position: relative;
+  padding: 45px 30px;
+  text-align: center;
+  background: url(/assets/welcome/popup-c0750aea7666d3ca4a5b063c1d155ec521627bdde184e64b8c59782e3342846d.jpg);
+  box-shadow: none;
+  border-radius: 2px;
+}
+
+/* line 833, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.modal-popup a.close-link {
+  font-size: 22px;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+}
+
+/* line 841, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.popup-form {
+  width: 90%;
+  max-width: 375px;
+  margin: 60px auto;
+}
+
+/* line 847, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.popup-form .form-control {
+  margin: 20px 0;
+}
+
+/* line 851, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.popup-form .form-control.dropdown {
+  text-align: left;
+}
+
+/* line 855, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.popup-form .form-control.dropdown:after {
+  content: '\f0d7';
+  font-family: 'FontAwesome';
+  display: inline-block;
+  float: right;
+  color: white;
+}
+
+/* line 863, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.popup-form .dropdown .dropdown-menu {
+  top: 65px;
+  width: 100%;
+  padding: 0;
+  border: 2px solid white;
+  border-top: 0;
+  border-radius: 0;
+  background: white;
+  box-shadow: none;
+}
+
+/* line 874, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.popup-form .dropdown .dropdown-menu li {
+  font-size: 16px;
+  width: 100%;
+  background: transparent;
+}
+
+/* line 880, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.popup-form .dropdown .dropdown-menu li a {
+  width: 100%;
+  padding: 15px 30px;
+  color: #00a8ff;
+}
+
+/* line 886, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.popup-form .dropdown .dropdown-menu li:hover a {
+  color: #fff;
+  background: #00a8ff;
+}
+
+/* Checkbox */
+/* line 893, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.checkbox-holder {
+  white-space: nowrap;
+}
+
+/* line 897, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.checkbox {
+  position: relative;
+  display: block;
+}
+
+/* line 902, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.checkbox {
+  position: relative;
+}
+
+/* line 906, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.checkbox label:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border: 2px solid white;
+  background: transparent;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+
+/* line 920, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.checkbox input[type=checkbox]:focus + label:before {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* line 924, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.checkbox label:after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  opacity: 0;
+  background: white;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* line 937, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.checkbox input[type=checkbox] {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* line 944, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.checkbox input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
+/* line 948, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.checkbox-holder span {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 0 10px;
+  white-space: normal;
+  color: #fff;
+}
+
+/* line 956, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn.btn-submit {
+  width: 100%;
+  margin-top: 30px;
+  color: #00a8ff;
+  border: 2px solid #fff;
+  background: #fff;
+}
+
+/* line 964, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn.btn-submit:focus {
+  font-weight: bold;
+}
+
+/* line 968, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.btn.btn-submit:hover {
+  color: #00a8ff;
+  background: #fff;
+}
+
+/* Mobile Nav */
+/* line 974, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.mobile-nav {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  display: table;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.98);
+  -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+}
+
+/* line 992, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.mobile-nav.active {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+/* line 999, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.mobile-nav ul {
+  display: table-cell;
+  padding: 0;
+  list-style: none;
+  vertical-align: middle;
+}
+
+/* line 1006, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.mobile-nav ul li {
+  margin: 25px 0;
+}
+
+/* line 1010, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.mobile-nav ul li a:not(.btn) {
+  color: #aaa;
+}
+
+/* line 1014, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.mobile-nav a.close-link {
+  font-size: 24px;
+  position: absolute;
+  bottom: 0px;
+  left: calc(50% - 10px);
+  left: 0;
+  width: 100%;
+  padding: 15px 0;
+  color: #fff;
+  background: #00a8ff;
+}
+
+/* line 1026, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.row.title {
+  padding: 0 20px;
+}
+
+/* line 1030, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.light {
+  font-weight: 300;
+}
+
+/* line 1034, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.regular {
+  font-weight: 400;
+}
+
+/* line 1038, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.bold {
+  font-weight: bold;
+}
+
+/* Colors */
+/* line 1043, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.white {
+  color: white;
+}
+
+/* line 1047, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.light-white {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* line 1051, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.white-bg {
+  background: white;
+}
+
+/* line 1055, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.gray-bg {
+  background: #f7f7f7;
+}
+
+/* line 1059, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.blue {
+  color: #00a8ff;
+}
+
+/* line 1063, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.blue-bg {
+  background: #00a8ff;
+}
+
+/* line 1067, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.muted {
+  color: #989da0;
+}
+
+/* line 1071, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.margin-top {
+  margin-top: 150px;
+}
+
+@media (max-width: 992px) {
+  /* line 1076, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  h1 {
+    font-size: 36px;
+  }
+
+  /* line 1079, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  h2 {
+    font-size: 28px;
+  }
+
+  /* line 1082, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  h3 {
+    font-size: 24px;
+  }
+
+  /* line 1085, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  h4 {
+    font-size: 20px;
+  }
+
+  /* line 1088, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  h5 {
+    font-size: 16px;
+  }
+
+  /* line 1091, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  h6 {
+    font-size: 12px;
+  }
+
+  /* line 1094, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .section {
+    padding: 30px 0;
+  }
+}
+/* Media Queries */
+@media (min-width: 768px) {
+  /* line 1102, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .navbar-nav > li > a {
+    padding: 15px 15px;
+    font-size: 16px;
+    color: white;
+  }
+}
+@media (max-width: 991px) {
+  /* line 1110, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .text-center-mobile {
+    text-align: center !important;
+  }
+}
+@media (max-width: 768px) {
+  /* line 1116, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  nav .navbar-nav > li > a {
+    padding: 15px 15px !important;
+    font-size: 16px !important;
+    color: white !important;
+  }
+
+  /* line 1121, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .calendar {
+    margin-bottom: 30px;
+  }
+
+  /* line 1124, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .calendars .calendar .info-icon {
+    display: none;
+  }
+
+  /* line 1127, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .calendars .calendar .box-main,
+  .calendars .calendar .box-second {
+    left: 0;
+    width: 100%;
+    padding: 50px 50px 0;
+    text-align: left;
+    background: #00a8ff;
+  }
+
+  /* line 1135, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .calendars .calendar .box-main.active {
+    background: #00a8ff;
+    -webkit-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+
+  /* line 1141, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .calendars .calendar .box-second {
+    position: relative;
+    opacity: 1;
+  }
+
+  /* line 1145, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .popup-form {
+    width: 100%;
+    margin: 60px auto;
+  }
+
+  /* line 1149, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .modal {
+    padding: 0 10px !important;
+  }
+
+  /* line 1152, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .popup-form .form-control:not(.dropdown):focus {
+    position: relative;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+@media (max-width: 400px) {
+  /* line 1160, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  header .typed-cursor {
+    display: none;
+  }
+
+  /* line 1163, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+  .calendars .calendar .box-second {
+    padding-top: 0;
+  }
+}
+/* line 1170, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/welcome/welcome.scss */
+.team.text-center {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
