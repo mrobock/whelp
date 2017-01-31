@@ -9,7 +9,7 @@
   <% @events.each do |event| %>
     <div class="col-sm-4 col-lg-4 col-md-4">
       <div class="thumbnail">
-        <%= link_to image_tag(event.image.url(:small)), event.image.url %>
+        <a><%=image_tag(event.image.url(:small)) %></a>
         <div class="caption">
           <h4><%= link_to "#{event.name}", event %></h4>
           <h6><%= event.date %></h6>
