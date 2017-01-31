@@ -42,7 +42,31 @@ RSpec.describe Ability, type: :model do
     expect(default.can? :manage, venue, user_id: u.id).to eq true
     expect(default.cannot? :manage, venue1, user_id: u1.id).to eq true
   end
-  it "must not allow an admin to create a venue, but be allowed to read, update, and destroy all of them" do
+  it "must allow a default user to create a venue, but only be allowed to manage their own venue" do
+    u = User.new
+    u.id = 1
+    u.add_role :default
+    u1 = User.new
+    u1.id = 2
+    u1.add_role :default
+
+    event = Event.new
+    event.user = u
+    event.save
+    u.save
+
+    event1 = Venue.new
+    event1.user = u1
+    event1.save
+    u1.save
+
+    default = Ability.new(u)
+
+    expect(default.can? :create, Event).to eq true
+    expect(default.can? :manage, event, user_id: u.id).to eq true
+    expect(default.cannot? :manage, event1, user_id: u1.id).to eq true
+  end
+  it "must not allow an admin to create a venue or event, but be allowed to read, update, and destroy all of them" do
     a = User.new
     a.remove_role :default
     a.add_role :admin
@@ -50,5 +74,17 @@ RSpec.describe Ability, type: :model do
     admin = Ability.new(a)
     expect(admin.can? :create, Venue).to eq false
     expect(admin.can? :rud, Venue).to eq true
+    expect(admin.can? :create, Event).to eq false
+    expect(admin.can? :rud, Event).to eq true
+  end
+  it "must not allow an admin to create or manage an RSVP" do
+    a = User.new
+    a.remove_role :default
+    a.add_role :admin
+
+    admin = Ability.new(a)
+
+    expect(admin.can? :create, Rsvp).to eq false
+    expect(admin.can? :manage, Rsvp).to eq false
   end
 end

@@ -18,17 +18,14 @@
         <p>
           <h3><%= @event.name %></h3>
           <p>
-            <% if !current_user.nil? && current_user.has_role?(:admin) %>
-              <% if !@event.featured %>
-              <%= link_to 'Make Featured', "#{event_path(@event)}/add_featured" %> |
-              <% else %>
-                <%= link_to 'Remove Featured', "#{event_path(@event)}/remove_featured" %> |
+            <% if !current_user.nil? && @ability.can?(:rud, @event, user_id: current_user.id) %>
+              <% if current_user.has_role?(:admin) %>
+                <% if !@event.featured %>
+                <%= link_to 'Make Featured', "#{event_path(@event)}/add_featured" %> |
+                <% else %>
+                  <%= link_to 'Remove Featured', "#{event_path(@event)}/remove_featured" %> |
+                <% end %>
               <% end %>
-              <%= link_to 'Edit', edit_event_path(@event) %> |
-              <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-
-            <% if !current_user.nil? && @event.user == current_user %>
               <%= link_to 'Edit', edit_event_path(@event) %> |
               <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
             <% end %>
@@ -97,7 +94,7 @@
     <div id="rsvp">
       <hr>
       <!-- form for user to rsvp to an event -->
-      <% if user_signed_in? && Rsvp.find_by_user_id(current_user.id).nil? %>
+      <% if !current_user.nil? && @ability.can?(:create, Rsvp) && Rsvp.find_by(user_id: current_user.id, event_id: @event.id).nil? %>
         <%= form_for Rsvp.new, url: rsvps_path, method: :post do |f| %>
           <p><strong>My RSVP:</strong>
             <%= f.hidden_field :user_id, value: current_user.id %>
@@ -107,16 +104,16 @@
         <% end %>
 
       <!-- form to delete user rsvp -->
-      <% elsif user_signed_in? && !Rsvp.find_by_user_id(current_user.id).nil? %>
+      <% elsif !current_user.nil? && @ability.can?(:create, Rsvp) && !Rsvp.find_by(user_id: current_user.id, event_id: @event.id).nil? %>
         <%= form_for Rsvp.find_by(user_id: current_user.id, event_id: params[:id]), url: rsvp_path, method: :delete do |f| %>
           <p><strong>My RSVP:</strong>
             <%= f.submit "Cancel RSVP", :class => 'btn btn-danger' %>
           </p>
         <% end %>
-
-      <% else %>
+      <% elsif current_user.nil? %>
         <p><%= link_to "Sign in to RSVP!", new_user_session_path %></p>
       <% end %>
+
 
       <!-- end of form that deletes user's rsvp -->
       <p>

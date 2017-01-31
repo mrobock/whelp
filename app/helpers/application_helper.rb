@@ -14,12 +14,12 @@ module ApplicationHelper
   def date_to_s(datetime)
     if datetime.today?
       s = "today at " + datetime.strftime("%l:%M %p")
-    elsif datetime.strftime("%-m%e%Y") == Date.yesterday.strftime("%-m%e%Y")
+    elsif datetime.strftime("%-m%-d%Y") == Date.yesterday.strftime("%-m%-d%Y")
       s = "yesterday at " + datetime.strftime("%l:%M %p")
     elsif datetime.strftime("%-m%e%Y") == Date.tomorrow.strftime("%-m%e%Y")
       s = "tomorrow at " + datetime.strftime("%l:%M %p")
     else
-      s = datetime.strftime("%-m/%e/%Y at %l:%M %p")
+      s = datetime.strftime("%-m/%-d/%Y at %l:%M %p")
     end
     s
   end
