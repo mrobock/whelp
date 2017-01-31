@@ -171,6 +171,15 @@ a {
   padding: 10px 15px;
 }
 
+.navbar-brand {
+  padding: 0;
+}
+
+.navbar-brand > img {
+  display: block;
+  height: 100%;
+}
+
 nav.navbar {
 	position: absolute;
 	z-index: 9500;
