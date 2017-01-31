@@ -163,11 +163,13 @@ RSpec.feature "ManageUser", type: :feature do
       When 'I click on "Sample Event"' do
         click_on 'Sample Event'
       end
-      Then 'I should not see anything allowing the user to RSVP' do
+      Then 'I should not see anything allowing the user to RSVP or rate' do
         expect(page).to_not have_content("My RSVP:")
         expect(page).to_not have_content("Count Me In")
         expect(page).to_not have_content("Cancel RSVP")
         expect(page).to_not have_content("Sign in to RSVP!")
+        expect(page).to_not have_content("My Rating:")
+        expect(page).to_not have_content("Sign in to rate this event!")
       end
       When 'I click "Edit"' do
         click_on 'Edit'
@@ -197,6 +199,10 @@ RSpec.feature "ManageUser", type: :feature do
       end
       When 'I click on "Sample Venue"' do
         click_on 'Sample Venue'
+      end
+      Then 'I should not see anything allowing the user to rate' do
+        expect(page).to_not have_content("My Rating:")
+        expect(page).to_not have_content("Sign in to rate this venue!")
       end
       And 'I click "Edit"' do
         click_on 'Edit'

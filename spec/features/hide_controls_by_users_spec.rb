@@ -58,19 +58,48 @@ RSpec.feature "HideControlsByUsers", type: :feature do
         expect(page).to have_content "Destroy"
       end
 
-      And "I can not edit or delete the event as a guest" do
+      And "I can not create a new event as a guest" do
         click_on "Sign Out"
+        visit '/events'
+        expect(page).not_to have_content("New Event")
+      end
+
+      And "I can not edit or delete the event as a guest" do
+        click_on "Mating Season"
+
         expect(page).not_to have_content("New Venue")
         expect(page).not_to have_content("Edit")
         expect(page).not_to have_content("Destroy")
       end
 
+      And "I also can't rate or RSVP to the event as a guest, but I can see a link to sign in where ratings and RSVPs usually are" do
+        expect(page).to_not have_content("My RSVP:")
+        expect(page).to_not have_content("Count Me In")
+        expect(page).to_not have_content("Cancel RSVP")
+        expect(page).to have_content("Sign in to RSVP!")
+
+        expect(page).to_not have_content("My Rating:")
+        expect(page).to have_content("Sign in to rate this event!")
+      end
+
+      And "I can't rate a venue as a guest, but I can see a link to sign in where the ratings usually are" do
+        visit '/venues'
+        click_on 'Mars Attacks'
+
+        expect(page).to_not have_content("My Rating:")
+        expect(page).to have_content("Sign in to rate this venue!")
+      end
+
       And "I can not edit or delete a venue as a guest" do
-        click_on "Venues"
-        expect(page).not_to have_content("New Venue")
         expect(page).not_to have_content("Edit")
         expect(page).not_to have_content("Destroy")
       end
+
+      And "I can't create a venue as a guest" do
+        visit '/venues'
+        expect(page).not_to have_content("New Venue")
+      end
+
       And "I can not manually edit/delete a venue as a guest" do
         id = Venue.find_by(name: "Mars Attacks").id
         visit "/venues/#{id}/edit"
