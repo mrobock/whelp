@@ -42,7 +42,7 @@
           <div> <!-- Search bar begins -->
             <%= form_tag({controller: "welcome", action: "search"}, method: "get") do %>
               <%= text_field_tag :search_params, nil, placeholder: "Search" %>
-							<%= button_tag(:id => "search") do %>
+							<%= button_tag(:id => "search", :title => "Search") do %>
 							<i class="fa fa-search"></i>
 							<% end %>
               <!-- <%= submit_tag 'Search' %> -->
@@ -318,7 +318,7 @@
 			<div class="col-sm-6 text-center text-center-mobile">
 				<h3 class="white">Whelp: Where Everything's Going to the Dogs</h3>
 				<h5 class="light regular light-white">Sign up now to start contributing!</h5>
-				<a href="/my/users/sign_up" class="btn btn-blue ripple trial-button">Sign Up</a>
+				<a href="/my/users/sign_up" class="btn btn-blue ripple trial-button">Sign Up Here</a>
 			</div>
 			<div class="col-sm-3"></div>
 		</div>
