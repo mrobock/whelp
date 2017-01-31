@@ -66,7 +66,8 @@ footer {
 
 #info-right {
   order: 1;
-  flex: 1 0 200px;
+  flex: 1 0 250px;
+  align-self: center;
 }
 
 #info-right > img {
@@ -78,9 +79,10 @@ footer {
 #info-text {
   align-self: flex-start;
   max-width: 100%;
-  text-overflow: ellipsis;
-  white-space: wrap;
-  overflow: scroll;
+  /*text-overflow: ellipsis;
+  white-space: wrap;*/
+  overflow-y: scroll;
+  word-wrap: break-word;
 }
 
 #ratings {

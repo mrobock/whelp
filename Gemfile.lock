@@ -288,6 +288,7 @@ DEPENDENCIES
   fullcalendar-rails
   geocoder
   gmaps4rails
+  hashie (~> 3.4.6)
   jbuilder (~> 2.5)
   jquery-rails
   launchy
