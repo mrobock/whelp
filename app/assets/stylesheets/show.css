@@ -77,6 +77,10 @@ footer {
 
 #info-text {
   align-self: flex-start;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: wrap;
+  overflow: scroll;
 }
 
 #ratings {
@@ -125,4 +129,10 @@ footer {
 
 #rating_div {
   margin-bottom: 10px;
+}
+
+.rating_block {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
 }

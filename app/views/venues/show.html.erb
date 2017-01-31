@@ -60,21 +60,23 @@
             </p>
           <% end %>
           <br>
-          <span class="pull-left">
-            <strong>Average Rating:</strong>
-            <span id="avg_rating"></span>
-          </span>
-            <span class="pull-right">
-              <span id="count_rating"></span>
-              <strong> Rating(s)</strong>
+          <div class="rating_block">
+            <span class="pull-left">
+              <strong>Average Rating:</strong>
+              <span id="avg_rating"></span>
             </span>
+              <span class="pull-right">
+                <span id="count_rating"></span>
+                <strong> Rating(s)</strong>
+              </span>
+            </div>
 
         </div>
       </div> <!-- info-text -->
     </div> <!-- info-left -->
 
     <div id="info-right">
-      <%= link_to image_tag(@venue.image.url(:large)), @venue.image.url %>
+      <%= image_tag @venue.image.url(:large) %>
     </div>
   </div> <!-- class="caption-full" -->
 </div> <!-- class="thumbnail" -->
