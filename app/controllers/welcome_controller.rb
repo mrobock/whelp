@@ -4,6 +4,17 @@ class WelcomeController < ApplicationController
   layout "application_search", only: [:search]
 
   def index
+    if !params[:search_params].nil? && !params[:search_params].to_s.strip.empty?
+      @venue_results = Venue.search(params[:search_params])
+      @event_results = Event.search(params[:search_params])
+      @search_results = @venue_results + @event_results
+    elsif !params[:search_params].nil? &&   params[:search_params].to_s.strip.empty?
+      flash.now[:alert] = "You must type something in the search bar."
+      @search_results = nil
+    end
+
+    @venues = Venue.all
+    @events = Event.all
   end
 
   def map_locations

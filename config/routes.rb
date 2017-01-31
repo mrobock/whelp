@@ -13,8 +13,6 @@ Rails.application.routes.draw do
 
   post 'users/update'
 
-
-
   #generates /events/get_events route for calendar
   resources :events do
     get :get_events, on: :collection
@@ -27,6 +25,8 @@ Rails.application.routes.draw do
 
   resources :events do
     get 'rating_update'
+    get :add_featured
+    get :remove_featured
   end
   resources :venues do
     # map locations for ...

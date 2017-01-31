@@ -110,6 +110,27 @@ class EventsController < ApplicationController
     render :json => events_array.to_json
   end
 
+  def add_featured
+    @event = Event.find(params[:event_id])
+    featured = Event.where(:featured => true)
+    if featured.count > 2
+      flash[:alert] = "Three (3) events are already featured, remove one before adding another. Current Featured Events: (1) #{featured[0].name}, (2) #{featured[1].name}, (3) #{featured[2].name}"
+
+      redirect_to "/events/#{@event.id}"
+    else
+      @event.featured = true
+      @event.save
+      redirect_to "/events/#{@event.id}"
+    end
+  end
+
+  def remove_featured
+    @event = Event.find(params[:event_id])
+    @event.featured = false
+    @event.save
+    redirect_to "/events/#{@event.id}"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
