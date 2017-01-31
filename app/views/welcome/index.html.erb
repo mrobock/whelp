@@ -31,18 +31,21 @@
 			<ul class="nav navbar-nav navbar-right main-nav">
 
         <% if !user_signed_in? %>
-          <li><%= link_to 'Sign Up', new_user_registration_path, { class: 'btn-blue'} %></li>
-					<li><%= link_to 'Sign In', new_user_session_path, { class: 'btn-blue'} %></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path, { class: 'btn btn-blue'} %></li>
+					<li><%= link_to 'Sign In', new_user_session_path, { class: 'btn btn-blue'} %></li>
         <% else %>
           <li><%= link_to "Hi, #{current_user.username}", "/users/#{current_user.id}" %></li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, { method: :delete, data: { toggle: 'modal', target: '#modal1'}, class: 'btn-blue'} %></li>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, { method: :delete, data: { toggle: 'modal', target: '#modal1'}, class: 'btn btn-blue'} %></li>
         <% end %>
 
 				<li>
           <div> <!-- Search bar begins -->
             <%= form_tag({controller: "welcome", action: "search"}, method: "get") do %>
               <%= text_field_tag :search_params, nil, placeholder: "Search" %>
-              <%= submit_tag 'Search' %>
+							<%= button_tag(:id => "search") do %>
+							<i class="fa fa-search"></i>
+							<% end %>
+              <!-- <%= submit_tag 'Search' %> -->
             <% end %>
           </div> <!-- Search bar ends -->
         </li>
@@ -236,13 +239,15 @@
 
 <section id="calendar" class="section">
 	<div class="container">
-		<div class="row title text-center">
-			<h2 class="margin-top white">Upcoming Events</h2>
-			<h4 class="light white">See what dog-friendly events are coming up near you!</h4><br>
-		</div>
+		<div class="row title">
+			<div class="col-md-8 col-md-offset-2 text-center">
+				<h2 class="margin-top white">Upcoming Events</h2>
+				<h4 class="light white">See what dog-friendly events are coming up near you!</h4><br>
 
-		<div class="box-main active text-center" data-img="<%= asset_path('calendar1.jpg') %>">
-			<div id="eventsCalendar" class="text-center"></div>
+				<div class="box-main active text-center" data-img="<%= asset_path('calendar1.jpg') %>">
+					<div id="eventsCalendar" class="text-center"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>

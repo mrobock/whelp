@@ -184,7 +184,7 @@ function createGmap(dataFromServer) {
       markers = handler.addMarkers(dataFromServer);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
-      handler.getMap().setZoom(12)
+      // handler.getMap().setZoom(12)
     }
   );
 };
