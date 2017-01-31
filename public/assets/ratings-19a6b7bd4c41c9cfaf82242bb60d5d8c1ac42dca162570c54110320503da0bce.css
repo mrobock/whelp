@@ -1,0 +1,5 @@
+/* line 1, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/ratings.scss */
+#rating_span {
+  display: inline-block;
+  height: 30px;
+}

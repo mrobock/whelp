@@ -40,26 +40,11 @@
 
 				<li>
           <div> <!-- Search bar begins -->
-            <%= form_tag({controller: "welcome", action: "index"}, method: "get") do %>
+            <%= form_tag({controller: "welcome", action: "search"}, method: "get") do %>
               <%= text_field_tag :search_params, nil, placeholder: "Search" %>
               <%= submit_tag 'Search' %>
             <% end %>
           </div> <!-- Search bar ends -->
-
-          <% if !@search_results.nil? %>
-            <div> <!-- Search results area begins -->
-              <% if @search_results.empty? %>
-                <h4>No results match your search!</h4>
-              <% elsif @search_results.length > 0 %>
-                <h4>Here are your results:</h4>
-                <ul>
-                  <% @search_results.each do |result| %>
-                    <li><%= result.name %></li>
-                  <% end %>
-                </ul>
-              <% end %>
-            </div> <!-- Search results area ends -->
-          <% end %>
         </li>
 			</ul>
 		</div>
@@ -75,7 +60,7 @@
 				<div class="row">
 					<div class="col-md-12 text-center">
 						<h3 class="light white">Whelp!</h3>
-						<h1 class="white typed">A dog lover's site for dog-friendly events and venues.</h1>
+						<h1 class="white typed">A dog lover's site for dog-friendly events and venues</h1>
 						<span class="typed-cursor">|</span>
 						<p>
 						  <div class="fb-share-button" data-href="<%= root_path %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>

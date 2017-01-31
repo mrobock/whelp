@@ -8,7 +8,7 @@
 
     <% if @user.image.file? %>
     <p>
-     <%= link_to image_tag(@user.image.url(:medium)), @user.image.url %>
+     <a><%= image_tag(@user.image.url(:medium)) %></a>
      <% else %>
      <%= link_to image_tag('profile.jpeg') %>
     </p>
@@ -92,8 +92,8 @@
 <br>
 
 <!-- Make sure that the first condition refers to this user's ownership -->
-<% if !current_user.nil? && @user.id == current_user.id %>
+<% if !current_user.nil? && @user == current_user %>
   <%= link_to "Edit", edit_user_registration_path%>
-<% elsif @ability.can?(:manage, :all) %>
+<% elsif @ability.can?(:rud, User) %>
   <%= link_to 'Edit', edit_user_path(@user) %>
 <% end %>

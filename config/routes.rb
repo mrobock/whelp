@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get '/map_locations' => 'welcome#map_locations'
-
+  get '/search' => 'welcome#search'
   resources :ratings do
     get 'get_rating'
     get 'rating_update'
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   # Devise routes
-  devise_for :users, path_prefix: 'my', controllers: { registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, path_prefix: 'my', controllers: { registrations: 'devise/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users
 
