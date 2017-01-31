@@ -119,8 +119,6 @@ RSpec.feature "LoggingIn", type: :feature do
        Given "I am registering a user" do
          visit '/my/users/sign_up'
          expect(page).to have_selector(:link_or_button, 'Sign in with Twitter')
-         # click_link 'Sign in with Facebook'
-         # expect(page).to have_content("Successfully authenticated from Facebook account")
        end
        Then "I am a registered user" do
          visit '/my/users/sign_up'
