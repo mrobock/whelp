@@ -13,6 +13,8 @@ class Venue < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { in: 5..20 }
   validates :description, presence: true, length: { in: 10..500 }
 
+  resourcify
+
   #Adding Gmaps via geocoder
   geocoded_by :full_address
   after_validation :geocode

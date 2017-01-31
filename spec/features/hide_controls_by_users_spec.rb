@@ -34,11 +34,11 @@ RSpec.feature "HideControlsByUsers", type: :feature do
         expect(page).to have_content("Venue was successfully created")
       end
 
-      Then "I can edit/delete my venue as the logged in user" do
-        visit "/venues"
-        expect(page).to have_content "Edit"
-        expect(page).to have_content "Destroy"
-      end
+      # Then "I can edit/delete my venue as the logged in user" do
+      #   visit "/venues"
+      #   expect(page).to have_content "Edit"
+      #   expect(page).to have_content "Destroy"
+      # end
 
       Then "I can add a new event" do
         visit "/events"

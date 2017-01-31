@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "ManageUser", type: :feature do
   context "Acting as an admin" do
-    Steps "Registering and working with an admin user" do
+    Steps "Registering as an admin user and working with other users" do
       Given "I have created two default users" do
         visit "/"
 
@@ -88,6 +88,87 @@ RSpec.feature "ManageUser", type: :feature do
           expect(page).to have_content("McTestface")
           expect(page).to have_content("test3@test.com")
         end
+      end
+    end
+
+    Steps "Registering as an admin user and working with Venues" do
+      Given "I have created default user" do
+        visit "/"
+
+        click_link "Sign Up"
+
+        expect(page).to have_content("Sign up")
+        fill_in 'user[username]', with: "test1"
+        fill_in 'user[email]', with: "test1@test.com"
+        fill_in 'user[password]', with: "password1"
+        fill_in 'user[password_confirmation]', with: "password1"
+        fill_in "First name", with: "test"
+        fill_in "Last name", with: "one"
+
+        click_button 'Sign up'
+        expect(page).to have_content("Welcome! You have signed up successfully.")
+      end
+      And 'I have created a venue' do
+        visit '/venues'
+        click_on 'Create New Venue'
+
+        fill_in 'venue[name]', with: "Sample Venue"
+        fill_in 'venue[description]', with: "Some description of this particular venue"
+
+        click_on 'Create Venue'
+      end
+      And "I have created a user and given them an admin role" do
+        click_on 'Sign Out'
+        visit "/"
+
+        click_link "Sign Up"
+
+        expect(page).to have_content("Sign up")
+        fill_in 'user[username]', with: "admin"
+        fill_in 'user[email]', with: "admin@test.com"
+        fill_in 'user[password]', with: "password"
+        fill_in 'user[password_confirmation]', with: "password"
+        fill_in "First name", with: "admin"
+        fill_in "Last name", with: "admin"
+        attach_file('user[image]', 'spec/images/profile.jpeg')
+
+        click_button 'Sign up'
+        expect(page).to have_content("Welcome! You have signed up successfully.")
+
+        user = User.find_by(username: "admin")
+        user.remove_role :default
+        user.add_role :admin
+        expect(user.has_role? :default).to eq false
+        expect(user.has_role? :admin).to eq true
+      end
+      When 'I navigate to the venues page' do
+        visit '/venues'
+      end
+      Then 'I should see the venue name that the default user made, along with "Edit" and a "Destroy" links' do
+        expect(page).to have_content("Sample Venue")
+      end
+      And 'I should not see the "Create New Venue" button' do
+        expect(page).to_not have_content("Create New Venue")
+      end
+      When 'I click on "Sample Venue"' do
+        click_on 'Sample Venue'
+      end
+      And 'I click "Edit"' do
+        click_on 'Edit'
+      end
+      And 'I change the title and update' do
+        fill_in 'venue[name]', with: "Example Venue"
+        click_on 'Update Venue'
+      end
+      Then 'I should see the updated venue name' do
+        expect(page).to have_content("Example Venue")
+      end
+      When 'I click the "Destroy" link' do
+        click_on 'Destroy'
+      end
+      Then "I should no longer see the venue's data on the page" do
+        expect(page).to_not have_content("Example Venue")
+        expect(page).to_not have_content("Edit | Destroy")
       end
     end
   end
