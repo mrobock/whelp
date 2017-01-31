@@ -10958,7 +10958,7 @@ section {
   }
 }
 /* line 471, /Users/cmfasulo/Documents/whelp/app/assets/stylesheets/welcome/cardio.scss */
-.services {
+.featured {
   margin: 40px 0;
 }
 
@@ -16657,7 +16657,7 @@ td,
 th {
   padding: 0;
 }
-/* 
+/*
  *  Core Owl Carousel CSS File
  *  v1.3.3
  */
@@ -16693,7 +16693,7 @@ th {
   -webkit-transition: height 500ms ease-in-out;
   transition: height 500ms ease-in-out;
 }
-  
+
 .owl-carousel .owl-item{
   float: left;
 }
@@ -16717,7 +16717,7 @@ th {
 }
 
 /* mouse grab icon */
-.grabbing { 
+.grabbing {
     cursor:url(grabbing.png) 8 8, move;
 }
 
@@ -16733,7 +16733,7 @@ th {
 }
 
 /*
-*   Owl Carousel Owl Demo Theme 
+*   Owl Carousel Owl Demo Theme
 * v1.3.3
 */
 
@@ -17063,7 +17063,7 @@ NOTE: use percentage font sizes or else old IE chokes
 
 /* Firefox has an annoying inner border */
 .fc button::-moz-focus-inner { margin: 0; padding: 0; }
-	
+
 .fc-state-default { /* non-theme */
 	border: 1px solid;
 }
@@ -17086,7 +17086,7 @@ NOTE: use percentage font sizes or else old IE chokes
 	margin: 0 .2em;
 	vertical-align: middle;
 }
-	
+
 /*
   button states
   borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)
@@ -17307,7 +17307,7 @@ a[data-goto]:hover {
 	border-right: 0 hidden transparent;
 
 	/* no bottom borders on rows */
-	border-bottom: 0 hidden transparent; 
+	border-bottom: 0 hidden transparent;
 }
 
 .fc-row:first-child table {
@@ -17731,7 +17731,7 @@ a.fc-more:hover {
 .fc .fc-toolbar > * > :first-child { /* extra precedence to override button border margins */
 	margin-left: 0;
 }
-	
+
 /* title text */
 
 .fc-toolbar h2 {
@@ -17748,7 +17748,7 @@ a.fc-more:hover {
 .fc-toolbar .ui-state-hover {
 	z-index: 2;
 }
-	
+
 .fc-toolbar .fc-state-down {
 	z-index: 3;
 }

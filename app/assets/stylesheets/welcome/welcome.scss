@@ -50,13 +50,6 @@ body {
 	left: calc(50% - 32px);
 }
 
-.preloader div {
-	display: none;
-	/* Preload the Second Pricing Image */
-	background: image-url('pricing2.jpg') no-repeat 9999px 9999px;
-	background-position: 9999px 9999px;
-}
-
 /* Typography */
 
 p {
@@ -483,7 +476,7 @@ section {
 	}
 }
 
-.services {
+.featured {
 	margin: 40px 0;
 }
 
