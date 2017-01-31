@@ -84,83 +84,47 @@
 				<div class="intro-table intro-table-first">
 					<h5 class="white heading">Upcoming Events</h5>
 					<div class="owl-carousel owl-schedule bottom">
+            <div class="item">
+						<% (0..2).each do |i| %>
+							<% if !@upcoming[i].nil? %>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white"><%= link_to "#{@upcoming[i].name}", "/events/#{@upcoming[i].id}" %></h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white"><%= @upcoming[i].date %></h5>
+									</div>
+								</div>
+							<% end %>
+						<% end %>
+            </div>
 						<div class="item">
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 1</h5>
+						<% (3..5).each do |i| %>
+							<% if !@upcoming[i].nil? %>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white"><%= link_to "#{@upcoming[i].name}", "/events/#{@upcoming[i].id}" %></h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white"><%= @upcoming[i].date %></h5>
+									</div>
 								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 2</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 3</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
+							<% end %>
+						<% end %>
 						</div>
 						<div class="item">
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 4</h5>
+						<% (6..8).each do |i| %>
+							<% if !@upcoming[i].nil? %>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white"><%= link_to "#{@upcoming[i].name}", "/events/#{@upcoming[i].id}" %></h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white"><%= @upcoming[i].date %></h5>
+									</div>
 								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 5</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 6</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 7</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 8</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
-							<div class="schedule-row row">
-								<div class="col-xs-6">
-									<h5 class="regular white">Event 9</h5>
-								</div>
-								<div class="col-xs-6 text-right">
-									<h5 class="white">Date</h5>
-								</div>
-							</div>
+							<% end %>
+						<% end %>
 						</div>
 					</div>
 				</div>
