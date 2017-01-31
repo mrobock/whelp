@@ -46,6 +46,9 @@ gem 'textacular'
 gem 'cancancan'
 gem 'rolify'
 
+# Version control of Hashie
+gem 'hashie', '~> 3.4.6'
+
 # Devise for login authentication
 gem 'devise'
 # Omniauth for Twitter and Facebook logins

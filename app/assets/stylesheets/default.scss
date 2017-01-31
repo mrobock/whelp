@@ -23,3 +23,9 @@ footer {
 .table-striped {
   width: 100%;
 }
+
+.search_div {
+  text-overflow: ellipsis;
+  white-space: wrap;
+  overflow: scroll;
+}
