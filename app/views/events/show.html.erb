@@ -129,7 +129,7 @@
 
         <ol>
         <% Rsvp.where(event_id: @event.id).each do |attendee| %>
-          <li><%= link_to "#{attendee.user.first_name} #{attendee.user.last_name}", "/users/#{attendee.id}" %></li>
+          <li><%= link_to "#{attendee.user.first_name} #{attendee.user.last_name}", "/users/#{attendee.user.id}" %></li>
         <% end %>
         </ol>
       </p>

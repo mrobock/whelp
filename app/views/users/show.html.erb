@@ -97,8 +97,6 @@
   <% else %>
     <%= link_to 'Create a new event', new_event_path %>
 <% end %>
-<br>
-
 
   <h4>My RSVPs:</h4>
   <% if !@user_rsvps.nil? && !@user_rsvps.empty? %>
@@ -112,4 +110,3 @@
 <% else %>
   <%= link_to 'RSVP to some events', events_path %>
 <% end %>
-<br>
