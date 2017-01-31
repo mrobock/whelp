@@ -45,6 +45,9 @@ footer {
 .caption {
   /*height: 130px;
   overflow: hidden;*/
+  text-overflow: ellipsis;
+  white-space: wrap;
+  overflow: scroll;
 }
 
 .caption h4 {
@@ -64,6 +67,7 @@ footer {
 .thumbnail {
   padding: 0;
   padding-top: 10px;
+  height: 250px;
 }
 
 .thumbnail .caption-full {

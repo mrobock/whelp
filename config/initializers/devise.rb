@@ -250,7 +250,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, '1215140515264893', '5f690f6fc2503c161b6506ba0a4b203a', image_size: { width: 300, height: 300 }, secure_image_url: true
 
-
+  config.omniauth :twitter, "SdJeMyMVYj5itFuYSAo8ehFsX", "Xkr5QpTRYTT6peEYuuPfLMbYFRU5TH0T3tdI9SPiZzAQbB6kYQ"
 
 
   # ==> Warden configuration
@@ -275,6 +275,6 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-  config.omniauth :twitter, "SdJeMyMVYj5itFuYSAo8ehFsX", "Xkr5QpTRYTT6peEYuuPfLMbYFRU5TH0T3tdI9SPiZzAQbB6kYQ"
+
 
 end

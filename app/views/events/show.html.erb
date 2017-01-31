@@ -78,19 +78,21 @@
           </p>
         <% end %>
         <br>
-        <p class="pull-left">
-          <strong>Average Rating:</strong>
-          <span id="avg_rating"></span>
-        </p>
-        <p class="pull-right">
-          <span id="count_rating"></span>
-          <strong> Rating(s)</strong>
-        </p>
+        <div class="rating_block">
+          <p class="pull-left">
+            <strong>Average Rating:</strong>
+            <span id="avg_rating"></span>
+          </p>
+          <p class="pull-right">
+            <span id="count_rating"></span>
+            <strong> Rating(s)</strong>
+          </p>
+        </div> <!-- rating_block div -->
       </div> <!-- ratings -->
     </div> <!-- class="info-left" -->
 
     <div id="info-right">
-      <a><%= image_tag @event.image.url(:large) %></a>
+      <%= image_tag @event.image.url(:large) %>
     </div>
 
     <div id="rsvp">
