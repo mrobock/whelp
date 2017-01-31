@@ -206,6 +206,10 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 	color: #00a8ff;
 }
 
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: #ff7f00;
+}
+
 nav button {
   background-color: #00a8ff;
   color: #fff;
