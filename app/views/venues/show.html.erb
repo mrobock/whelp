@@ -46,8 +46,10 @@
         </p>
         <br>
         <div id="ratings">
+
           <% if !current_user.nil? && @ability.can?(:create, Rating) %>
             <%= render 'ratings/form', rating: @rating %>
+
             <p class="pull-left">
               <strong>My Rating:</strong>
               <span id="rating_span">

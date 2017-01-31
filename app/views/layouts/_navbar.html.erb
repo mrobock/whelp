@@ -9,17 +9,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Whelp!</a>
+        <a class="navbar-brand" href="/"><%= image_tag("logo.png", alt: "", onmouseover: "this.src='#{asset_path("logo-orange.png")}'", onmouseout: "this.src='#{asset_path("logo.png")}'") %></a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <li
-        <% if request.original_url.ends_with?('/') %>
-          class="active"
-        <% end %>
-        ><%= link_to 'Home', root_path %>
-        </li>
+        <li><%= link_to 'Home', root_path %></li>
 
         <li
         <% if request.original_url.ends_with?('/venues') %>
@@ -47,7 +42,9 @@
           <div> <!-- Search bar begins -->
             <%= form_tag({controller: "/welcome", action: "search"}, method: "get") do %>
               <%= text_field_tag :search_params, nil, placeholder: "Search" %>
-              <%= submit_tag 'Search' %>
+              <%= button_tag(:id => "search", :title => "Search") do %>
+							<i class="fa fa-search"></i>
+							<% end %>
             <% end %>
           </div> <!-- Search bar ends -->
         </li>

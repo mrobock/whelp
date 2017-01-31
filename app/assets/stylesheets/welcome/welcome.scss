@@ -557,6 +557,8 @@ section {
 .team .avatar {
 	position: relative;
 	z-index: 2;
+  height: 120px;
+  width: 120px;
 	margin-top: -60px;
 	border-radius: 50%;
 }
@@ -1147,4 +1149,11 @@ footer .social-footer li:hover a {
 	.calendars .calendar .box-second {
 		padding-top: 0;
 	}
+}
+
+// Custom
+
+.team.text-center {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
