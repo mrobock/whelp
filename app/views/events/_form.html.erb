@@ -36,9 +36,12 @@
     <%= f.file_field :image %>
   </div>
 
-  <div class="field">
-    <input type="hidden" value="<%= current_user.id %>" name="event[user_id]">
-  </div>
+  <% ability = Ability.new(current_user) %>
+  <% if ability.can?(:create, Event) %>
+    <div class="field">
+      <input type="hidden" value="<%= current_user.id %>" name="event[user_id]">
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

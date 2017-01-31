@@ -30,7 +30,7 @@
     </div>
   <% end %>
 
-  <% if user_signed_in? %>
+  <% if !current_user.nil? && @ability.can?(:create, Event) %>
     <div class="col-sm-4 col-lg-4 col-md-4">
         <h4><%= link_to 'New Event', new_event_path %></h4>
         <p>Planning an exiciting new dogapalooza? Click the button below to get started!</p>

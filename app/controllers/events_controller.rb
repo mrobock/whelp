@@ -2,15 +2,24 @@ class EventsController < ApplicationController
   layout "index-show", only: [:show, :index]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to '/events', :alert => exception.message
+  end
+
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
+    @ability = Ability.new(current_user)
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    # Set ability
+    @ability = Ability.new(current_user)
+
+    # Event review
     @event_review = EventReview.new
     @event_reviews = EventReview.where(event_id: @event.id)
 
@@ -44,7 +53,10 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    if current_user == @event.user
+    # Set ability
+    @ability = Ability.new(current_user)
+
+    if !current_user.nil? && @ability.can(:manage, @event, user_id: current_user.id)
       @event = Event.find(params[:id])
       @venues_for_select = Venue.all.map do |venue|
         [venue.name, venue.id]
@@ -91,7 +103,8 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    if current_user != @event.user
+    @ability = Ability.new(current_user)
+    if !@ability.can(:manage, @event, user_id: current_user.id)
       redirect_to 'events'
     end
     @event.destroy

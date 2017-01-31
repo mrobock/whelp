@@ -91,7 +91,7 @@ RSpec.feature "ManageUser", type: :feature do
       end
     end
 
-    Steps "Registering as an admin user and working with Venues" do
+    Steps "Registering as an admin user and working with Venues and Events" do
       Given "I have created default user" do
         visit "/"
 
@@ -117,6 +117,15 @@ RSpec.feature "ManageUser", type: :feature do
 
         click_on 'Create Venue'
       end
+      And 'I have created an event' do
+        visit '/events'
+        click_on 'Create New Event'
+
+        fill_in 'event[name]', with: "Sample Event"
+        fill_in 'event[description]', with: "Some description of this particular event"
+
+        click_on 'Create Event'
+      end
       And "I have created a user and given them an admin role" do
         click_on 'Sign Out'
         visit "/"
@@ -141,10 +150,46 @@ RSpec.feature "ManageUser", type: :feature do
         expect(user.has_role? :default).to eq false
         expect(user.has_role? :admin).to eq true
       end
+
+      When 'I navigate to the events page' do
+        visit '/events'
+      end
+      Then 'I should see the event name that the default user made' do
+        expect(page).to have_content("Sample Event")
+      end
+      And 'I should not see the "Create New Event" button' do
+        expect(page).to_not have_content("Create New Event")
+      end
+      When 'I click on "Sample Event"' do
+        click_on 'Sample Event'
+      end
+      Then 'I should not see anything allowing the user to RSVP' do
+        expect(page).to_not have_content("My RSVP:")
+        expect(page).to_not have_content("Count Me In")
+        expect(page).to_not have_content("Cancel RSVP")
+        expect(page).to_not have_content("Sign in to RSVP!")
+      end
+      When 'I click "Edit"' do
+        click_on 'Edit'
+      end
+      And 'I change the title and update' do
+        fill_in 'event[name]', with: "Example Event"
+        click_on 'Update Event'
+      end
+      Then 'I should see the updated venue name' do
+        expect(page).to have_content("Example Event")
+      end
+      When 'I click the "Destroy" link' do
+        click_on 'Destroy'
+      end
+      Then "I should no longer see the event's data on the page" do
+        expect(page).to_not have_content("Example Venue")
+      end
+
       When 'I navigate to the venues page' do
         visit '/venues'
       end
-      Then 'I should see the venue name that the default user made, along with "Edit" and a "Destroy" links' do
+      Then 'I should see the venue name that the default user made' do
         expect(page).to have_content("Sample Venue")
       end
       And 'I should not see the "Create New Venue" button' do
@@ -168,7 +213,6 @@ RSpec.feature "ManageUser", type: :feature do
       end
       Then "I should no longer see the venue's data on the page" do
         expect(page).to_not have_content("Example Venue")
-        expect(page).to_not have_content("Edit | Destroy")
       end
     end
   end
