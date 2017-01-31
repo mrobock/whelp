@@ -8,7 +8,7 @@
   <% @venues.each do |venue| %>
     <div class="col-sm-4 col-lg-4 col-md-4">
       <div class="thumbnail">
-        <%= link_to image_tag(venue.image.url(:small)), venue.image.url %>
+        <a><%= image_tag(venue.image.url(:small)) %></a>
         <div class="caption">
           <h4><%= link_to "#{venue.name}", venue %></h4>
           <p><strong>Address:</strong><br>

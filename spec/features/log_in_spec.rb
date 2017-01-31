@@ -114,13 +114,11 @@ RSpec.feature "LoggingIn", type: :feature do
         expect(page).to have_content("New Event")
       end
     end
-    
+
     Steps "I am going to the Landing page, registering, and logging in" do
        Given "I am registering a user" do
          visit '/my/users/sign_up'
-        expect(page).to have_selector(:link_or_button, 'Sign in with Twitter')
-         # click_link 'Sign in with Facebook'
-         # expect(page).to have_content("Successfully authenticated from Facebook account")
+         expect(page).to have_selector(:link_or_button, 'Sign in with Twitter')
        end
        Then "I am a registered user" do
          visit '/my/users/sign_up'
@@ -136,4 +134,77 @@ RSpec.feature "LoggingIn", type: :feature do
      end
    end
 
+   context 'On the events page, signing in' do
+     Steps "I am on the events page, I can sign in and be taken back to the events page" do
+      Given "I am signing in" do
+        visit '/events'
+      Then 'I can sign in' do
+        click_link 'Sign In'
+      end
+      Then 'I see the log in page' do
+        visit '/my/users/sign_in'
+        click_on 'Log in'
+        expect(page).to have_content("Log in")
+      end
+      Then "I am taken back to the events page" do
+        visit '/events'
+        end
+      end
+    end
+  end
+  context 'On the events show page, signing in' do
+    Steps "I am on the events page, I can sign in and be taken back to the events show page" do
+     Given "I am signing in" do
+       visit '/events/'
+     Then 'I can sign in' do
+       click_link 'Sign In'
+     end
+     Then 'I see the log in page' do
+       visit '/my/users/sign_in'
+       click_on 'Log in'
+       expect(page).to have_content("Log in")
+     end
+     Then "I am taken back to the events show page" do
+       visit '/events/'
+       end
+     end
+   end
+ end
+ context 'On the venues page, signing in' do
+   Steps "I am on the venues page, I can sign in and be taken back to the venues page" do
+    Given "I am signing in" do
+      visit '/venues'
+    Then 'I can sign in' do
+      click_link 'Sign In'
+    end
+    Then 'I see the log in page' do
+      visit '/my/users/sign_in'
+      click_on 'Log in'
+      expect(page).to have_content("Log in")
+    end
+    Then "I am taken back to the venues page" do
+      visit '/venues'
+      end
+    end
+  end
+ end
+ context 'On the venues show page, signing in' do
+  Steps "I am on the venues page, I can sign in and be taken back to the venues show page" do
+   Given "I am signing in" do
+     visit '/venues/'
+   Then 'I can sign in' do
+     click_link 'Sign In'
+   end
+   Then 'I see the log in page' do
+     visit '/my/users/sign_in'
+     click_on 'Log in'
+     expect(page).to have_content("Log in")
+   end
+   Then "I am taken back to the venues show page" do
+     visit '/venues/'
+     end
+   end
+ end
+ end
+# end of rspec feature
 end
