@@ -10,7 +10,7 @@ class User < ApplicationRecord
   # resourcify
 
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
-  
+
   # validates :first_name, :last_name, presence: true
   validates :first_name, :last_name, presence: true
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "profile.jpeg"
@@ -48,7 +48,8 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     if auth.provider == "facebook"
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      # was where(provider: auth.provider, uid: auth.uid).first_or_create do |user|)
+      where(email: auth.info.email).first_or_create do |user|
         user.email = auth.info.email
         user.password = Devise.friendly_token[0,20]
           # Helper methods to split info coming in into username, first_name, last_name etc.
@@ -68,7 +69,8 @@ class User < ApplicationRecord
         # user.skip_confirmation!
       end
     else
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      # Was where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      where(username: auth.info.nickname).first_or_create do |user|
         user.provider = auth.provider
         user.uid = auth.uid
         #if the email is not find from twitter, add in the user id as the twitter email.
