@@ -68,7 +68,7 @@ class User < ApplicationRecord
         # user.skip_confirmation!
       end
     else
-      where((email: auth.info.email || "#{auth.uid}@twitter.com") || username: auth.info.nickname).first_or_create do |user|
+      where((email: "#{auth.uid}@twitter.com", username: auth.info.nickname).first_or_create do |user|
         user.provider = auth.provider
         user.uid = auth.uid
         #if the email is not find from twitter, add in the user id as the twitter email.
