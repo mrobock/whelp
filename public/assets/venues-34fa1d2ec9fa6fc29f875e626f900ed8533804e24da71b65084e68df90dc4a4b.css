@@ -1,0 +1,10 @@
+/* line 5, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/venues.scss */
+.venue-image {
+  height: 250px;
+  width: 250px;
+}
+
+/* line 10, /Users/max/Documents/Programming/whelp/app/assets/stylesheets/venues.scss */
+#banner {
+  background-image: url("/assets/paddle-4cde0c013d35e18b7f87df2f112c3696b7b5f33beb1267c1bf24e310fbd4a3bf.jpg");
+}
