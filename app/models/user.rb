@@ -48,6 +48,7 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     if auth.provider == "facebook"
+      # was where(provider: auth.provider, uid: auth.uid).first_or_create do |user|)
       where(email: auth.info.email).first_or_create do |user|
         user.email = auth.info.email
         user.password = Devise.friendly_token[0,20]
@@ -68,7 +69,8 @@ class User < ApplicationRecord
         # user.skip_confirmation!
       end
     else
-      where((email: "#{auth.uid}@twitter.com", username: auth.info.nickname).first_or_create do |user|
+      # Was where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      where(username: auth.info.nickname).first_or_create do |user|
         user.provider = auth.provider
         user.uid = auth.uid
         #if the email is not find from twitter, add in the user id as the twitter email.
