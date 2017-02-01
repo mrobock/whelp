@@ -112,8 +112,10 @@
           <p>
           <%= comment.text %>
           </p>
-          <%= link_to 'Edit', edit_comment_path(comment) %> |
-          <%= link_to 'Destroy', comment_path(comment), method: "delete" %>
+          <% if current_user == comment.user %>
+            <%= link_to 'Edit', edit_comment_path(comment) %> |
+            <%= link_to 'Destroy', comment_path(comment), method: "delete" %>
+          <% end %>
         </div>
       </div>
       <hr>
