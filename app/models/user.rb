@@ -58,11 +58,12 @@ class User < ApplicationRecord
           # auth.info.name.gsub(/\s+/, "")   # assuming the user model has a name
         user.first_name = name_array[0]
         user.last_name = name_array[1]
+        user.image = URI.parse(auth.info.image) # assuming the user model has an image
+
 
         # uri = URI.parse(auth.info.image) if auth.info.image?
         # uri.scheme = 'https'
         # user.image = uri
-        user.image = URI.parse(auth.info.image) # assuming the user model has an image
         # If you are using confirmable and the provider(s) you use validate emails,
         # uncomment the line below to skip the confirmation emails.
         # user.skip_confirmation!
