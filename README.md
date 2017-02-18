@@ -1,6 +1,29 @@
 # README
 
-To Get Started:
+## Whelp
+#### (Deployed as BarksAndRec)
+
+### Made Using:
+
+* Ruby on Rails (5.0 & 2.3)
+
+* JavaScript
+
+* jQuery
+
+* PostgreSQL
+
+* HTML
+
+* CSS
+
+* Bootstrap
+
+* Rspec
+
+* Capybara
+
+### To Install:
 
 * Create duplicate of "database_example.yml" file in "/config"
 
@@ -25,3 +48,24 @@ To Get Started:
 
 
 * Open your favorite internet browser and enter 'localhost:3000' into the url to confirm that you're good to go!
+
+### Gems:
+
+* Devise
+
+* Rollify
+
+* CanCan
+
+* Omniauth
+
+* Textacular
+
+* Geocode
+
+* Gmaps4Rails
+
+* Fullcalendar
+
+### To Test:
+1. Rake!
