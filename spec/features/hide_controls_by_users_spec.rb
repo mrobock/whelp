@@ -45,6 +45,7 @@ RSpec.feature "HideControlsByUsers", type: :feature do
         click_on "New Event"
         fill_in "Name", with: "Mating Season"
         select "Mars", from: "Venue"
+        select (DateTime.now.year+1), from: 'event_date_1i'
         click_on "Create Event"
       end
 

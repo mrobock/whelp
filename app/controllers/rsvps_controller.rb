@@ -29,9 +29,12 @@ class RsvpsController < ApplicationController
       @rsvp = Rsvp.new(rsvp_params)
 
       respond_to do |format|
-        if @rsvp.save
+        if @rsvp.event.date >= DateTime.now && @rsvp.save
           format.html { redirect_to '/events/' + rsvp_params[:event_id].to_s, notice: 'RSVP was successfully created.' }
           format.json { render :show, status: :created, location: @rsvp }
+        elsif @rsvp.event.date < DateTime.now
+          format.html { redirect_to '/events/' + rsvp_params[:event_id].to_s, alert: 'RSVP cannot be created.' }
+          format.json { render json: @rsvp.errors, status: :unprocessable_entity }
         else
           format.html { render :new }
           format.json { render json: @rsvp.errors, status: :unprocessable_entity }
@@ -43,9 +46,12 @@ class RsvpsController < ApplicationController
   # PATCH/PUT /rsvps/1.json
   def update
     respond_to do |format|
-      if @rsvp.update(rsvp_params)
+      if @rsvp.event.date >= DateTime.now && @rsvp.update(rsvp_params)
         format.html { redirect_to '/events/' + rsvp_params[:event_id], notice: 'RSVP was successfully updated.' }
         format.json { render :show, status: :ok, location: @rsvp }
+      elsif @rsvp.event.date < DateTime.now
+        format.html { redirect_to '/events/' + rsvp_params[:event_id].to_s, alert: 'RSVP cannot be updated.' }
+        format.json { render json: @rsvp.errors, status: :unprocessable_entity }
       else
         format.html { render :edit }
         format.json { render json: @rsvp.errors, status: :unprocessable_entity }
@@ -57,10 +63,14 @@ class RsvpsController < ApplicationController
   # DELETE /rsvps/1.json
   def destroy
     @delete_rsvp = Rsvp.find_by(user_id: current_user.id, event_id: params[:id])
-    @delete_rsvp.destroy
     respond_to do |format|
-      format.html { redirect_to '/events/' + params[:id], notice: 'RSVP was successfully destroyed.' }
-      format.json { head :no_content }
+      if @delete_rsvp.event.date >= DateTime.now && @delete_rsvp.destroy
+        format.html { redirect_to '/events/' + params[:id], notice: 'RSVP was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to '/events/' + params[:id].to_s, alert: 'RSVP cannot be destroyed.' }
+        format.json { render json: @rsvp.errors, status: :unprocessable_entity }
+      end
     end
   end
 

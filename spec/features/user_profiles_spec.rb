@@ -89,6 +89,7 @@ RSpec.feature "UserProfiles", type: :feature do
         fill_in "Name", with: "Mating Season"
         fill_in "Description", with: "Mating Season 123333333333"
         select "Mars", from: "Venue"
+        select (DateTime.now.year+1), from: 'event_date_1i'
         click_on "Create Event"
       end
 

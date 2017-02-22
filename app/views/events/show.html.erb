@@ -98,23 +98,32 @@
       <!-- form for user to rsvp to an event -->
       <% if !current_user.nil? && @ability.can?(:create, Rsvp) && Rsvp.find_by(user_id: current_user.id, event_id: @event.id).nil? %>
 
-        <%= form_for Rsvp.new, url: rsvps_path, method: :post do |f| %>
-          <p><strong>My RSVP:</strong>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :event_id, value: params[:id] %>
-            <%= f.submit 'Count Me In', :class => 'btn btn-success' %>
-          </p>
+        <% if @event.date >= DateTime.now %>
+          <%= form_for Rsvp.new, url: rsvps_path, method: :post do |f| %>
+            <p><strong>My RSVP:</strong>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :event_id, value: params[:id] %>
+              <%= f.submit 'Count Me In', :class => 'btn btn-success' %>
+            </p>
+          <% end %>
+        <% else %>
+          <p>Sorry, it's too late to RSVP to this event.</p>
         <% end %>
 
       <!-- form to delete user rsvp -->
       <% elsif !current_user.nil? && @ability.can?(:create, Rsvp) && !Rsvp.find_by(user_id: current_user.id, event_id: @event.id).nil? %>
 
-        <%= form_for Rsvp.find_by(user_id: current_user.id, event_id: params[:id]), url: rsvp_path, method: :delete do |f| %>
+        <% if @event.date >= DateTime.now %>
+          <%= form_for Rsvp.find_by(user_id: current_user.id, event_id: params[:id]), url: rsvp_path, method: :delete do |f| %>
+            <p><strong>My RSVP:</strong>
+              <%= f.submit "Cancel RSVP", :class => 'btn btn-danger' %>
+            </p>
+          <% end %>
+        <% else %>
           <p><strong>My RSVP:</strong>
-            <%= f.submit "Cancel RSVP", :class => 'btn btn-danger' %>
-          </p>
+          <button type = "button" class = "btn btn-info">RSVPd</button>
         <% end %>
-      <% elsif current_user.nil? %>
+      <% elsif @event.date >= DateTime.now && current_user.nil? %>
         <p><%= link_to "Sign in to RSVP!", new_user_session_path %></p>
       <% end %>
 

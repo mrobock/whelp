@@ -108,6 +108,7 @@ class EventsController < ApplicationController
       redirect_to 'events'
     end
     @event.ratings.delete_all
+    Rsvp.where(event_id: @event.id).delete_all
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
