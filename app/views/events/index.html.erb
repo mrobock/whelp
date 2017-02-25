@@ -11,7 +11,7 @@
         <a><%=image_tag(event.image.url(:small)) %></a>
         <div class="caption">
           <h4><%= link_to "#{event.name}", event %></h4>
-          <h6><%= upcase_first date_to_s(event.created_at) %></h6>
+          <h6><%= upcase_first date_to_s(event.date) %></h6>
           <p><strong>Venue:</strong> <%= link_to "#{event.venue.name}", "/venues/#{event.venue_id}" %></p>
           <p><strong>Description:</strong><br><%= event.description %></p>
 
