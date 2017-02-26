@@ -12,8 +12,8 @@ class User < ApplicationRecord
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
 
   validates :first_name, :last_name, presence: true
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "profile.jpeg"
 
+  has_attached_file :image, styles: { small: "80x64#", med: "120x80#", large: "280x180#", xlarge: "400x400#" }, :default_url => "profile_:style.jpeg"
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
@@ -58,11 +58,12 @@ class User < ApplicationRecord
           # auth.info.name.gsub(/\s+/, "")   # assuming the user model has a name
         user.first_name = name_array[0]
         user.last_name = name_array[1]
+        user.image = URI.parse(auth.info.image) # assuming the user model has an image
+
 
         # uri = URI.parse(auth.info.image) if auth.info.image?
         # uri.scheme = 'https'
         # user.image = uri
-        user.image = URI.parse(auth.info.image) # assuming the user model has an image
         # If you are using confirmable and the provider(s) you use validate emails,
         # uncomment the line below to skip the confirmation emails.
         # user.skip_confirmation!
