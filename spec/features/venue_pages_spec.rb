@@ -63,7 +63,7 @@ RSpec.feature "VenuePages", type: :feature do
         fill_in 'venue[state]', with: "CA"
         fill_in 'venue[zip]', with: "92109"
         attach_file('venue[image]', 'spec/images/foo.jpg')
-        click_button 'Create Venue'
+        click_button 'Submit Venue'
         expect(page).to have_content("Joe's Venue")
         expect(page).to have_content("Description: Joe's Awesome Venue")
       end
@@ -71,9 +71,9 @@ RSpec.feature "VenuePages", type: :feature do
         click_on 'Edit'
       end
 
-      And 'I attach an image file and click "Update Venue"' do
+      And 'I attach an image file and click "Submit Venue"' do
         attach_file('venue[image]', 'spec/images/foo.jpg')
-        click_on "Update Venue"
+        click_on "Submit Venue"
       end
 
       Then 'I can see the picture' do
