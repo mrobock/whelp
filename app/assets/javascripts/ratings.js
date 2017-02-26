@@ -4,90 +4,48 @@ $(document).ready(function() {
   //1 Star
   $("#star_1").hover(function() {
     onHover(1);
-    // $(this).attr("src", "star-off.png").attr("src", "/assets/star-on.png")
   }, function() {
     offHover();
-    // $(this).attr("src", "star-on.png").attr("src", "/assets/star-off.png")
   });
   //2 Star
   $("#star_2").hover(function() {
     onHover(2);
-    // $("#star_1").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
-    // $("#star_2").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
   }, function() {
     offHover();
-    // $("#star_1").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-    // $("#star_2").attr("src", "star-on.png").attr("src", "/assets/star-off.png")
   });
   //3 Star
   $("#star_3").hover(function() {
     onHover(3);
-    // $("#star_1").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
-    // $("#star_2").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
-    // $("#star_3").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
   }, function() {
     offHover();
-    // $("#star_1").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-    // $("#star_2").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-    // $("#star_3").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
   });
   //4 Star
   $("#star_4").hover(function() {
     onHover(4);
-    // $("#star_1").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
-    // $("#star_2").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
-    // $("#star_3").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
-    // $("#star_4").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
   }, function() {
     offHover();
-    // $("#star_1").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-    // $("#star_2").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-    // $("#star_3").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-    // $("#star_4").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
   });
   //5 Star
   $("#star_5").hover(function() {
     onHover(5);
-    // $("#star_1").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
-    // $("#star_2").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
-    // $("#star_3").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
-    // $("#star_4").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
-    // $("#star_5").attr("src", "star-off.png").attr("src", "/assets/star-on.png");
   }, function() {
     offHover();
-    // $("#star_1").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-    // $("#star_2").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-    // $("#star_3").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-    // $("#star_4").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-    // $("#star_5").attr("src", "star-on.png").attr("src", "/assets/star-off.png");
   });
 
 
 
   //Star Hover
   function onHover(id) {
-    //Remove stars
-      // for(var i = 1; i <= 5; i++) {
-      //   $("#star_" + i).attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-      // };
     //Add Stars
       for(var i = 1; i <= id; i++) {
         $("#star_" + i).attr("src", "star-off.png").attr("src", "/assets/star-on.png");
       };
-    // });
   }
   //Remove stars on off hover
   function offHover() {
-    // $.get("/ratings/" + $("#rating_rating_id").val() + "/get_rating").success(function(data) {
-    //   console.log(data);
-    //   for(var i = data.rating + 1; i <= 5; i++) {
-    //     $("#star_" + i).attr("src", "star-on.png").attr("src", "/assets/star-off.png");
-    //   };
-    // });
     for(var i = 1; i <=5; i++) {
       $("#star_" + i).attr("src", "star-on.png").attr("src", "/assets/star-off.png");
     }
-    // getRating();
   }
 
 //Reset once off SPAN!!!!!
@@ -137,13 +95,10 @@ $(document).ready(function() {
       var type = "venue"
     };
     $.get("/ratings/" + $("#rating_user_id").val() + "/get_rating?type_id=" + $("#rating_"+type+"_id").val() + "&type=" + type).success(function(data) {
-      // console.log($("#rating_"+type+"_id").val());
-      // console.log(data.rating);
       for (var i = 1; i <= 5; i++) {
         $("#star_" + i).attr("src", "star-on.png").attr("src", "/assets/star-off.png");
       }
       for (var i = 1; i <= data.rating; i++) {
-        // console.log(data.rating);
         $("#star_" + i).attr("src", "star-off.png").attr("src", "/assets/star-on.png");
       };
     });

@@ -8,9 +8,9 @@
 
     <% if @user.image.file? %>
     <p>
-     <a><%= image_tag(@user.image.url(:medium)) %></a>
+     <a><%= image_tag(@user.image.url(:large)) %></a>
      <% else %>
-     <%= link_to image_tag('profile.jpeg') %>
+     <%= link_to image_tag('profile_large.jpeg') %>
     </p>
     <% end %>
 

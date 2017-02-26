@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
-  has_attached_file :image, styles: { small: "80x64#", med: "120x80#", large: "280x180#", xlarge: "400x400#" }, :default_url => "profile_:style.jpeg"
+  has_attached_file :image, styles: { small: "64x64#", med: "100x100#", large: "350x275#", xlarge: "400x400#" }, :default_url => "profile_:style.jpeg"
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
