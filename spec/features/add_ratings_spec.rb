@@ -30,7 +30,7 @@ RSpec.feature "AddRatings", type: :feature do
         fill_in "City", with: "Mars"
         fill_in "State", with: "Mars"
         fill_in "Zip", with: "Mars"
-        click_on "Create Venue"
+        click_on "Submit Venue"
         expect(page).to have_content("Venue was successfully created")
       end
 
@@ -48,7 +48,7 @@ RSpec.feature "AddRatings", type: :feature do
         click_on "New Event"
         fill_in "Name", with: "Mating Season"
         select "Mars", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
         expect(page).to have_content("Event was successfully created")
       end
 

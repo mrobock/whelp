@@ -28,7 +28,7 @@ RSpec.feature "SearchVenuesEvents", type: :feature do
         fill_in "State", with: "Mars"
         fill_in "Zip", with: "Mars"
         attach_file('venue[image]', 'spec/images/foo.jpg')
-        click_on "Create Venue"
+        click_on "Submit Venue"
         expect(page).to have_content("Venue was successfully created")
 
         visit "/venues"
@@ -40,7 +40,7 @@ RSpec.feature "SearchVenuesEvents", type: :feature do
         fill_in "State", with: "Mars"
         fill_in "Zip", with: "Mars"
         attach_file('venue[image]', 'spec/images/foo.jpg')
-        click_on "Create Venue"
+        click_on "Submit Venue"
         expect(page).to have_content("Venue was successfully created")
 
         visit "/venues"
@@ -52,7 +52,7 @@ RSpec.feature "SearchVenuesEvents", type: :feature do
         fill_in "State", with: "Mars"
         fill_in "Zip", with: "Mars"
         attach_file('venue[image]', 'spec/images/foo.jpg')
-        click_on "Create Venue"
+        click_on "Submit Venue"
         expect(page).to have_content("Venue was successfully created")
       end
 
@@ -62,20 +62,20 @@ RSpec.feature "SearchVenuesEvents", type: :feature do
         click_on "New Event"
         fill_in "Name", with: "Mating Season"
         select "Mars Attacks", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
 
         visit "/events"
         click_on "New Event"
         fill_in "Name", with: "Dog Days"
         select "Mars Attacks", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
 
         visit "/events"
         click_on "New Event"
         fill_in "Name", with: "Other Mating Season"
         fill_in "Description", with: "Dog mating season time on Mars"
         select "Mars Attacks", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
 
         expect(page).to have_content "Event was successfully created"
         expect(page).to have_content "Mating Season"

@@ -115,7 +115,7 @@ RSpec.feature "ManageUser", type: :feature do
         fill_in 'venue[name]', with: "Sample Venue"
         fill_in 'venue[description]', with: "Some description of this particular venue"
 
-        click_on 'Create Venue'
+        click_on 'Submit Venue'
       end
       And 'I have created an event' do
         visit '/events'
@@ -124,7 +124,7 @@ RSpec.feature "ManageUser", type: :feature do
         fill_in 'event[name]', with: "Sample Event"
         fill_in 'event[description]', with: "Some description of this particular event"
 
-        click_on 'Create Event'
+        click_on 'Submit Event'
       end
       And "I have created a user and given them an admin role" do
         click_on 'Sign Out'
@@ -176,7 +176,7 @@ RSpec.feature "ManageUser", type: :feature do
       end
       And 'I change the title and update' do
         fill_in 'event[name]', with: "Example Event"
-        click_on 'Update Event'
+        click_on 'Submit Event'
       end
       Then 'I should see the updated venue name' do
         expect(page).to have_content("Example Event")
@@ -209,7 +209,7 @@ RSpec.feature "ManageUser", type: :feature do
       end
       And 'I change the title and update' do
         fill_in 'venue[name]', with: "Example Venue"
-        click_on 'Update Venue'
+        click_on 'Submit Venue'
       end
       Then 'I should see the updated venue name' do
         expect(page).to have_content("Example Venue")
