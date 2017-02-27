@@ -70,6 +70,13 @@ RSpec.feature "ManageUser", type: :feature do
       end
       And 'I should see and edit user form with the username and other data prefilled' do
         expect(page).to have_content("Edit")
+
+        expect(page).to have_field('user[email]', with: "test1@test.com")
+        expect(page).to have_field('user[username]', with: "test1")
+        expect(page).to have_field("First name", with: "test")
+        expect(page).to have_field("Last name", with: "one")
+
+        expect(page).to have_content("Do you want to cancel this user's account?")
       end
       When "I change the user's data" do
         fill_in 'user_email', with: "test3@test.com"

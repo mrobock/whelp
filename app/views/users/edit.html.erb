@@ -76,9 +76,15 @@
   </div>
 <% end %>
 
-<h3>Cancel this user's account</h3>
+<% if @ability.can?(:manage, @user, id: @user.id) %>
+  <h3>Cancel my account</h3>
 
-<!-- Road block: Can't delete with this -->
-<p>Do you want to cancel this user's account? <%= button_to "Yes", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
+  <p>Unhappy? <%= button_to "Cancel my account", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
+<% else %>
+  <h3>Cancel this user's account</h3>
+
+  <!-- Road block: Can't delete with this -->
+  <p>Do you want to cancel this user's account? <%= button_to "Yes", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
+<% end %>
 
 <%= link_to "Back", :back %>
