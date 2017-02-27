@@ -7,10 +7,4 @@ class Rating < ApplicationRecord
 
   validates :rating, presence: true, inclusion: { in: 1..5}
 
-
-  #
-  # <%=  image_tag(some_path) do %>
-  # <%=  content_tag(:p, "Your link text here") %>
-  # <%  end %>
-
 end

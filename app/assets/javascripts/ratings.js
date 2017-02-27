@@ -63,19 +63,16 @@ $(document).ready(function() {
   $("#star_2").click(function(event){
     ajaxRating(2);
     event.stopPropagation();
-
   });
   //Star 3
   $("#star_3").click(function(event){
     ajaxRating(3);
     event.stopPropagation();
-
   });
   //Star 4
   $("#star_4").click(function(event){
     ajaxRating(4);
     event.stopPropagation();
-
   });
   // Star 5
   $("#star_5").click(function(event){
@@ -151,6 +148,17 @@ $(document).ready(function() {
     });
   }
 
+  function roundUpStr(num) {
+    num *= 100;
+    num = Math.round(num);
+    num /= 100;
+    return num.toFixed(2);
+  }
+
+  function numRatings(num) {
+    return (num == 1) ? num + " Rating" : num + " Ratings";
+  }
+
   function updateAvgCnt() {
     if($("#rating_venue_id").val() === undefined) {
       var type = "event"
@@ -162,8 +170,8 @@ $(document).ready(function() {
       url: "/ratings/" + $("#rating_"+type+"_id").val() + "/rating_update?type=" + type,
       method: 'GET',
       success: function(data) {
-        $("#avg_rating").text(data.average);
-        $("#count_rating").text(data.count);
+        $("#avg_rating").text(roundUpStr(data.average));
+        $("#count_rating").text(numRatings(data.count));
       },
       error: function(jqXHR, testStatus, errorThrown) {
         alert("Unable to update average rating because " + errorThrown);
