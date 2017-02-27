@@ -16,8 +16,8 @@
           <p><strong>Description:</strong><br><%= venue.description %></p>
 
           <div id="ratings">
-            <p class="pull-right"><%= venue.ratings.length %> Rating(s)</p>
-            <p>Avg Rating: <%= venue.ratings.average("rating") %></p>
+            <p class="pull-right"><strong><%= show_rating venue.ratings %></strong></p>
+            <p><strong>Avg Rating: <%= format venue.ratings.average("rating") %></strong></p>
           </div>
         </div>
         <p>

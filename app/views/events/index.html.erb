@@ -16,8 +16,8 @@
           <p><strong>Description:</strong><br><%= event.description %></p>
 
           <div id="ratings">
-            <p class="pull-right"><%= event.ratings.length %> Rating(s)</p>
-            <p>Avg Rating: <%= event.ratings.average("rating") %></p>
+            <p class="pull-right"><strong><%= show_rating event.ratings %></strong></p>
+            <p><strong>Avg Rating: <%= format event.ratings.average("rating") %></strong></p>
           </div>
         </div>
         <p>

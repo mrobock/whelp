@@ -34,8 +34,6 @@ class EventsController < ApplicationController
     else
       @rating = Rating.new
     end
-    # @avg_rating = Rating.where(event: @event).average("rating").to_f.round(2)
-    # @count_rating = Rating.where(event: @event).count
 
     # RSVP
     if user_signed_in?

@@ -137,3 +137,11 @@ footer {
   width: 100%;
   justify-content: space-between;
 }
+
+#avg_rating {
+  font-weight: bold;
+}
+
+#count_rating {
+  font-weight: bold;
+}

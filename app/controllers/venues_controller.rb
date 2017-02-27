@@ -43,8 +43,6 @@ class VenuesController < ApplicationController
     else
       @rating = Rating.new
     end
-    # avg_rating(@venue)
-    # @count_rating = Rating.where(venue: @venue).count
   end
 
   # def avg_rating(venue)
