@@ -57,10 +57,14 @@
           <%= @event.description %>
         </p>
       </div> <!-- info-text -->
+
       <br>
+
+      <!-- Ratings -->
       <div id="ratings">
         <%= render 'ratings/form', rating: @rating %>
-          <% if !current_user.nil? && @ability.can?(:create, Rating) %>
+
+        <% if !current_user.nil? && @ability.can?(:create, Rating) %>
           <p class="pull-left">
             <div id="rating_div">
               <strong>My Rating:</strong>
@@ -73,9 +77,11 @@
               </span>
             </div>
           </p>
+
         <% elsif current_user.nil? %>
           <p><%= link_to "Sign in to rate this event!", new_user_session_path %></p>
         <% end %>
+
         <div class="rating_block">
           <p class="pull-left">
             <strong>Average Rating:</strong>
@@ -86,7 +92,8 @@
             <strong> Rating(s)</strong>
           </p>
         </div> <!-- rating_block div -->
-      </div> <!-- ratings -->
+      </div> <!-- End Ratings -->
+      
     </div> <!-- class="info-left" -->
 
     <div id="info-right">

@@ -44,12 +44,14 @@
           <strong>Description:</strong>
           <%= @venue.description %>
         </p>
+
         <br>
+
+        <!-- Ratings -->
         <div id="ratings">
+          <%= render 'ratings/form', rating: @rating %>
 
           <% if !current_user.nil? && @ability.can?(:create, Rating) %>
-            <%= render 'ratings/form', rating: @rating %>
-
             <p class="pull-left">
               <strong>My Rating:</strong>
               <span id="rating_span">
@@ -60,9 +62,11 @@
                 <%= image_tag("star-off.png", id: "star_5") %>
               </span>
             </p>
+
           <% elsif current_user.nil? %>
             <p><%= link_to "Sign in to rate this venue!", new_user_session_path %></p>
           <% end %>
+
           <div class="rating_block">
             <span class="pull-left">
               <strong>Average Rating:</strong>
@@ -72,9 +76,9 @@
                 <span id="count_rating"></span>
                 <strong> Rating(s)</strong>
               </span>
-            </div>
-
-        </div>
+            </div> <!-- rating_block div -->
+        </div> <!-- End Ratings -->
+        
       </div> <!-- info-text -->
     </div> <!-- info-left -->
 
