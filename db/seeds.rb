@@ -180,6 +180,17 @@ end
 
 p "Added Ratings/Comments to Venues!"
 
+v = Venue.create!(
+  name: "Hunter Industries",
+  description: "Saving water one dog bowl at a time",
+  street_1: "1890 Diamond St",
+  zip: "92078",
+  user: user_4
+)
+
+Rating.create!(user: user_4, venue: v, rating: 5)
+Comment.create!(user: user_4, venue: v, text: "Mob dogging was fun!", title: "The power of the mob!")
+
 past_events_to_create = [
   {
   name: "Dog Gone Good!",
@@ -302,3 +313,15 @@ User.all.each do |user|
 end
 
 p "Added Users to Future Events!"
+
+e = Event.create!(
+  name: "Dogs Just Want To Have Fun",
+  date: DateTime.now,
+  description: "The title says it all.",
+  venue_id: v.id,
+  user_id: user_4.id
+)
+
+Rsvp.create!(user: user_4, event: e)
+Rating.create!(user: user_4, event: e, rating: 5)
+Comment.create!(user: user_4, event: e, text: "Not bad!", title: "!!!")
