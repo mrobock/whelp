@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   # Devise routes
-  devise_for :users, path_prefix: 'my', controllers: { registrations: 'devise/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, path_prefix: 'my', controllers: { registrations: 'users/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users
 

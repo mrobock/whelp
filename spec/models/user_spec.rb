@@ -47,4 +47,15 @@ RSpec.describe User, type: :model do
     user.add_role :default
     expect(user.has_role? :default).to eq true
   end
+  it "must be able to be soft deleted" do
+    user = User.new(username: "dummy1", email: "dummy@home.com", password: "password1", password_confirmation: "password1", first_name: "dumdum", last_name: "deedum", street_1: "123 Dumb St", street_2: "Apt. 22", city: "Dumb City", state: "California", zip: "92116")
+    user.save
+
+    expect(User.find_by(username: "dummy1").deleted_at).to eq nil
+
+    user.soft_delete
+    user.save
+
+    expect(User.find_by(username: "dummy1").deleted_at).to_not eq nil
+  end
 end

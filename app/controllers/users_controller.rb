@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy!
+    @user.soft_delete
 
     respond_to do |format|
       format.html { redirect_to users_index_path, notice: 'User was successfully destroyed.' }
