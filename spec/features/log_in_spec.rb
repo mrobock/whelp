@@ -86,7 +86,7 @@ RSpec.feature "LoggingIn", type: :feature do
         fill_in 'venue[state]', with: "CA"
         fill_in 'venue[zip]', with: "92109"
         attach_file('venue[image]', 'spec/images/foo.jpg')
-        click_button 'Create Venue'
+        click_button 'Submit Venue'
         expect(page).to have_content("Joe's Venue")
         expect(page).to have_content("Description: Joe's Awesome Venue")
       end
@@ -104,7 +104,7 @@ RSpec.feature "LoggingIn", type: :feature do
         click_on "New Event"
         fill_in "Name", with: "Mating Season"
         select "Joe's Venue", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
       end
       Then 'I visit the events page and see a header and a table of venues containing information about said events' do
         visit "/events"

@@ -43,6 +43,7 @@ RSpec.feature "UserProfiles", type: :feature do
       end
       Then "I can edit my profile" do
         click_on "Edit"
+        expect(page).to have_content('Cancel my account')
         fill_in 'user[username]', with: "philTest"
         fill_in 'user[email]', with: "phil@test.com"
         fill_in 'user[password]', with: "tester"
@@ -72,7 +73,7 @@ RSpec.feature "UserProfiles", type: :feature do
           fill_in "State", with: "Mars"
           fill_in "Zip", with: "Mars"
           attach_file('venue[image]', 'spec/images/foo.jpg')
-          click_on "Create Venue"
+          click_on "Submit Venue"
           expect(page).to have_content("Venue was successfully created")
       end
 
@@ -90,7 +91,7 @@ RSpec.feature "UserProfiles", type: :feature do
         fill_in "Description", with: "Mating Season 123333333333"
         select "Mars", from: "Venue"
         select (DateTime.now.year+1), from: 'event_date_1i'
-        click_on "Create Event"
+        click_on "Submit Event"
       end
 
       And "I can see the event I just created" do

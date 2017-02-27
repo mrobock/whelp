@@ -32,7 +32,7 @@ RSpec.feature "FeaturedEvents", type: :feature do
         fill_in "State", with: "Mars"
         fill_in "Zip", with: "Mars"
         attach_file('venue[image]', 'spec/images/foo.jpg')
-        click_on "Create Venue"
+        click_on "Submit Venue"
         expect(page).to have_content("Venue was successfully created")
       end
 
@@ -41,25 +41,25 @@ RSpec.feature "FeaturedEvents", type: :feature do
         click_on "New Event"
         fill_in "Name", with: "Mating Season 1"
         select "Mars Attacks", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
 
         visit "/events"
         click_on "New Event"
         fill_in "Name", with: "Mating Season 2"
         select "Mars Attacks", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
 
         visit "/events"
         click_on "New Event"
         fill_in "Name", with: "Mating Season 3"
         select "Mars Attacks", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
 
         visit "/events"
         click_on "New Event"
         fill_in "Name", with: "Mating Season 4"
         select "Mars Attacks", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
 
         click_link "Sign Out"
       end

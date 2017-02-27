@@ -2,57 +2,57 @@
 
 <%= form_for(@user, html: { method: :put, multipart: true }) do |f| %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :username %>
-    <%= f.text_field :username %>
+    <%= f.text_field :username, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :street_1 %>
-    <%= f.text_field :street_1 %>
+    <%= f.text_field :street_1, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :street_2 %>
-    <%= f.text_field :street_2 %>
+    <%= f.text_field :street_2, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :city %>
-    <%= f.text_field :city %>
+    <%= f.text_field :city, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :state %>
-    <%= f.text_field :state %>
+    <%= f.text_field :state, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :zip %>
-    <%= f.text_field :zip %>
+    <%= f.text_field :zip, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :image  %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image, class: "form-control" %>
   </div>
 
-  <!-- <div class="field">
+  <!-- <div class="form-group">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
     <% if @minimum_password_length %>
@@ -61,24 +61,29 @@
     <% end %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div> -->
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="actions form-group">
+    <%= f.submit "Update", class: "btn btn-success" %>
   </div>
 <% end %>
 
-<h3>Cancel this user's account</h3>
+<% if @ability.can?(:manage, @user, id: @user.id) %>
+  <h3>Cancel my account</h3>
 
-<!-- Road block: Can't delete with this -->
-<p>Do you want to cancel this user's account? <%= button_to "Yes", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  <p>Unhappy? <%= button_to "Cancel my account", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
+<% else %>
+  <h3>Cancel this user's account</h3>
+
+  <p>Do you want to cancel this user's account? <%= button_to "Yes", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
+<% end %>
 
 <%= link_to "Back", :back %>

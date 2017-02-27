@@ -70,6 +70,13 @@ RSpec.feature "ManageUser", type: :feature do
       end
       And 'I should see and edit user form with the username and other data prefilled' do
         expect(page).to have_content("Edit")
+
+        expect(page).to have_field('user[email]', with: "test1@test.com")
+        expect(page).to have_field('user[username]', with: "test1")
+        expect(page).to have_field("First name", with: "test")
+        expect(page).to have_field("Last name", with: "one")
+
+        expect(page).to have_content("Do you want to cancel this user's account?")
       end
       When "I change the user's data" do
         fill_in 'user_email', with: "test3@test.com"
@@ -115,7 +122,7 @@ RSpec.feature "ManageUser", type: :feature do
         fill_in 'venue[name]', with: "Sample Venue"
         fill_in 'venue[description]', with: "Some description of this particular venue"
 
-        click_on 'Create Venue'
+        click_on 'Submit Venue'
       end
       And 'I have created an event' do
         visit '/events'
@@ -124,7 +131,7 @@ RSpec.feature "ManageUser", type: :feature do
         fill_in 'event[name]', with: "Sample Event"
         fill_in 'event[description]', with: "Some description of this particular event"
 
-        click_on 'Create Event'
+        click_on 'Submit Event'
       end
       And "I have created a user and given them an admin role" do
         click_on 'Sign Out'
@@ -176,7 +183,7 @@ RSpec.feature "ManageUser", type: :feature do
       end
       And 'I change the title and update' do
         fill_in 'event[name]', with: "Example Event"
-        click_on 'Update Event'
+        click_on 'Submit Event'
       end
       Then 'I should see the updated venue name' do
         expect(page).to have_content("Example Event")
@@ -209,7 +216,7 @@ RSpec.feature "ManageUser", type: :feature do
       end
       And 'I change the title and update' do
         fill_in 'venue[name]', with: "Example Venue"
-        click_on 'Update Venue'
+        click_on 'Submit Venue'
       end
       Then 'I should see the updated venue name' do
         expect(page).to have_content("Example Venue")

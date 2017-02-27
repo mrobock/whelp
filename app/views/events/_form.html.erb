@@ -11,39 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :date %>
-    <%= f.datetime_select :date, { order: [:month, :day, :year], ampm: true } %>
+    <%= f.datetime_select :date, { order: [:month, :day, :year], ampm: true, :minute_step => 15 } %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :venue_id %>
-    <%= select(:event, :venue_id, @venues_for_select) %>
+    <%= select(:event, :venue_id, @venues_for_select, { class: "form-control"}) %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: "form-control", rows: 10 %>
   </div>
 
   <div>
     <%= f.label :image %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image, class: "form-control" %>
   </div>
 
   <% ability = Ability.new(current_user) %>
   <% if ability.can?(:create, Event) %>
-    <div class="field">
+    <div class="form-group">
       <input type="hidden" value="<%= current_user.id %>" name="event[user_id]">
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit Event', class: "btn btn-success"  %>
   </div>
 <% end %>

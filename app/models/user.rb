@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
-  has_attached_file :image, styles: { small: "80x64#", med: "120x80#", large: "280x180#", xlarge: "400x400#" }, :default_url => "profile_:style.jpeg"
+  has_attached_file :image, styles: { small: "64x64#", med: "100x100#", large: "350x275#", xlarge: "400x400#" }, :default_url => "profile_:style.jpeg"
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
@@ -31,19 +31,25 @@ class User < ApplicationRecord
     add_role(:default)
   end
 
-  # Virtual attribute for authenticating by either username or email
-   # This is in addition to a real persisted field like 'username'
-  attr_accessor :login
-  #
+  # instead of deleting, indicate the user requested a delete & timestamp it
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
+  end
 
-# Extra method to also authorize via login value (email or username). Not needed unless login methods are going to be used elsewhere.
-  # def login=(login)
-  #   @login = login
-  # end
-  #
-  # def login
-  #   @login || self.username || self.email
-  # end
+  # ensure user account is active
+  def active_for_authentication?
+    super && !deleted_at
+  end
+
+  # provide a custom message for a deleted account
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end 
+
+  # Virtual attribute for authenticating by either username or email
+  # This is in addition to a real persisted field like 'username'
+  attr_accessor :login
+
 
   def self.from_omniauth(auth)
     if auth.provider == "facebook"

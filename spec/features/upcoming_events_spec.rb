@@ -30,7 +30,7 @@ RSpec.feature "UpcomingEvents", type: :feature do
         fill_in "State", with: "Mars"
         fill_in "Zip", with: "Mars"
         attach_file('venue[image]', 'spec/images/foo.jpg')
-        click_on "Create Venue"
+        click_on "Submit Venue"
         expect(page).to have_content("Venue was successfully created")
       end
 
@@ -42,9 +42,9 @@ RSpec.feature "UpcomingEvents", type: :feature do
         select "31", from: "event[date(3i)]"
         select "2017", from: "event[date(1i)]"
         select "11 PM", from: "event[date(4i)]"
-        select "59", from: "event[date(5i)]"
+        select "45", from: "event[date(5i)]"
         select "Mars", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
       end
 
       And "I can add a second new future event" do
@@ -55,9 +55,9 @@ RSpec.feature "UpcomingEvents", type: :feature do
         select "31", from: "event[date(3i)]"
         select "2020", from: "event[date(1i)]"
         select "11 PM", from: "event[date(4i)]"
-        select "59", from: "event[date(5i)]"
+        select "45", from: "event[date(5i)]"
         select "Mars", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
       end
 
       And "I can add a third new future event" do
@@ -68,9 +68,9 @@ RSpec.feature "UpcomingEvents", type: :feature do
         select "31", from: "event[date(3i)]"
         select "2022", from: "event[date(1i)]"
         select "11 PM", from: "event[date(4i)]"
-        select "59", from: "event[date(5i)]"
+        select "45", from: "event[date(5i)]"
         select "Mars", from: "Venue"
-        click_on "Create Event"
+        click_on "Submit Event"
       end
 
       Then "I can see all three upcoming events on the homepage" do
