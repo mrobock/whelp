@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 User.create!([
   {
   first_name: "Chris",
@@ -97,6 +89,8 @@ user_names.each do |user|
   )
 end
 
+p "Added Side Users!"
+
 Venue.create!([
   {
   name: "LEARN",
@@ -140,6 +134,18 @@ Venue.create!([
   street_1: "4548 Sweetwater Rd",
   zip: "91902",
   user: user_5
+  },{
+  name: "Sunset Cliffs",
+  description: "Natural cliffs overlooking the Pacific Ocean offer views of the coast & the occassional dog diver",
+  street_1: "Ladera Street",
+  zip: "92107",
+  user: user_3
+  },{
+  name: "Mount Woodson Trail",
+  description: "Fun area to hike with unusual rock formations & great views!",
+  street_1: "Mount Woodson Trail",
+  zip: "92064",
+  user: user_2
   }
 ])
 
@@ -193,11 +199,13 @@ past_events_to_create = [
   },{
   name: "Snoopy Doo",
   description: "Snoopy. Scooby Doo. Your dog could be the next famous dog! Come out and showcase what your dog can do!"
+  },{
+  name: "Are We Having Fun Yet?!",
+  description: "Seriously, drop by and tell us if we're having fun"
   }
 ]
 
 past_events_to_create.each do |event|
-  p event
   Event.create!(
     name: event[:name],
     date: DateTime.now - (rand(14) + 7) + (rand(24) / 24.0),
@@ -206,15 +214,6 @@ past_events_to_create.each do |event|
     user_id: User.order("RANDOM()").first.id
   )
 end
-# Event.create!([
-#   {
-#   name: "Dog Gone Good!",
-#   date: DateTime.now - (rand(14) + 7) + (rand(24) / 24.0),
-#   description: "",
-#   venue_id: Venue.order("RANDOM()").first.id,
-#   user_id: User.order("RANDOM()").first.id
-#   }
-# ])
 
 p "Added Past Events!"
 
@@ -227,17 +226,26 @@ comments = [
   "Lines were too long, but... I can't complain too much",
   "I stepped in dawg poop",
   "5 Stars!",
-  "Friend recommended this event to me, did not enjoy it too much"
+  "Friend recommended this event to me, did not enjoy it too much",
+  "I mean, the guy with $11,000 suit, c'mon!",
+  "Can any here help me with installing minecraft mods?",
+  "3 Stars!",
+  "Just wow! Better than anything I do at home!",
+  "It is day 87 and the horses have accepted me as one of their own. I have grown to understand and respect their gentle ways. Now I question everything I thought I once knew and fear I am no longer capable of following through with my primary objective. I know that those who sent me will not relent. They will send others in my place… But we will be ready.",
+  "Don't miss the next one!",
+  "Meh",
+  "If it wasn't for the other people, I would have enjoyed this.",
+  "Thanks for everything!"
 ]
 event_length = Event.where("date < ?", DateTime.now).length
 
 User.all.each do |user|
-  (rand(2) + 1).times do |iter|
+  (rand(4) + 1).times do |iter|
     e = Event.where("date < ?", DateTime.now).order("RANDOM()").first
     if (Rsvp.where(user: user, event: e).length == 0)
       Rsvp.create!(user: user, event: e)
       Rating.create!(user: user, event: e, rating: rand(5) + 1)
-      Comment.create!(user: user, event: e, text: comments[rand(comments.length) + 1], title: "Title " + iter.to_s)
+      Comment.create!(user: user, event: e, text: comments[rand(comments.length)], title: "Title " + iter.to_s)
     end
   end
 end
@@ -281,19 +289,8 @@ future_events_to_create.each do |event|
     user_id: User.order("RANDOM()").first.id
   )
 end
-# Event.create!([
-#   {
-#   name: "Please help me",
-#   date: DateTime.now + (rand(14) + 7) + (rand(24) / 24.0),
-#   description: "",
-#   venue_id: Venue.order("RANDOM()").first.id,
-#   user_id: User.order("RANDOM()").first.id
-#   }
-# ])
 
 p "Added Future Events!"
-
-# event_length = Event.where("date >= ?", DateTime.now).length
 
 User.all.each do |user|
   (rand(2) + 1).times do |iter|
