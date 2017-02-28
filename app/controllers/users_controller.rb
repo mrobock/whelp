@@ -16,10 +16,13 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    @ability = Ability.new(current_user)
   end
 
   def update
     @user = User.find(params[:id])
+    @ability = Ability.new(current_user)
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to users_index_path, notice: 'User was successfully updated.' }
@@ -33,7 +36,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy!
+    @user.soft_delete
 
     respond_to do |format|
       format.html { redirect_to users_index_path, notice: 'User was successfully destroyed.' }

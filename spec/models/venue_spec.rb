@@ -91,5 +91,29 @@ RSpec.describe Venue, type: :model do
 
       expect(Venue.find_by_name("Venue name")).to be(nil)
     end
+
+    it "can deactivate a current venue in the database" do
+      venue = Venue.new
+      venue.name = "Venue name"
+      venue.description = "venue description"
+      venue.street_1 = "123 venue ave"
+      venue.street_2 = "unit 1"
+      venue.city = "san diego"
+      venue.state = "CA"
+      venue.zip = "92108"
+      user1 = User.new(username: "Joe1", email: "joe@home.com", password: "password", password_confirmation: "password", first_name: "firstname", last_name: "lastname")
+      user1.save
+      venue.user = user1
+      venue.save
+
+      venue = Venue.find_by_name("Venue name")
+      expect(venue.active?).to eq true
+
+      venue.soft_delete
+      venue.save
+
+      venue = Venue.find_by_name("Venue name")
+      expect(venue.active?).to eq false
+    end
   end
 end

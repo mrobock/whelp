@@ -6,28 +6,30 @@
 
 <div class="row">
   <% @venues.each do |venue| %>
-    <div class="col-sm-4 col-lg-4 col-md-4">
-      <div class="thumbnail">
-        <a><%= image_tag(venue.image.url(:small)) %></a>
-        <div class="caption">
-          <h4><%= link_to "#{venue.name}", venue %></h4>
-          <p><strong>Address:</strong><br>
-          <%= "#{venue.street_1} #{venue.street_2} #{venue.city} #{venue.state} #{venue.zip}" %></p>
-          <p><strong>Description:</strong><br><%= venue.description %></p>
+    <% if venue.active? %>
+      <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+          <a><%= image_tag(venue.image.url(:small)) %></a>
+          <div class="caption">
+            <h4><%= link_to "#{venue.name}", venue %></h4>
+            <p><strong>Address:</strong><br>
+            <%= "#{venue.street_1} #{venue.street_2} #{venue.city} #{venue.state} #{venue.zip}" %></p>
+            <p><strong>Description:</strong><br><%= venue.description %></p>
 
-          <div id="ratings">
-            <p class="pull-right"><%= venue.ratings.length %> Rating(s)</p>
-            <p>Avg Rating: <%= venue.ratings.average("rating") %></p>
+            <div id="ratings">
+              <p class="pull-right"><strong><%= show_rating venue.ratings %></strong></p>
+              <p><strong>Avg Rating: <%= format venue.ratings.average("rating") %></strong></p>
+            </div>
           </div>
+          <p>
+            <% if !current_user.nil? && venue.user == current_user %>
+              <%= link_to 'Edit', edit_venue_path(venue) %> |
+              <%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </p>
         </div>
-        <p>
-          <% if !current_user.nil? && venue.user == current_user %>
-            <%= link_to 'Edit', edit_venue_path(venue) %> |
-            <%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </p>
       </div>
-    </div>
+    <% end %>
   <% end %>
 
   <% if !current_user.nil? && @ability.can?(:create, Venue) %>

@@ -16,30 +16,32 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    # Set ability
-    @ability = Ability.new(current_user)
+    if @event.active?
+      # Set ability
+      @ability = Ability.new(current_user)
 
-    # Event review
-    @event_review = EventReview.new
-    @event_reviews = EventReview.where(event_id: @event.id)
+      # Event review
+      @event_review = EventReview.new
+      @event_reviews = EventReview.where(event_id: @event.id)
 
-    # Set up blank comment and list of comments
-    @comment = Comment.new
-    @comments = Comment.where(event_id: @event.id)
+      # Set up blank comment and list of comments
+      @comment = Comment.new
+      @comments = Comment.where(event_id: @event.id)
 
-    # Finds user's current rating if existing or creates new blank rating. Also finds rating average
-    rating = Rating.where(user: current_user, event: @event)
-    if rating.length >= 1
-      @rating = rating[0]
+      # Finds user's current rating if existing or creates new blank rating. Also finds rating average
+      rating = Rating.where(user: current_user, event: @event)
+      if rating.length >= 1
+        @rating = rating[0]
+      else
+        @rating = Rating.new
+      end
+
+      # RSVP
+      if user_signed_in?
+        @remove_rsvp = Rsvp.find_by(event_id: params[:id], user_id: current_user.id)
+      end
     else
-      @rating = Rating.new
-    end
-    # @avg_rating = Rating.where(event: @event).average("rating").to_f.round(2)
-    # @count_rating = Rating.where(event: @event).count
-
-    # RSVP
-    if user_signed_in?
-      @remove_rsvp = Rsvp.find_by(event_id: params[:id], user_id: current_user.id)
+      redirect_to '/events'
     end
   end
 
@@ -53,16 +55,20 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    # Set ability
-    @ability = Ability.new(current_user)
+    if @event.active?
+      # Set ability
+      @ability = Ability.new(current_user)
 
-    if !current_user.nil? && @ability.can(:manage, @event, user_id: current_user.id)
-      @event = Event.find(params[:id])
-      @venues_for_select = Venue.all.map do |venue|
-        [venue.name, venue.id]
+      if !current_user.nil? && @ability.can(:manage, @event, user_id: current_user.id)
+        @event = Event.find(params[:id])
+        @venues_for_select = Venue.all.map do |venue|
+          [venue.name, venue.id]
+        end
+      else
+        redirect_to 'events'
       end
     else
-      redirect_to 'events'
+      redirect_to '/events'
     end
   end
 
@@ -107,9 +113,10 @@ class EventsController < ApplicationController
     if !@ability.can(:manage, @event, user_id: current_user.id)
       redirect_to 'events'
     end
-    @event.ratings.delete_all
-    Rsvp.where(event_id: @event.id).delete_all
-    @event.destroy
+    # Note: the following lines not needed, because now we do soft delete
+    # @event.ratings.delete_all
+    # Rsvp.where(event_id: @event.id).delete_all
+    @event.soft_delete
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }

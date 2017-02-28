@@ -64,12 +64,17 @@
   </p>
 <% end %>
 
-<!-- Make sure that the first condition refers to this user's ownership -->
-<% if !current_user.nil? && @user == current_user %>
-  <%= button_to "Edit My Profile", edit_user_registration_path, :method => "get", class: "btn btn-info" %>
-  <% elsif @ability.can?(:rud, User) %>
-  <%= button_to 'Edit My Profile', edit_user_path(@user), :method => "get", class: "btn btn-info"  %>
+<% if @ability.can?(:manage, @user, id: @user.id) %>
+  <!-- if a user didn't create an account with omniauth, they will use the Devise edit page, otherwise they'll use users edit page -->
+  <% if @user.provider.nil? %>
+    <%= button_to "Edit My Profile", edit_user_registration_path, method: "get", class: "btn btn-info" %>
+  <% else %>
+    <%= button_to 'Edit My Profile', edit_user_path(@user), method: "get", class: "btn btn-info"  %>
   <% end %>
+<% elsif @ability.can?(:rud, @user) %>
+  <%= button_to 'Edit My Profile', edit_user_path(@user), method: "get", class: "btn btn-info"  %>
+<% end %>
+
 <br>
 
 <h4>My Venues:</h4>

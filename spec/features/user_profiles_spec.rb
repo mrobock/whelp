@@ -43,6 +43,7 @@ RSpec.feature "UserProfiles", type: :feature do
       end
       Then "I can edit my profile" do
         click_on "Edit"
+        expect(page).to have_content('Cancel my account')
         fill_in 'user[username]', with: "philTest"
         fill_in 'user[email]', with: "phil@test.com"
         fill_in 'user[password]', with: "tester"
