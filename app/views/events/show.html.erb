@@ -83,13 +83,13 @@
         <% end %>
 
         <div class="rating_block">
-          <p class="pull-left">
-            <strong>Average Rating:</strong>
+          <span class="pull-left">
+            <strong>Average Rating:&nbsp</strong>
             <span id="avg_rating"></span>
-          </p>
-          <p class="pull-right">
-            <span id="count_rating"></span>
-          </p>
+          </span>
+          <span class="pull-right">
+            <span id="count_rating">&nbspRatings</span>
+          </span>
         </div> <!-- rating_block div -->
       </div> <!-- End Ratings -->
 
@@ -154,9 +154,11 @@
   </div> <!-- class="caption-full" -->
 </div> <!-- class="thumbnail" -->
 
+<!-- Added some space -->
 <div class="five_space">
 </div>
 
+<!-- Comments -->
 <p class="pull-right"><%= @comments.count %> Comment(s)</p>
 <h3>Comments</h3>
 <div class="well">
