@@ -29,19 +29,23 @@ class VenuesController < ApplicationController
   # GET /venues/1
   # GET /venues/1.json
   def show
-    @ability = Ability.new(current_user)
-    @venue_review = VenueReview.new
-    @venue_reviews = VenueReview.where(venue_id: @venue.id)
+    if @venue.active?
+      @ability = Ability.new(current_user)
+      @venue_review = VenueReview.new
+      @venue_reviews = VenueReview.where(venue_id: @venue.id)
 
-    @comment = Comment.new
-    @comments = Comment.where(venue_id: @venue.id)
+      @comment = Comment.new
+      @comments = Comment.where(venue_id: @venue.id)
 
-    # Finds user's current rating if existing or creates new blank rating. Also finds rating average
-    rating = Rating.where(user: current_user, venue: @venue)
-    if rating.length == 1
-      @rating = rating[0]
+      # Finds user's current rating if existing or creates new blank rating. Also finds rating average
+      rating = Rating.where(user: current_user, venue: @venue)
+      if rating.length == 1
+        @rating = rating[0]
+      else
+        @rating = Rating.new
+      end
     else
-      @rating = Rating.new
+      redirect_to '/venues'
     end
   end
 
@@ -60,6 +64,9 @@ class VenuesController < ApplicationController
 
   # GET /venues/1/edit
   def edit
+    if !@venue.active?
+      redirect_to '/venues'
+    end
   end
 
   # POST /venues
@@ -103,9 +110,10 @@ class VenuesController < ApplicationController
     if !@ability.can(:manage, @venue, user_id: current_user.id)
       redirect_to 'venues'
     end
-    @venue.ratings.delete_all
-    @venue.events.delete_all
-    @venue.destroy
+    # For now, these are not needed, because we are doing soft deletes
+    # @venue.ratings.delete_all
+    # @venue.events.delete_all
+    @venue.soft_delete
     respond_to do |format|
       format.html { redirect_to venues_url, notice: 'Venue was successfully destroyed.' }
       format.json { head :no_content }
