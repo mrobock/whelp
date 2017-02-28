@@ -18,4 +18,13 @@ class Event < ApplicationRecord
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
     size: { in: 0..10.megabytes }
 
+    # instead of deleting, indicate the user requested a delete & timestamp it
+    def soft_delete
+      update_attribute(:deleted_at, Time.current)
+    end
+
+    # check if event is active or has been soft deleted
+    def active?
+      !deleted_at
+    end
 end

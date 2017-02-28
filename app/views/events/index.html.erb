@@ -6,28 +6,30 @@
 
 <div class="row">
   <% @events.each do |event| %>
-    <div class="col-sm-4 col-lg-4 col-md-4">
-      <div class="thumbnail">
-        <a><%=image_tag(event.image.url(:small)) %></a>
-        <div class="caption">
-          <h4><%= link_to "#{event.name}", event %></h4>
-          <h6><%= upcase_first date_to_s(event.date) %></h6>
-          <p><strong>Venue:</strong> <%= link_to "#{event.venue.name}", "/venues/#{event.venue_id}" %></p>
-          <p><strong>Description:</strong><br><%= event.description %></p>
+    <% if event.active? %>
+      <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+          <a><%=image_tag(event.image.url(:small)) %></a>
+          <div class="caption">
+            <h4><%= link_to "#{event.name}", event %></h4>
+            <h6><%= upcase_first date_to_s(event.date) %></h6>
+            <p><strong>Venue:</strong> <%= link_to "#{event.venue.name}", "/venues/#{event.venue_id}" %></p>
+            <p><strong>Description:</strong><br><%= event.description %></p>
 
-          <div id="ratings">
-            <p class="pull-right"><strong><%= show_rating event.ratings %></strong></p>
-            <p><strong>Avg Rating: <%= format event.ratings.average("rating") %></strong></p>
+            <div id="ratings">
+              <p class="pull-right"><strong><%= show_rating event.ratings %></strong></p>
+              <p><strong>Avg Rating: <%= format event.ratings.average("rating") %></strong></p>
+            </div>
           </div>
+          <p>
+            <% if !current_user.nil? && event.user == current_user %>
+              <%= link_to 'Edit', edit_event_path(event) %> |
+              <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </p>
         </div>
-        <p>
-          <% if !current_user.nil? && event.user == current_user %>
-            <%= link_to 'Edit', edit_event_path(event) %> |
-            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </p>
       </div>
-    </div>
+    <% end %>
   <% end %>
 
   <% if !current_user.nil? && @ability.can?(:create, Event) %>
