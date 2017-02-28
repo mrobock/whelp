@@ -229,34 +229,35 @@ end
 p "Added Past Events!"
 
 comments = [
-  "It was ok",
-  "Would go again!",
-  "First",
-  "^ This",
-  "My dog was super happy here!",
-  "Lines were too long, but... I can't complain too much",
-  "I stepped in dawg poop",
-  "5 Stars!",
-  "Friend recommended this event to me, did not enjoy it too much",
-  "I mean, the guy with $11,000 suit, c'mon!",
-  "Can any here help me with installing minecraft mods?",
-  "3 Stars!",
-  "Just wow! Better than anything I do at home!",
-  "It is day 87 and the horses have accepted me as one of their own. I have grown to understand and respect their gentle ways. Now I question everything I thought I once knew and fear I am no longer capable of following through with my primary objective. I know that those who sent me will not relent. They will send others in my place… But we will be ready.",
-  "Don't miss the next one!",
-  "Meh",
-  "If it wasn't for the other people, I would have enjoyed this.",
-  "Thanks for everything!"
+  {description: "It was ok", title: "eh"},
+  {description: "Would go again!", title: "Yay!"},
+  {description: "First", title: "First"},
+  {description: "^ This", title: "Bump"},
+  {description: "My dog was super happy here!", title: ":D"},
+  {description: "Lines were too long, but... I can't complain too much", title: "k"},
+  {description: "I stepped in dawg poop", title: "sucks to suck"},
+  {description: "5 Stars!", title: "*****"},
+  {description: "Friend recommended this event to me, did not enjoy it too much", title: "Bad and should feel bad"},
+  {description: "I mean, the guy with $11,000 suit, c'mon!", title: "What's going on?!"},
+  {description: "Can any here help me with installing minecraft mods?", title: "need help"},
+  {description: "3 Stars!", title: "starz starz starz"},
+  {description: "Just wow! Better than anything I do at home!", title: "Un-be-lieve-uh-ble"},
+  {description: "It is day 87 and the horses have accepted me as one of their own. I have grown to understand and respect their gentle ways. Now I question everything I thought I once knew and fear I am no longer capable of following through with my primary objective. I know that those who sent me will not relent. They will send others in my place… But we will be ready.", title: "TL;DR"},
+  {description: "Don't miss the next one!", title: "Too much fun!"},
+  {description: "Meh", title: "very much meh"},
+  {description: "If it wasn't for the other people, I would have enjoyed this.", title: "Dogz rule, humans drool"},
+  {description: "Thanks for everything!", title: "TY!"}
 ]
 event_length = Event.where("date < ?", DateTime.now).length
 
 User.all.each do |user|
   (rand(4) + 1).times do |iter|
     e = Event.where("date < ?", DateTime.now).order("RANDOM()").first
+    rng = rand(comments.length)
     if (Rsvp.where(user: user, event: e).length == 0)
       Rsvp.create!(user: user, event: e)
       Rating.create!(user: user, event: e, rating: rand(5) + 1)
-      Comment.create!(user: user, event: e, text: comments[rand(comments.length)], title: "Title " + iter.to_s)
+      Comment.create!(user: user, event: e, text: comments[rng][:description], title: comments[rng][:title])
     end
   end
 end
